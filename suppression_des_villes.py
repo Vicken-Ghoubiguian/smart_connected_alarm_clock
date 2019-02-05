@@ -1,8 +1,29 @@
 # -*- coding: utf-8 -*
 
-from Tkinter import *
-import ttk
-from tkMessageBox import *
+#
+try:
+
+	#
+	from Tkinter import *
+
+	#
+	import ttk
+
+	#
+	from tkMessageBox import *
+
+#
+except ImportError:
+
+	#
+	from tkinter import *
+
+	#
+	import tkinter.ttk
+
+	#
+	from tkinter.messagebox import *
+
 import horloge_monde
 
 #Cette classe permet de définir une interface graphique pour supprimer une ville dans la base de données

@@ -1,10 +1,31 @@
 # -*- coding: utf-8 -*
 
-from tkinter import *
+#
+try:
+
+	#
+	from Tkinter import *
+
+	#
+	import ttk
+
+	#
+	from tkMessageBox import *
+
+#
+except ImportError:
+
+	#
+	from tkinter import *
+
+	#
+	import tkinter.ttk as ttk
+
+	#
+	from tkinter.messagebox import *
+
 import os
 import pytube
-import ttk
-from tkMessageBox import *
 import horloge_monde
 from PIL import ImageTk, Image
 import requests

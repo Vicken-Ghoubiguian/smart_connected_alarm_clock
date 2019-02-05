@@ -1,13 +1,31 @@
 # -*- coding: utf-8 -*
 
-from Tkinter import *
+#
+try:
+
+	#
+	from Tkinter import *
+
+	#
+	from urllib2 import urlopen
+
+#
+except ImportError:
+
+	#
+	from tkinter import *
+
+	#
+	from urllib.request import urlopen
+
 import situation_de_la_meteo
 import horloge_monde
 import datetime
 import pytz
 from PIL import ImageTk, Image
 import requests
-from io import BytesIO
+import io
+import base64
 import subprocess
 
 #Cette classe permet de définir une interface graphique pour afficher la météo d'une ville enregistrée dans la base de données
@@ -89,28 +107,19 @@ class Affichage_de_la_Meteo(Frame):
 		self.label_d_affichage_du_nom_de_la_ville_concernee.pack()
 
 		#
-		reponse_de_la_requete_de_recuperation_de_l_image = requests.get(self.situation_de_la_meteo_dans_la_ville_donnee.url_de_l_icone_de_la_meteo_de_la_ville_courante)
+		image_byt = urlopen(self.situation_de_la_meteo_dans_la_ville_donnee.url_de_l_icone_de_la_meteo_de_la_ville_courante).read()
 
 		#
-		donnees_relatives_a_l_image = reponse_de_la_requete_de_recuperation_de_l_image.content
+		image_b64 = base64.encodestring(image_byt)
 
 		#
-		image_prete_a_l_affichage = ImageTk.PhotoImage(Image.open(BytesIO(donnees_relatives_a_l_image)))
+		image_prete_a_l_affichage = PhotoImage(data = image_b64)
 
 		#
-		self.canvas_d_affichage_de_l_image_de_presentation_de_la_situation_meteorologique = Canvas(fenetre)
-
-		#
-		self.canvas_d_affichage_de_l_image_de_presentation_de_la_situation_meteorologique.create_image(10, 5, image = image_prete_a_l_affichage)
+		self.canvas_d_affichage_de_l_image_de_presentation_de_la_situation_meteorologique = Label(fenetre, image = image_prete_a_l_affichage)
 
 		#
 		self.canvas_d_affichage_de_l_image_de_presentation_de_la_situation_meteorologique.pack()
-
-		#
-		#self.label_d_affichage_de_la_meteo = Label(fenetre, text = "Il fait " + self.situation_de_la_meteo_dans_la_ville_donnee.situation_meteorologique_dans_la_ville_donnee + ".")
-
-		#
-		#self.label_d_affichage_de_la_meteo.pack()
 
 		#
 		self.label_d_affichage_des_donnees_generales = Label(fenetre, text = texte_du_label_d_affichage_des_donnees_generales)

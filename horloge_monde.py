@@ -1,12 +1,40 @@
 # -*- coding: utf-8 -*
 
+#
+try:
+
+	#
+	import ttk
+
+	#
+	from tkMessageBox import *
+
+#
+except ImportError:
+
+	#
+	import tkinter.ttk
+
+	#
+	from tkinter.messagebox import *
+
 import datetime
 import pytz
 import sqlite3
 import time
-import ttk
 import subprocess
-from tkMessageBox import *
+
+#
+def mise_a_jour_des_modules_python_necessaires_pour_le_reveil():
+
+	#
+	liste_de_tous_les_packets_python_instales = ["pytz", "pyowm", "datetime", "pygame", "SpeechRecognition", "Pillow", "PyAudio", "geojson", "chardet", "certifi", "idna", "urllib3", "requests"]
+
+	#
+	for packet in liste_de_tous_les_packets_python_instales:
+
+        	#
+        	subprocess.call(["sudo", "-H", "pip", "install", "--upgrade", packet])
 
 #
 def verification_d_appartenance_de_la_chaine_a_un_nom_d_une_ville_inscrite_dans_la_base(mot_dont_l_appartenance_a_un_nom_de_ville_doit_etre_verifie, langue_uttilisee):
@@ -785,6 +813,42 @@ def renvoi_de_l_etat_du_reveil():
 
 	#
 	return resultat_de_la_requete_precedente_sous_forme_de_bool
+
+#
+def est_minuit_dans_le_timezone_renseigne_dans_la_table_reveil():
+
+	#Déclaration de la variable confirmation qui permet de confirmer si il est temps d'effectuer les mises à jour ou non
+	confirmation = False
+
+	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
+        connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
+
+        #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les données de la table
+        curseur = connecteur.cursor()
+
+	#
+        curseur.execute("SELECT timezone.timezone FROM timezone INNER JOIN Reveil ON Reveil.timezone = timezone.id")
+
+	#
+        timezone_donnee_dans_le_reveil = curseur.fetchone()
+
+        #
+        timezone = timezone_donnee_dans_le_reveil[0]
+
+	#Férmeture du connecteur grace à la fonction close() appliquée ce premier
+        connecteur.close()
+
+	#
+        horaire = renvoi_de_la_date_et_de_l_heure(timezone)
+
+	#
+	if horaire.hour == 0 and horaire.minute == 0 and horaire.second == 0:
+
+                        #
+                        confirmation = True
+
+	#
+	return confirmation
 
 #Cette fonction s'enclenche dés que l'heure (heure, minute, et seconde) passée en paramétre dans la ville passée en paramétre correspond à l'heure incrite pour sonner
 def reveil():

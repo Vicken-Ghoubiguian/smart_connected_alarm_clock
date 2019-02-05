@@ -712,7 +712,7 @@ INSERT INTO ville(ville_en_fr, ville_en_en, pays, timezone) VALUES('Antananarivo
 INSERT INTO ville(ville_en_fr, ville_en_en, pays, timezone) VALUES('Lima', 'Lima', 139, 133);
 
 --INSERTION DANS LA TABLE REVEIL--
-INSERT INTO Reveil(ville, timezone, heure, minute, seconde, frequence, single_choisi, est_active) VALUES(1, 346, 0, 0, 0, 7, 1, 1);
+INSERT INTO Reveil(ville, timezone, heure, minute, seconde, frequence, single_choisi, est_active) VALUES(1, 348, 0, 0, 0, 7, 1, 1);
 
 --INSERTION DANS LA TABLE SINGLE--
 INSERT INTO Single(nom_du_single, nom_de_l_auteur, pays, chemin_d_accee, identifiant_YouTube_de_la_video_d_origine) VALUES('We are all made of stars', 'Moby', 58, "./media/Moby_We_Are_All_Made_of_Stars_Official_video.wav", "x1rFAaAKpVc");

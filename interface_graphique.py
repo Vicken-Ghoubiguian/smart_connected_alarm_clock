@@ -1,8 +1,29 @@
 # -*- coding: utf-8 -*
 
-from Tkinter import *
-import ttk
-from tkMessageBox import *
+#
+try:
+
+	#
+	from Tkinter import *
+
+	#
+	import ttk
+
+	#
+	from tkMessageBox import *
+
+#
+except ImportError:
+
+	#
+	from tkinter import *
+
+	#
+	import tkinter.ttk as ttk
+
+	#
+	from tkinter.messagebox import *
+
 import horloge_monde
 import time
 import extracteur_de_fichiers_audio_depuis_des_videos_YouTube
@@ -204,7 +225,7 @@ class Horloge(Frame):
 		self.fenetre_courante_pour_la_lecteure_de_fichiers_audio_telecharges_depuis_YouTube = None
 
 		#
-                self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube = False
+		self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube = False
 
 		#
 		self.time1 = 0
@@ -243,13 +264,13 @@ class Horloge(Frame):
 	def choix_de_l_unite_de_mesure_selectionnee_pour_la_temperature(self):
 
 		#Dans le cas ou la musique du reveil joue, alors...
-                if self.est_en_train_de_sonner_reveil == True:
+		if self.est_en_train_de_sonner_reveil == True:
 
-                        #On arrete de la jouer
-                        self.sonnerie.stop()
+                	#On arrete de la jouer
+                	self.sonnerie.stop()
 
 			#
-			self.est_en_train_de_sonner_reveil = False
+		 	self.est_en_train_de_sonner_reveil = False
 
 			#
 			if self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == True:
@@ -1308,15 +1329,17 @@ class Horloge(Frame):
 			#Le programme se met en pause durant 1 seconde
 			time.sleep(1)
 
+		 #
+		 if horloge_monde.est_minuit_dans_le_timezone_renseigne_dans_la_table_reveil() == True:
+
+			#
+			horloge_monde.mise_a_jour_des_modules_python_necessaires_pour_le_reveil()
+
     		 #La fonction s'appelle elle-meme toute les 200 milisecondes pour se mettre à jour
 		 self.afficheur.after(200, self.tick)
 
 	#
 	def appel_de_la_commande_vocale(self, tableau_de_la_commande_vocale_de_l_uttilisateur):
-
-		#
-		#if len(tableau_de_la_commande_vocale_de_l_uttilisateur) == 2:
-		#if 2 == 2:
 
 		#
                 if self.langue_uttilisee == 0:
@@ -1716,9 +1739,3 @@ def initialisation_et_affichage_de_l_horloge():
 
         #
         horloge.mainloop()
-
-#Bloc de test du module
-if __name__ == '__main__':
-
-	#
-	initialisation_et_affichage_de_l_horloge()

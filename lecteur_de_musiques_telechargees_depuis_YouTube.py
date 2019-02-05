@@ -1,11 +1,32 @@
 # -*- coding: utf-8 -*
 
+#
+try:
+
+	#
+	from Tkinter import *
+
+	#
+	import ttk
+
+	#
+	from tkMessageBox import *
+
+#
+except ImportError:
+
+	#
+	from tkinter import *
+
+	#
+	import tkinter.ttk as ttk
+
+	#
+	from tkinter.messagebox import *
+
 import pygame
 import pygame.mixer
-from Tkinter import *
-import ttk
 import horloge_monde
-from tkMessageBox import *
 import math
 import subprocess
 

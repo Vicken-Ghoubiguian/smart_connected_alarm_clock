@@ -1,8 +1,29 @@
 # -*- coding: utf-8 -*
 
-from Tkinter import *
-from tkMessageBox import *
-import ttk
+#
+try:
+
+	#
+	from Tkinter import *
+
+	#
+	from tkMessageBox import *
+
+	#
+	import ttk
+
+#
+except ImportError:
+
+	#
+	from tkinter import *
+
+	#
+	from tkinter.messagebox import *
+
+	#
+	import tkinter.ttk
+
 import horloge_monde
 import subprocess
 
