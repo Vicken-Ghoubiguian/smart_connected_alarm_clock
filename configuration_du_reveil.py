@@ -37,6 +37,21 @@ class Configuration_du_Reveil(Frame):
 		Frame.__init__(self, fenetre, width = width_fenetre_de_conf, height = height_fenetre_de_conf)
 
 		#
+		tableau_contenant_l_heure_la_minute_et_la_seconde_pour_faire_sonner_le_reveil = horloge_monde.renvoie_de_l_heure_de_la_minute_et_de_la_seconde_pour_faire_sonner_le_reveil()
+
+		#
+		indice_du_single_courant_a_jouer_en_cas_de_sonnerie_du_reveil = horloge_monde.renvoie_de_l_id_du_single_enregistre_pour_faire_sonner_le_reveil()
+
+		#
+		indice_de_la_ville_courante_pour_faire_sonner_le_reveil = horloge_monde.renvoie_de_l_id_de_la_ville_pour_faire_sonner_le_reveil()
+
+		#
+		indice_de_la_ville_courante_pour_faire_sonner_le_reveil = indice_de_la_ville_courante_pour_faire_sonner_le_reveil - 1
+
+		#
+		frequence_de_la_sonnerie_du_reveil = horloge_monde.renvoie_de_la_frequence_de_la_sonnerie_du_reveil()
+
+		#
 		texte_du_label_d_indication_du_spinbox_de_l_heure_a_renseigner = " "
 
 		#
@@ -169,7 +184,13 @@ class Configuration_du_Reveil(Frame):
 		self.label_choix_heure.pack()
 
 		#
-		self.choix_heure = Spinbox(fenetre, from_ = 0, to = 23)
+                heure_par_defaut = StringVar()
+
+                #
+                heure_par_defaut.set(tableau_contenant_l_heure_la_minute_et_la_seconde_pour_faire_sonner_le_reveil[0])
+
+		#
+		self.choix_heure = Spinbox(fenetre, from_ = 0, to = 23, textvariable = heure_par_defaut)
 
 		#
 		self.choix_heure.pack()
@@ -181,7 +202,13 @@ class Configuration_du_Reveil(Frame):
 		self.label_choix_minute.pack()
 
 		#
-		self.choix_minute = Spinbox(fenetre, from_ = 0, to = 59)
+		minute_par_defaut = StringVar()
+
+		#
+		minute_par_defaut.set(tableau_contenant_l_heure_la_minute_et_la_seconde_pour_faire_sonner_le_reveil[1])
+
+		#
+		self.choix_minute = Spinbox(fenetre, from_ = 0, to = 59, textvariable = minute_par_defaut)
 
 		#
 		self.choix_minute.pack()
@@ -193,7 +220,13 @@ class Configuration_du_Reveil(Frame):
 		self.label_choix_seconde.pack()
 
 		#
-		self.choix_seconde = Spinbox(fenetre, from_ = 0, to = 59)
+		seconde_par_defaut = StringVar()
+
+		#
+		seconde_par_defaut.set(tableau_contenant_l_heure_la_minute_et_la_seconde_pour_faire_sonner_le_reveil[2])
+
+		#
+		self.choix_seconde = Spinbox(fenetre, from_ = 0, to = 59, textvariable = seconde_par_defaut)
 
 		#
 		self.choix_seconde.pack()
@@ -205,7 +238,7 @@ class Configuration_du_Reveil(Frame):
 		self.label_du_choix_du_single_pour_le_reveil.pack()
 
 		#
-		self.liste_des_singles_pour_choisir_celui_du_reveil = horloge_monde.retour_des_singles_enregistres_dans_la_base(fenetre)
+		self.liste_des_singles_pour_choisir_celui_du_reveil = horloge_monde.retour_des_singles_enregistres_dans_la_base(fenetre, indice_du_single_courant_a_jouer_en_cas_de_sonnerie_du_reveil - 1)
 
 		#
 		self.liste_des_singles_pour_choisir_celui_du_reveil.pack()
@@ -222,8 +255,8 @@ class Configuration_du_Reveil(Frame):
 		#Insertion de tous les jours de la semaine, en plus de la demande de déclanchement du reveil pour tous les jours, dans la liste (de type Listbox)
 		self.liste_des_jours_de_la_semaine = ttk.Combobox(fenetre, state = "readonly", values = liste_des_jours_de_la_semaine)
 
-		#Initialisation de la valeur par défaut à Lundi
-		self.liste_des_jours_de_la_semaine.current(0)
+		#Initialisation de la valeur par défaut à la valeur numérique (int) correspondant au jour de la semaine pour lequel le reveil est configuré pour sonner
+		self.liste_des_jours_de_la_semaine.current(frequence_de_la_sonnerie_du_reveil)
 
 		#
 		self.liste_des_jours_de_la_semaine.pack()
@@ -235,7 +268,7 @@ class Configuration_du_Reveil(Frame):
                 self.label_du_choix_de_la_ville.pack()
 
 		#
-		self.liste_des_villes = horloge_monde.retour_des_villes_enregistrees_dans_la_base(fenetre, -1, -1, langue_uttilisee)
+		self.liste_des_villes = horloge_monde.retour_des_villes_enregistrees_dans_la_base(fenetre, -1, -1, indice_de_la_ville_courante_pour_faire_sonner_le_reveil, langue_uttilisee)
 
 		#
 		self.liste_des_villes.pack()

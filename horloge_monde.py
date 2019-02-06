@@ -25,6 +25,90 @@ import time
 import subprocess
 
 #
+def renvoie_de_l_id_de_la_ville_pour_faire_sonner_le_reveil():
+
+	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
+        connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
+
+        #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les données de la table
+        curseur = connecteur.cursor()
+
+	#
+	curseur.execute("SELECT ville.id FROM ville INNER JOIN Reveil ON Reveil.ville = ville.id")
+
+	#
+	resultat_de_la_requete_de_recuperation_de_l_id_de_la_ville_pour_faire_sonner_le_reveil = curseur.fetchone()
+
+	#
+        connecteur.close()
+
+	#
+	return int(resultat_de_la_requete_de_recuperation_de_l_id_de_la_ville_pour_faire_sonner_le_reveil[0])
+
+#
+def renvoie_de_la_frequence_de_la_sonnerie_du_reveil():
+
+	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
+        connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
+
+        #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les données de la table
+        curseur = connecteur.cursor()
+
+	#
+	curseur.execute("SELECT Reveil.frequence FROM Reveil")
+
+	#
+	resultat_de_la_requete_de_recuperation_de_la_frequence_de_la_sonnerie_du_reveil = curseur.fetchone()
+
+	#
+        connecteur.close()
+
+	#
+	return int(resultat_de_la_requete_de_recuperation_de_la_frequence_de_la_sonnerie_du_reveil[0])
+
+#
+def renvoie_de_l_id_du_single_enregistre_pour_faire_sonner_le_reveil():
+
+	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
+        connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
+
+        #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les données de la table
+        curseur = connecteur.cursor()
+
+	#
+	curseur.execute("SELECT Single.id FROM Single INNER JOIN Reveil ON Reveil.single_choisi = Single.id")
+
+	#
+	resultat_de_la_requete_de_recuperation_de_l_id_du_single_a_faire_jouer_quand_le_reveil_sonne = curseur.fetchone()
+
+	#
+        connecteur.close()
+
+	#
+	return resultat_de_la_requete_de_recuperation_de_l_id_du_single_a_faire_jouer_quand_le_reveil_sonne[0]
+
+#
+def renvoie_de_l_heure_de_la_minute_et_de_la_seconde_pour_faire_sonner_le_reveil():
+
+	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
+        connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
+
+        #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les données de la table
+        curseur = connecteur.cursor()
+
+        #
+        curseur.execute("SELECT Reveil.heure, Reveil.minute, Reveil.seconde FROM Reveil")
+
+	#
+	resultat_de_la_requete_de_recuperation_de_l_heure_de_la_minute_et_de_la_seconde_pour_faire_sonner_le_reveil = curseur.fetchone()
+
+	#
+        connecteur.close()
+
+	#
+	return resultat_de_la_requete_de_recuperation_de_l_heure_de_la_minute_et_de_la_seconde_pour_faire_sonner_le_reveil
+
+#
 def mise_a_jour_des_modules_python_necessaires_pour_le_reveil():
 
 	#
@@ -619,7 +703,7 @@ def initialisation_du_tableau_des_villes(language):
 	return tableau_des_villes
 
 #
-def retour_des_villes_enregistrees_dans_la_base(fenetre, id_de_la_premiere_ville_a_ne_pas_prendre_en_compte, id_de_la_seconde_ville_a_ne_pas_prendre_en_compte, langue_uttilisee):
+def retour_des_villes_enregistrees_dans_la_base(fenetre, id_de_la_premiere_ville_a_ne_pas_prendre_en_compte, id_de_la_seconde_ville_a_ne_pas_prendre_en_compte, indice_a_mettre_en_place, langue_uttilisee):
 
 	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
         connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
@@ -680,7 +764,7 @@ def retour_des_villes_enregistrees_dans_la_base(fenetre, id_de_la_premiere_ville
         combobox_a_retourner = ttk.Combobox(fenetre, state = "readonly", values = tableau_des_villes, width = 45)
 
 	#
-	combobox_a_retourner.current(0)
+	combobox_a_retourner.current(indice_a_mettre_en_place)
 
 	#La combobox remplie précédement du nom des villes en français et des identifiants est retournée
 	return combobox_a_retourner
@@ -731,7 +815,7 @@ def retour_des_timezones_enregistrees_dans_la_base(fenetre, id_du_pays_a_prendre
         combobox_a_retourner = ttk.Combobox(fenetre, values = tableau_des_timezones, state = "readonly", width = 50)
 
 	#
-	combobox_a_retourner.current(0)
+	combobox_a_retourner.current(indice_a_mettre_en_place)
 
 	#La combobox remplie précédement du nom des villes en français et des identifiants est retournée
 	return combobox_a_retourner
@@ -1683,7 +1767,7 @@ def renvoi_du_single_utilise_pour_le_reveil():
 	return resultat_de_la_requete_de_recuperation_du_chemin_d_accee_du_fichier_audio_a_jouer_pour_le_reveil[0][0]
 
 #
-def retour_des_singles_enregistres_dans_la_base(fenetre):
+def retour_des_singles_enregistres_dans_la_base(fenetre, indice_a_mettre_en_place):
 
 	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
         connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
@@ -1719,7 +1803,7 @@ def retour_des_singles_enregistres_dans_la_base(fenetre):
         combobox_a_retourner = ttk.Combobox(fenetre, values = tableau_des_singles, state = "readonly", width = 50)
 
         #
-        combobox_a_retourner.current(0)
+        combobox_a_retourner.current(indice_a_mettre_en_place)
 
         #La combobox remplie précédement du nom des singles et de leurs artistes est retournée
         return combobox_a_retourner
