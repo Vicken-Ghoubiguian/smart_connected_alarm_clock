@@ -135,6 +135,9 @@ class Configuration_du_Reveil(Frame):
 			#
 			self.contenu_textuel_d_indication_pour_une_erreur_de_type_valueerror = "Hour, minute and second obligatorily integers !!!!"
 
+			#
+			self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_des_mises_a_jour = "Error: The hour and the minute for updates must be strictly different from those of updates"
+
 		#
 		else:
 
@@ -176,6 +179,9 @@ class Configuration_du_Reveil(Frame):
 
 			#
 			self.contenu_textuel_d_indication_pour_une_erreur_de_type_valueerror = "Heure, minute et seconde obligatoirement entiers !!!!"
+
+			#
+			self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_des_mises_a_jour = "Erreur: L'heure et la minute pour les mises à jour doivent être strictement différents de ceux des mises à jour"
 
 		#
 		self.label_choix_heure = Label(fenetre, text = texte_du_label_d_indication_du_spinbox_de_l_heure_a_renseigner)
@@ -322,7 +328,11 @@ class Configuration_du_Reveil(Frame):
 
 			#Les valeurs renseignées précédements concernant l'heure, la minute, et la seconde sont converties en entiers et affectées dans des variables respectives
 			heure_a_analyser = int(self.choix_heure.get())
+
+			#
 			minute_a_analyser = int(self.choix_minute.get())
+
+			#
 			seconde_a_analyser = int(self.choix_seconde.get())
 
 			#
@@ -333,18 +343,39 @@ class Configuration_du_Reveil(Frame):
 
 				#
 				try:
+
+					#
+					tableau_contenant_l_heure_la_minute_et_la_seconde_pour_les_mises_a_jour = horloge_monde.renvoie_de_l_heure_de_la_minute_et_de_la_seconde_pour_les_mises_a_jour()
+
 					#
 					heure_a_prendre = str(self.choix_heure.get())
+
+					#
                 			minute_a_prendre = str(self.choix_minute.get())
+
+					#
                 			seconde_a_prendre = str(self.choix_seconde.get())
+
+					#
                 			frequence_selectionnee = str(self.liste_des_jours_de_la_semaine.current())
+
+					#
                 			id_de_la_ville_selectionnee = self.liste_des_villes.current() + 1
 
 					#
-					self.modification_des_parametres_du_reveil(heure_a_prendre, minute_a_prendre, seconde_a_prendre, frequence_selectionnee, id_de_la_ville_selectionnee, str(indice_du_single_a_faire_jouer))
+					if int(heure_a_prendre) == int(tableau_contenant_l_heure_la_minute_et_la_seconde_pour_les_mises_a_jour[0]) and int(minute_a_prendre) == int(tableau_contenant_l_heure_la_minute_et_la_seconde_pour_les_mises_a_jour[1]):
+
+						#
+						subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_des_mises_a_jour])
 
 					#
-					subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.contenu_textuel_d_indication_du_succee])
+					else:
+
+						#
+						self.modification_des_parametres_du_reveil(heure_a_prendre, minute_a_prendre, seconde_a_prendre, frequence_selectionnee, id_de_la_ville_selectionnee, str(indice_du_single_a_faire_jouer))
+
+						#
+						subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.contenu_textuel_d_indication_du_succee])
 
 				#
 				except Exception:

@@ -47,6 +47,17 @@ CREATE TABLE IF NOT EXISTS Reveil(
 	FOREIGN KEY (single_choisi) REFERENCES Single(id)
 );
 
+CREATE TABLE IF NOT EXISTS Mise_a_jour(
+	ville INTEGER NOT NULL,
+	timezone INTEGER NOT NULL,
+	heure INTEGER NOT NULL,
+	minute INTEGER NOT NULL,
+	seconde INTEGER NOT NULL,
+	frequence INTEGER NOT NULL,
+	FOREIGN KEY (ville) REFERENCES ville(id),
+	FOREIGN KEY (timezone) REFERENCES timezone(id)
+);
+
 --INSERTION DES DONNEES RELATIFS AUX PAYS RECONNUS PAR L'ONU (PAR ORDRE ALPHABETIQUE) DANS LA TABLE PAYS--
 INSERT INTO pays(pays_en_fr, pays_en_en) VALUES("None", "None");
 INSERT INTO pays(pays_en_fr, pays_en_en) VALUES("République d'Afrique du Sud", "Republic of South Africa");
@@ -713,6 +724,9 @@ INSERT INTO ville(ville_en_fr, ville_en_en, pays, timezone) VALUES('Lima', 'Lima
 
 --INSERTION DANS LA TABLE REVEIL--
 INSERT INTO Reveil(ville, timezone, heure, minute, seconde, frequence, single_choisi, est_active) VALUES(1, 348, 0, 0, 0, 7, 1, 1);
+
+--INSERTION DANS LA TABLE MISE_A_JOUR--
+INSERT INTO Mise_a_jour(ville, timezone, heure, minute, seconde, frequence) VALUES(1, 348, 1, 1, 1, 1);
 
 --INSERTION DANS LA TABLE SINGLE--
 INSERT INTO Single(nom_du_single, nom_de_l_auteur, pays, chemin_d_accee, identifiant_YouTube_de_la_video_d_origine) VALUES('We are all made of stars', 'Moby', 58, "./media/Moby_We_Are_All_Made_of_Stars_Official_video.wav", "x1rFAaAKpVc");

@@ -13,7 +13,7 @@ try:
 except ImportError:
 
 	#
-	import tkinter.ttk
+	import tkinter.ttk as ttk
 
 	#
 	from tkinter.messagebox import *
@@ -23,6 +23,69 @@ import pytz
 import sqlite3
 import time
 import subprocess
+
+#
+def renvoie_de_la_frequence_pour_les_mises_a_jour():
+
+        #Connection à la base de données registre_des_timezones_des_villes_et_des_pays
+        connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
+
+        #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les données de la table
+        curseur = connecteur.cursor()
+
+        #
+        curseur.execute("SELECT Mise_a_jour.frequence FROM Mise_a_jour")
+
+        #
+        resultat_de_la_requete_de_recuperation_de_la_frequence_pour_les_mises_a_jour = curseur.fetchone()
+
+        #
+        connecteur.close()
+
+        #
+        return int(resultat_de_la_requete_de_recuperation_de_la_frequence_pour_les_mises_a_jour[0])
+
+#
+def renvoie_de_l_id_de_la_ville_pour_les_mises_a_jour():
+
+        #Connection à la base de données registre_des_timezones_des_villes_et_des_pays
+        connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
+
+        #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les données de la table
+        curseur = connecteur.cursor()
+
+        #
+        curseur.execute("SELECT ville.id FROM ville INNER JOIN Mise_a_jour ON Mise_a_jour.ville = ville.id")
+
+        #
+        resultat_de_la_requete_de_recuperation_de_l_id_de_la_ville_pour_les_mises_a_jour = curseur.fetchone()
+
+        #
+        connecteur.close()
+
+        #
+        return int(resultat_de_la_requete_de_recuperation_de_l_id_de_la_ville_pour_les_mises_a_jour[0])
+
+#
+def renvoie_de_l_heure_de_la_minute_et_de_la_seconde_pour_les_mises_a_jour():
+
+        #Connection à la base de données registre_des_timezones_des_villes_et_des_pays
+        connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
+
+        #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les données de la table
+        curseur = connecteur.cursor()
+
+        #
+        curseur.execute("SELECT Mise_a_jour.heure, Mise_a_jour.minute, Mise_a_jour.seconde FROM Mise_a_jour")
+
+        #
+        resultat_de_la_requete_de_recuperation_de_l_heure_de_la_minute_et_de_la_seconde_pour_les_mises_a_jour = curseur.fetchone()
+
+        #
+        connecteur.close()
+
+        #
+        return resultat_de_la_requete_de_recuperation_de_l_heure_de_la_minute_et_de_la_seconde_pour_les_mises_a_jour
 
 #
 def renvoie_de_l_id_de_la_ville_pour_faire_sonner_le_reveil():
@@ -772,6 +835,9 @@ def retour_des_villes_enregistrees_dans_la_base(fenetre, id_de_la_premiere_ville
 #
 def retour_des_timezones_enregistrees_dans_la_base(fenetre, id_du_pays_a_prendre_en_compte):
 
+	#
+	indice_a_mettre_en_place = 0
+
 	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
         connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
 
@@ -1029,6 +1095,36 @@ def mise_a_jour_de_la_table_reveil(heure, minute, seconde, frequence, id_de_la_v
 
 	#
         connecteur.close()
+
+#
+def mise_a_jour_de_la_table_Mise_a_jour(heure, minute, seconde, frequence, id_de_la_ville):
+
+	#
+	connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
+
+	#
+	curseur = connecteur.cursor()
+
+	#
+	curseur.execute("SELECT ville.timezone FROM ville WHERE ville.id = ?", (id_de_la_ville,))
+
+	#
+	resultat_de_la_requette_de_recuperation_du_timezone = curseur.fetchone()
+
+	#
+	id_timezone = resultat_de_la_requette_de_recuperation_du_timezone[0]
+
+	#
+	curseur.execute("DELETE FROM Mise_a_jour")
+
+	#
+	curseur.execute("INSERT INTO Mise_a_jour(heure, minute, seconde, frequence, ville, timezone) VALUES(?, ?, ?, ?, ?, ?)", (heure, minute, seconde, frequence, id_de_la_ville, id_timezone))
+
+	#
+	connecteur.commit()
+
+	#
+	connecteur.close()
 
 #Cette fonction affiche la date et l'heure de la ville passée en paramétre
 def affichage_de_la_date_et_de_l_heure_passee_en_parametre(ville, language):

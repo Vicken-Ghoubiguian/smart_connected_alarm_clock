@@ -42,7 +42,7 @@ class Suppression_des_Villes(Frame):
 		self.label_entree_de_la_ville.pack()
 
 		#
-		self.liste_des_villes_avec_le_pays_correspondant = horloge_monde.retour_des_villes_enregistrees_dans_la_base(fenetre, id_de_la_ville_courante, 1, 1)
+		self.liste_des_villes_avec_le_pays_correspondant = horloge_monde.retour_des_villes_enregistrees_dans_la_base(fenetre, id_de_la_ville_courante, 1, 0, 1)
 
 		#
 		self.liste_des_villes_avec_le_pays_correspondant.pack()
