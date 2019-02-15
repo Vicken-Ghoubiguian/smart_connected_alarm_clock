@@ -54,9 +54,6 @@ class Configuration_des_mises_a_jour(Frame):
 		texte_du_label_d_indication_du_spinbox_de_la_seconde_a_renseigner = ""
 
 		#
-		texte_du_label_d_indication_de_la_frequence_d_activation_des_mises_a_jour = ""
-
-		#
 		texte_du_bouton_de_validation = ""
 
 		#
@@ -69,22 +66,16 @@ class Configuration_des_mises_a_jour(Frame):
 		self.contenu_textuel_d_indication_pour_une_erreur_de_type_valueerror = ""
 
 		#
-		tableau_contenant_les_differentes_frequences_pour_les_mises_a_jour = []
-
-		#
 		self.langue_utilisee = langue_utilisee
 
 		#
-		tableau_contenant_l_heure_la_minute_et_la_seconde_pour_enclencher_les_mises_a_jour = horloge_monde.renvoie_de_l_heure_de_la_minute_et_de_la_seconde_pour_les_mises_a_jour()
+		tableau_contenant_l_heure_la_minute_et_la_seconde_pour_enclencher_les_mises_a_jour = horloge_monde.renvoie_de_l_heure_de_la_minute_de_la_seconde_et_de_la_timezone_pour_les_mises_a_jour()
 
 		#
 		indice_de_la_ville_courante_pour_les_mises_a_jour = horloge_monde.renvoie_de_l_id_de_la_ville_pour_les_mises_a_jour()
 
 		#
 		indice_de_la_ville_courante_pour_les_mises_a_jour = indice_de_la_ville_courante_pour_les_mises_a_jour - 1
-
-		#
-		frequence_des_mises_a_jour = horloge_monde.renvoie_de_la_frequence_pour_les_mises_a_jour()
 
 		#
 		if self.langue_utilisee == 0:
@@ -102,19 +93,13 @@ class Configuration_des_mises_a_jour(Frame):
                 	texte_du_label_d_indication_du_spinbox_de_la_seconde_a_renseigner = "Second: "
 
                 	#
-               	 	texte_du_label_d_indication_de_la_frequence_d_activation_des_mises_a_jour = "Choice of frequency of updates: "
-
-                	#
                 	texte_du_bouton_de_validation = "Validate to regularly update"
 
 			#
-			texte_du_label_d_indication_de_la_combobox_pour_renseignement_de_la_ville_pour_lequel_appliquer_le_reveil = "Choix de la ville pour lequel appliquer l'heure et la fréquence des mises à jour"
+			texte_du_label_d_indication_de_la_combobox_pour_renseignement_de_la_ville_pour_lequel_appliquer_le_reveil = "Choice of the city for which to apply the time of updates"
 
 			#
-                	tableau_contenant_les_differentes_frequences_pour_les_mises_a_jour = ["every day from today", "every week starting today", "every month starting today"]
-
-			#
-                	self.contenu_textuel_d_indication_du_succee = "time, city, and frequency of updates registered succesfully"
+                	self.contenu_textuel_d_indication_du_succee = "time and city of updates registered succesfully"
 
 			#
                 	self.contenu_textuel_d_indication_pour_une_erreur_classique = "Error: Time not valid"
@@ -123,7 +108,7 @@ class Configuration_des_mises_a_jour(Frame):
 			self.contenu_textuel_d_indication_pour_une_erreur_de_type_valueerror = "Hour, minute and second obligatorily integers !!!!"
 
 			#
-			self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_du_reveil = "Error: The hour and the minute for the updates must be strictly different from those of the alarm clock"
+			self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_du_reveil = "Error: The hour, minute and timezone for updates must be strictly different from those of the alarm clock"
 
 		#
 		else:
@@ -141,19 +126,13 @@ class Configuration_des_mises_a_jour(Frame):
                         texte_du_label_d_indication_du_spinbox_de_la_seconde_a_renseigner = "Seconde: "
 
                         #
-                        texte_du_label_d_indication_de_la_frequence_d_activation_des_mises_a_jour = "Choix de la fréquence des mises à jour: "
-
-                        #
                         texte_du_bouton_de_validation = "Valider pour mettre à jour régulièrement"
 
 			#
-                        texte_du_label_d_indication_de_la_combobox_pour_renseignement_de_la_ville_pour_lequel_appliquer_le_reveil = "Choice of the city for which to apply the time and frequency of updates"
+			texte_du_label_d_indication_de_la_combobox_pour_renseignement_de_la_ville_pour_lequel_appliquer_le_reveil = "Choix de la ville pour lequel appliquer l'heure des mises à jour"
 
 			#
-			tableau_contenant_les_differentes_frequences_pour_les_mises_a_jour = ["Chaque jour à partir d'aujourd'hui", "Chaque semaine à partir d'aujourd'hui", "Chaque mois à partir d'aujourd'hui"]
-
-			#
-                        self.contenu_textuel_d_indication_du_succee = "heure, ville et fréquence des mises à jour enregistrées avec succès"
+                        self.contenu_textuel_d_indication_du_succee = "heure et ville des mises à jour enregistrées avec succès"
 
 			#
                 	self.contenu_textuel_d_indication_pour_une_erreur_classique = "Erreur: Heure pas valide"
@@ -162,7 +141,7 @@ class Configuration_des_mises_a_jour(Frame):
 			self.contenu_textuel_d_indication_pour_une_erreur_de_type_valueerror = "Heure, minute et seconde obligatoirement entiers !!!!"
 
 			#
-			self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_du_reveil = "Erreur: L'heure et la minute pour les mises à jour doivent être strictement différents de ceux du reveil"
+			self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_du_reveil = "Erreur: L'heure, la minute et la timezone pour les mises à jour doivent être strictement différents de ceux du réveil"
 
 		#
                 self.label_choix_heure = Label(fenetre, text = texte_du_label_d_indication_du_spinbox_de_l_heure_a_renseigner)
@@ -231,34 +210,19 @@ class Configuration_des_mises_a_jour(Frame):
                 self.liste_des_villes.pack()
 
 		#
-                self.label_du_choix_de_la_frequence = Label(fenetre, text = texte_du_label_d_indication_de_la_frequence_d_activation_des_mises_a_jour)
-
-                #
-                self.label_du_choix_de_la_frequence.pack()
-
-		#
-		self.combobox_du_choix_de_la_frequence = ttk.Combobox(fenetre, state = "readonly", values = tableau_contenant_les_differentes_frequences_pour_les_mises_a_jour, width = 50)
-
-        	#
-        	self.combobox_du_choix_de_la_frequence.current(frequence_des_mises_a_jour)
-
-		#
-		self.combobox_du_choix_de_la_frequence.pack()
-
-		#
 		self.fenetre = fenetre
 
 		#
-                self.bouton_de_validation = Button(fenetre, text = texte_du_bouton_de_validation, command = self.validation_de_l_heure_la_minute_la_seconde_la_ville_et_la_frequence_pour_proceder_aux_mises_a_jour_regulieres)
+                self.bouton_de_validation = Button(fenetre, text = texte_du_bouton_de_validation, command = self.validation_de_l_heure_la_minute_la_seconde_et_de_la_ville_pour_proceder_aux_mises_a_jour_regulieres)
 
                 #
                 self.bouton_de_validation.pack()
 
 	#
-	def modification_des_parametres_des_mises_a_jour(self, heure, minute, seconde, frequence, id_de_la_ville):
+	def modification_des_parametres_des_mises_a_jour(self, heure, minute, seconde, id_de_la_ville):
 
 		#
-		horloge_monde.mise_a_jour_de_la_table_Mise_a_jour(heure, minute, seconde, frequence, id_de_la_ville)
+		horloge_monde.mise_a_jour_de_la_table_Mise_a_jour(heure, minute, seconde, id_de_la_ville)
 
 	#La fonction verification_des_donnees permet de vérifier si les données entrées dans les differents champs de la fenetre de configuration du reveil sont valides
 	def verification_des_donnees(self, heure, minute, seconde):
@@ -288,7 +252,7 @@ class Configuration_des_mises_a_jour(Frame):
                 return variable_de_retour
 
 	#
-	def validation_de_l_heure_la_minute_la_seconde_la_ville_et_la_frequence_pour_proceder_aux_mises_a_jour_regulieres(self):
+	def validation_de_l_heure_la_minute_la_seconde_et_de_la_ville_pour_proceder_aux_mises_a_jour_regulieres(self):
 
 		#
 		try:
@@ -309,7 +273,7 @@ class Configuration_des_mises_a_jour(Frame):
 				try:
 
 					#
-					tableau_contenant_l_heure_la_minute_et_la_seconde_pour_faire_sonner_le_reveil = horloge_monde.renvoie_de_l_heure_de_la_minute_et_de_la_seconde_pour_faire_sonner_le_reveil()
+					tableau_contenant_l_heure_la_minute_la_seconde_et_la_timezone_pour_faire_sonner_le_reveil = horloge_monde.renvoie_de_l_heure_de_la_minute_de_la_seconde_et_de_la_timezone_pour_faire_sonner_le_reveil()
 
 					#
 					heure_a_prendre = str(self.choix_heure.get())
@@ -321,13 +285,13 @@ class Configuration_des_mises_a_jour(Frame):
 					seconde_a_prendre = str(self.choix_seconde.get())
 
 					#
-					frequence_selectionnee = str(self.combobox_du_choix_de_la_frequence.current())
+                        		timezone_a_prendre = horloge_monde.renvoie_de_l_id_du_timezone_correspondant_a_l_id_de_la_ville_courante(self.liste_des_villes.current() + 1)
 
 					#
 					id_de_la_ville_selectionnee = str(self.liste_des_villes.current() + 1)
 
 					#
-					if int(heure_a_prendre) == int(tableau_contenant_l_heure_la_minute_et_la_seconde_pour_faire_sonner_le_reveil[0]) and int(minute_a_prendre) == int(tableau_contenant_l_heure_la_minute_et_la_seconde_pour_faire_sonner_le_reveil[1]):
+					if int(heure_a_prendre) == int(tableau_contenant_l_heure_la_minute_la_seconde_et_la_timezone_pour_faire_sonner_le_reveil[0]) and int(minute_a_prendre) == int(tableau_contenant_l_heure_la_minute_la_seconde_et_la_timezone_pour_faire_sonner_le_reveil[1]) and int(timezone_a_prendre) == int(tableau_contenant_l_heure_la_minute_la_seconde_et_la_timezone_pour_faire_sonner_le_reveil[3]):
 
 						#
 						subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_du_reveil])
@@ -336,7 +300,7 @@ class Configuration_des_mises_a_jour(Frame):
 					else:
 
 						#
-						self.modification_des_parametres_des_mises_a_jour(heure_a_prendre, minute_a_prendre, seconde_a_prendre, frequence_selectionnee, id_de_la_ville_selectionnee)
+						self.modification_des_parametres_des_mises_a_jour(heure_a_prendre, minute_a_prendre, seconde_a_prendre, id_de_la_ville_selectionnee)
 
 						#
 						subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.contenu_textuel_d_indication_du_succee])

@@ -53,7 +53,6 @@ CREATE TABLE IF NOT EXISTS Mise_a_jour(
 	heure INTEGER NOT NULL,
 	minute INTEGER NOT NULL,
 	seconde INTEGER NOT NULL,
-	frequence INTEGER NOT NULL,
 	FOREIGN KEY (ville) REFERENCES ville(id),
 	FOREIGN KEY (timezone) REFERENCES timezone(id)
 );
@@ -726,7 +725,7 @@ INSERT INTO ville(ville_en_fr, ville_en_en, pays, timezone) VALUES('Lima', 'Lima
 INSERT INTO Reveil(ville, timezone, heure, minute, seconde, frequence, single_choisi, est_active) VALUES(1, 348, 0, 0, 0, 7, 1, 1);
 
 --INSERTION DANS LA TABLE MISE_A_JOUR--
-INSERT INTO Mise_a_jour(ville, timezone, heure, minute, seconde, frequence) VALUES(1, 348, 1, 1, 1, 1);
+INSERT INTO Mise_a_jour(ville, timezone, heure, minute, seconde) VALUES(1, 348, 1, 1, 1);
 
 --INSERTION DANS LA TABLE SINGLE--
 INSERT INTO Single(nom_du_single, nom_de_l_auteur, pays, chemin_d_accee, identifiant_YouTube_de_la_video_d_origine) VALUES('We are all made of stars', 'Moby', 58, "./media/Moby_We_Are_All_Made_of_Stars_Official_video.wav", "x1rFAaAKpVc");

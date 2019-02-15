@@ -25,25 +25,25 @@ import time
 import subprocess
 
 #
-def renvoie_de_la_frequence_pour_les_mises_a_jour():
+def renvoie_de_l_id_du_timezone_correspondant_a_l_id_de_la_ville_courante(indice_de_la_ville_courante):
 
-        #Connection à la base de données registre_des_timezones_des_villes_et_des_pays
+	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
         connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
 
         #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les données de la table
         curseur = connecteur.cursor()
 
         #
-        curseur.execute("SELECT Mise_a_jour.frequence FROM Mise_a_jour")
+        curseur.execute("SELECT ville.timezone FROM ville WHERE ville.id = ?", (indice_de_la_ville_courante,))
 
-        #
-        resultat_de_la_requete_de_recuperation_de_la_frequence_pour_les_mises_a_jour = curseur.fetchone()
+	#
+	resultat_de_la_requete_de_recuperation_de_l_id_de_la_timezone_de_la_ville_dont_id_est_en_parametre = curseur.fetchone()
 
         #
         connecteur.close()
 
-        #
-        return int(resultat_de_la_requete_de_recuperation_de_la_frequence_pour_les_mises_a_jour[0])
+	#
+	return(resultat_de_la_requete_de_recuperation_de_l_id_de_la_timezone_de_la_ville_dont_id_est_en_parametre[0])
 
 #
 def renvoie_de_l_id_de_la_ville_pour_les_mises_a_jour():
@@ -67,7 +67,7 @@ def renvoie_de_l_id_de_la_ville_pour_les_mises_a_jour():
         return int(resultat_de_la_requete_de_recuperation_de_l_id_de_la_ville_pour_les_mises_a_jour[0])
 
 #
-def renvoie_de_l_heure_de_la_minute_et_de_la_seconde_pour_les_mises_a_jour():
+def renvoie_de_l_heure_de_la_minute_de_la_seconde_et_de_la_timezone_pour_les_mises_a_jour():
 
         #Connection à la base de données registre_des_timezones_des_villes_et_des_pays
         connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
@@ -76,16 +76,16 @@ def renvoie_de_l_heure_de_la_minute_et_de_la_seconde_pour_les_mises_a_jour():
         curseur = connecteur.cursor()
 
         #
-        curseur.execute("SELECT Mise_a_jour.heure, Mise_a_jour.minute, Mise_a_jour.seconde FROM Mise_a_jour")
+        curseur.execute("SELECT Mise_a_jour.heure, Mise_a_jour.minute, Mise_a_jour.seconde, Mise_a_jour.timezone FROM Mise_a_jour")
 
         #
-        resultat_de_la_requete_de_recuperation_de_l_heure_de_la_minute_et_de_la_seconde_pour_les_mises_a_jour = curseur.fetchone()
+        resultat_de_la_requete_de_recuperation_de_l_heure_de_la_minute_de_la_seconde_et_de_la_timezone_pour_les_mises_a_jour = curseur.fetchone()
 
         #
         connecteur.close()
 
         #
-        return resultat_de_la_requete_de_recuperation_de_l_heure_de_la_minute_et_de_la_seconde_pour_les_mises_a_jour
+        return resultat_de_la_requete_de_recuperation_de_l_heure_de_la_minute_de_la_seconde_et_de_la_timezone_pour_les_mises_a_jour
 
 #
 def renvoie_de_l_id_de_la_ville_pour_faire_sonner_le_reveil():
@@ -151,7 +151,7 @@ def renvoie_de_l_id_du_single_enregistre_pour_faire_sonner_le_reveil():
 	return resultat_de_la_requete_de_recuperation_de_l_id_du_single_a_faire_jouer_quand_le_reveil_sonne[0]
 
 #
-def renvoie_de_l_heure_de_la_minute_et_de_la_seconde_pour_faire_sonner_le_reveil():
+def renvoie_de_l_heure_de_la_minute_de_la_seconde_et_de_la_timezone_pour_faire_sonner_le_reveil():
 
 	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
         connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
@@ -160,16 +160,16 @@ def renvoie_de_l_heure_de_la_minute_et_de_la_seconde_pour_faire_sonner_le_reveil
         curseur = connecteur.cursor()
 
         #
-        curseur.execute("SELECT Reveil.heure, Reveil.minute, Reveil.seconde FROM Reveil")
+        curseur.execute("SELECT Reveil.heure, Reveil.minute, Reveil.seconde, Reveil.timezone FROM Reveil")
 
 	#
-	resultat_de_la_requete_de_recuperation_de_l_heure_de_la_minute_et_de_la_seconde_pour_faire_sonner_le_reveil = curseur.fetchone()
+	resultat_de_la_requete_de_recuperation_de_l_heure_de_la_minute_de_la_seconde_et_de_la_timezone_pour_faire_sonner_le_reveil = curseur.fetchone()
 
 	#
         connecteur.close()
 
 	#
-	return resultat_de_la_requete_de_recuperation_de_l_heure_de_la_minute_et_de_la_seconde_pour_faire_sonner_le_reveil
+	return resultat_de_la_requete_de_recuperation_de_l_heure_de_la_minute_de_la_seconde_et_de_la_timezone_pour_faire_sonner_le_reveil
 
 #
 def mise_a_jour_des_modules_python_necessaires_pour_le_reveil():
@@ -964,42 +964,6 @@ def renvoi_de_l_etat_du_reveil():
 	#
 	return resultat_de_la_requete_precedente_sous_forme_de_bool
 
-#
-def est_minuit_dans_le_timezone_renseigne_dans_la_table_reveil():
-
-	#Déclaration de la variable confirmation qui permet de confirmer si il est temps d'effectuer les mises à jour ou non
-	confirmation = False
-
-	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
-        connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
-
-        #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les données de la table
-        curseur = connecteur.cursor()
-
-	#
-        curseur.execute("SELECT timezone.timezone FROM timezone INNER JOIN Reveil ON Reveil.timezone = timezone.id")
-
-	#
-        timezone_donnee_dans_le_reveil = curseur.fetchone()
-
-        #
-        timezone = timezone_donnee_dans_le_reveil[0]
-
-	#Férmeture du connecteur grace à la fonction close() appliquée ce premier
-        connecteur.close()
-
-	#
-        horaire = renvoi_de_la_date_et_de_l_heure(timezone)
-
-	#
-	if horaire.hour == 0 and horaire.minute == 0 and horaire.second == 0:
-
-                        #
-                        confirmation = True
-
-	#
-	return confirmation
-
 #Cette fonction s'enclenche dés que l'heure (heure, minute, et seconde) passée en paramétre dans la ville passée en paramétre correspond à l'heure incrite pour sonner
 def reveil():
 
@@ -1063,6 +1027,57 @@ def reveil():
 	#
 	return confirmation
 
+#
+def mise_a_jour():
+
+	#
+	connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
+
+	#
+	curseur = connecteur.cursor()
+
+	#
+	curseur.execute("SELECT Mise_a_jour.heure, Mise_a_jour.minute, Mise_a_jour.seconde FROM Mise_a_jour")
+
+	#
+	heure_quotidienne_pour_les_mises_a_jour = curseur.fetchone()
+
+	#
+	heure_des_mises_a_jour = int(heure_quotidienne_pour_les_mises_a_jour[0])
+
+	#
+	minute_des_mises_a_jour = int(heure_quotidienne_pour_les_mises_a_jour[1])
+
+	#
+	seconde_des_mises_a_jour = int(heure_quotidienne_pour_les_mises_a_jour[2])
+
+	#
+	curseur.execute("SELECT timezone.timezone FROM timezone INNER JOIN Mise_a_jour ON Mise_a_jour.timezone = timezone.id")
+
+	#
+	timezone_donnee_pour_les_mises_a_jour = curseur.fetchone()
+
+	#
+	timezone = timezone_donnee_pour_les_mises_a_jour[0]
+
+	#
+	horaire = renvoi_de_la_date_et_de_l_heure(timezone)
+
+	#
+	connecteur.close()
+
+	#
+	confirmation = False
+
+	#
+	if horaire.hour == heure_des_mises_a_jour and horaire.minute == minute_des_mises_a_jour and horaire.second == seconde_des_mises_a_jour:
+
+		#
+		confirmation = True
+
+	#
+	return confirmation
+
 #Cette fonction permet de mettre à jour la table reveil grace à l'heure, la minute, la seconde, la frequence et la ville passées en paramétre
 def mise_a_jour_de_la_table_reveil(heure, minute, seconde, frequence, id_de_la_ville_selectionnee, id_single_a_jouer):
 
@@ -1097,7 +1112,7 @@ def mise_a_jour_de_la_table_reveil(heure, minute, seconde, frequence, id_de_la_v
         connecteur.close()
 
 #
-def mise_a_jour_de_la_table_Mise_a_jour(heure, minute, seconde, frequence, id_de_la_ville):
+def mise_a_jour_de_la_table_Mise_a_jour(heure, minute, seconde, id_de_la_ville):
 
 	#
 	connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
@@ -1118,7 +1133,7 @@ def mise_a_jour_de_la_table_Mise_a_jour(heure, minute, seconde, frequence, id_de
 	curseur.execute("DELETE FROM Mise_a_jour")
 
 	#
-	curseur.execute("INSERT INTO Mise_a_jour(heure, minute, seconde, frequence, ville, timezone) VALUES(?, ?, ?, ?, ?, ?)", (heure, minute, seconde, frequence, id_de_la_ville, id_timezone))
+	curseur.execute("INSERT INTO Mise_a_jour(heure, minute, seconde, ville, timezone) VALUES(?, ?, ?, ?, ?)", (heure, minute, seconde, id_de_la_ville, id_timezone))
 
 	#
 	connecteur.commit()

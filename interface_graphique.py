@@ -273,6 +273,9 @@ class Horloge(Frame):
 		#
 		fenetre.config(menu = barre_de_menu_du_reveil)
 
+		#
+                self.texte_d_indication_du_demarrage_des_mises_a_jour_a_dire_par_eSpeak = "Now, updates will be made"
+
 	#Définition d'une fonction choix_de_l_unite_de_mesure_selectionnee_pour_la_temperature() qui permet de choisir l'unité de mesure de la température entre degrés Celsius et degrés Fahrenheit
 	def choix_de_l_unite_de_mesure_selectionnee_pour_la_temperature(self):
 
@@ -294,44 +297,66 @@ class Horloge(Frame):
 		#
 		else:
 
-			#
-			numero_de_l_unite_de_mesure_choisie_pour_la_temperature = self.unite_de_mesure_selectionnee_pour_la_temperature.get()
-
-			#
-			self.unite_de_mesure_de_la_temperature = numero_de_l_unite_de_mesure_choisie_pour_la_temperature
-
-			#
-                        if self.langue_uttilisee == 0:
+			#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
+			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False:
 
 				#
-				if self.unite_de_mesure_de_la_temperature == 0:
-
-                                	#
-                                	texte_a_dire_par_eSpeak = "Now, temperature in celsius."
+				numero_de_l_unite_de_mesure_choisie_pour_la_temperature = self.unite_de_mesure_selectionnee_pour_la_temperature.get()
 
 				#
-				else:
+				self.unite_de_mesure_de_la_temperature = numero_de_l_unite_de_mesure_choisie_pour_la_temperature
+
+				#
+                        	if self.langue_uttilisee == 0:
 
 					#
-					texte_a_dire_par_eSpeak = "Now, temperature in fahrenheit."
+					if self.unite_de_mesure_de_la_temperature == 0:
 
-                        #
-                        else:
-
-				#
-				if self.unite_de_mesure_de_la_temperature == 0:
-
-                                	#
-                                	texte_a_dire_par_eSpeak = "Maintenant, température en celsius."
-
-				#
-				else:
+                                		#
+                                		texte_a_dire_par_eSpeak = "Now, temperature in celsius."
 
 					#
-                                        texte_a_dire_par_eSpeak = "Maintenant, température en fahrenheit."
+					else:
 
-                        #
-                        subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+						#
+						texte_a_dire_par_eSpeak = "Now, temperature in fahrenheit."
+
+                        	#
+                        	else:
+
+					#
+					if self.unite_de_mesure_de_la_temperature == 0:
+
+                                		#
+                                		texte_a_dire_par_eSpeak = "Maintenant, température en celsius."
+
+					#
+					else:
+
+						#
+                                        	texte_a_dire_par_eSpeak = "Maintenant, température en fahrenheit."
+
+                        	#
+                        	subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+
+			#Sinon...
+                	else:
+
+				#
+                                if self.langue_uttilisee == 0:
+
+                                        #
+                                        texte_a_dire_par_eSpeak = "Error: Window already open"
+
+                                #
+                                else:
+
+                                        #
+                                        texte_a_dire_par_eSpeak = "Erreur: Fenetre déjà ouverte"
+
+                                #
+                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+			
 
 	#
 	def lecture_de_fichiers_audio_telecharges_depuis_YouTube(self):
@@ -1137,68 +1162,89 @@ class Horloge(Frame):
                 #Sinon...
                 else:
 
-			#
-			numero_du_format_de_date_choisi = self.format_de_date_selectionne.get()
-
-			#
-			self.format_de_date_uttilisee = numero_du_format_de_date_choisi
-
-			#
-                        if self.langue_uttilisee == 0:
+			#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
+			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False:
 
 				#
-				if self.format_de_date_uttilisee == 0:
+				numero_du_format_de_date_choisi = self.format_de_date_selectionne.get()
+
+				#
+				self.format_de_date_uttilisee = numero_du_format_de_date_choisi
+
+				#
+                        	if self.langue_uttilisee == 0:
+
+					#
+					if self.format_de_date_uttilisee == 0:
+
+                                		#
+                                		texte_a_dire_par_eSpeak = "Date format in effect: Month Day Year"
+
+					#
+					elif self.format_de_date_uttilisee == 1:
+
+						#
+                                        	texte_a_dire_par_eSpeak = "Date format in effect: Day Month Year"
+
+					#
+					elif self.format_de_date_uttilisee == 2:
+
+						#
+						texte_a_dire_par_eSpeak = "Date format in effect: Year Month Day"
+
+					#
+					else:
+
+						#
+                                        	texte_a_dire_par_eSpeak = "Date format in effect: Year Day Month"
+
+                        	#
+                        	else:
 
                                 	#
-                                	texte_a_dire_par_eSpeak = "Date format in effect: Month Day Year"
+                                	if self.format_de_date_uttilisee == 0:
+
+                                        	#
+                                        	texte_a_dire_par_eSpeak = "Format de date en vigueur: Mois Jour Année"
+
+                                	#
+                                	elif self.format_de_date_uttilisee == 1:
+
+                                        	#
+                                        	texte_a_dire_par_eSpeak = "Format de date en vigueur: Jour Mois Année"
+
+                                	#
+                                	elif self.format_de_date_uttilisee == 2:
+
+                                        	#
+                                        	texte_a_dire_par_eSpeak = "Format de date en vigueur: Année Mois Jour"
+
+                                	#
+                                	else:
+
+                                        	#
+                                        	texte_a_dire_par_eSpeak = "Format de date en vigueur: Année Jour Mois"
+
+                        	#
+                        	subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+
+			#Sinon...
+                	else:
 
 				#
-				elif self.format_de_date_uttilisee == 1:
-
-					#
-                                        texte_a_dire_par_eSpeak = "Date format in effect: Day Month Year"
-
-				#
-				elif self.format_de_date_uttilisee == 2:
-
-					#
-					texte_a_dire_par_eSpeak = "Date format in effect: Year Month Day"
-
-				#
-				else:
-
-					#
-                                        texte_a_dire_par_eSpeak = "Date format in effect: Year Day Month"
-
-                        #
-                        else:
-
-                                #
-                                if self.format_de_date_uttilisee == 0:
+                                if self.langue_uttilisee == 0:
 
                                         #
-                                        texte_a_dire_par_eSpeak = "Format de date en vigueur: Mois Jour Année"
-
-                                #
-                                elif self.format_de_date_uttilisee == 1:
-
-                                        #
-                                        texte_a_dire_par_eSpeak = "Format de date en vigueur: Jour Mois Année"
-
-                                #
-                                elif self.format_de_date_uttilisee == 2:
-
-                                        #
-                                        texte_a_dire_par_eSpeak = "Format de date en vigueur: Année Mois Jour"
+                                        texte_a_dire_par_eSpeak = "Error: A window is open"
 
                                 #
                                 else:
 
                                         #
-                                        texte_a_dire_par_eSpeak = "Format de date en vigueur: Année Jour Mois"
+                                        texte_a_dire_par_eSpeak = "Erreur: Une fenetre est ouverte"
 
-                        #
-                        subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+                                #
+                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
 
 	#Définition d'une fonction choix_langue() qui met à jour l'heure pour afficher l'heure soit en format français, soit en format anglo-saxon
 	def choix_de_la_langue(self):
@@ -1221,110 +1267,137 @@ class Horloge(Frame):
 		#Sinon...
 		else:
 
-			#
-			numero_de_la_langue_choisie = self.langue_selectionnee.get()
-
-			#
-			self.langue_uttilisee = numero_de_la_langue_choisie
-
-			#
-			if self.langue_uttilisee == 0:
+			#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
+			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False:
 
 				#
-				self.identifiant_en_lettres_de_la_langue_uttilisee = 'en'
+				numero_de_la_langue_choisie = self.langue_selectionnee.get()
 
 				#
-				self.bouton_avant.config(text = "Next city")
+				self.langue_uttilisee = numero_de_la_langue_choisie
 
 				#
-				self.bouton_arriere.config(text = "Previous city")
+				if self.langue_uttilisee == 0:
+
+					#
+					self.identifiant_en_lettres_de_la_langue_uttilisee = 'en'
+
+					#
+					self.bouton_avant.config(text = "Next city")
+
+					#
+					self.bouton_arriere.config(text = "Previous city")
+
+					#
+					self.bouton_de_declenchement_de_la_commande_vocale.config(text = "Tap here, then talk")
+
+					#
+                                	self.menu_des_villes.entryconfig(0, label = "Inclusion of a new city")
+
+                                	#
+                                	self.menu_des_villes.entryconfig(1, label = "Deleting a city")
+
+					#
+					self.menu_du_reveil.entryconfig(0, label = "Alarm clock configuration")
+
+					#
+					self.menu_du_reveil.entryconfig(1, label = "Is activated")
+
+					#
+					self.menu_de_configuration_des_mises_a_jour.entryconfig(0, label = "Configuring the moment to update")
+
+					#
+					self.menu_de_la_meteo.entryconfig(0, label = "Weather data display")
+
+					#
+					self.menu_de_YouTube.entryconfig(0, label = "Playing singles downloaded from YouTube")
+
+					#
+					self.menu_de_YouTube.entryconfig(1, label = "Extraction and download of singles from YouTube")
+
+					#
+					self.menu_de_YouTube.entryconfig(2, label = "Deleting a single download from YouTube")
+
+					#
+					self.texte_d_indication_du_demarrage_des_mises_a_jour_a_dire_par_eSpeak = "Now, updates will be made"
 
 				#
-				self.bouton_de_declenchement_de_la_commande_vocale.config(text = "Tap here, then talk")
+				else:
+
+					#
+					self.identifiant_en_lettres_de_la_langue_uttilisee = 'fr'
+
+					#
+					self.bouton_avant.config(text = "Ville suivante")
+
+					#
+					self.bouton_arriere.config(text = "Ville précédente")
+
+					#
+                                	self.bouton_de_declenchement_de_la_commande_vocale.config(text = "Appuyez ici, puis parlez")
+
+					#
+					self.menu_des_villes.entryconfig(0, label = "Inclusion d'une nouvelle ville")
+
+					#
+					self.menu_des_villes.entryconfig(1, label = "Suppression d'une ville")
+
+					#
+                                	self.menu_du_reveil.entryconfig(0, label = "Configuration du réveil")
+
+					#
+					self.menu_du_reveil.entryconfig(1, label = "Est activé")
+
+					#
+					self.menu_de_configuration_des_mises_a_jour.entryconfig(0, label = "Configuration du moment pour effectuer les mises à jour")
+
+					#
+					self.menu_de_la_meteo.entryconfig(0, label = "Affichage des données météo")
+
+					#
+					self.menu_de_YouTube.entryconfig(0, label = "Lecture de singles téléchargés depuis YouTube")
+
+					#
+					self.menu_de_YouTube.entryconfig(1, label = "Extraction et téléchargement de singles depuis YouTube")
+
+					#
+					self.menu_de_YouTube.entryconfig(2, label = "Suppression d'un single télécharger depuis YouTube")
+
+					#
+                                	self.texte_d_indication_du_demarrage_des_mises_a_jour_a_dire_par_eSpeak = "Maintenant, des mises à jour vont être effectués"
 
 				#
-                                self.menu_des_villes.entryconfig(0, label = "Inclusion of a new city")
+                        	if self.langue_uttilisee == 0:
+
+                         		#
+                                	texte_a_dire_par_eSpeak = "Now, the current language is English."
+
+                        	#
+                        	else:
+
+                                	#
+                                	texte_a_dire_par_eSpeak = "Maintenant, la langue courante est le français"
+
+                        	#
+                        	subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+
+			#Sinon...
+                	else:
+
+				#
+                                if self.langue_uttilisee == 0:
+
+                                        #
+                                        texte_a_dire_par_eSpeak = "Error: A window is open"
 
                                 #
-                                self.menu_des_villes.entryconfig(1, label = "Deleting a city")
+                                else:
 
-				#
-				self.menu_du_reveil.entryconfig(0, label = "Alarm clock configuration")
-
-				#
-				self.menu_du_reveil.entryconfig(1, label = "Is activated")
-
-				#
-				self.menu_de_configuration_des_mises_a_jour.entryconfig(0, label = "Configuring the moment to update")
-
-				#
-				self.menu_de_la_meteo.entryconfig(0, label = "Weather data display")
-
-				#
-				self.menu_de_YouTube.entryconfig(0, label = "Playing singles downloaded from YouTube")
-
-				#
-				self.menu_de_YouTube.entryconfig(1, label = "Extraction and download of singles from YouTube")
-
-				#
-				self.menu_de_YouTube.entryconfig(2, label = "Deleting a single download from YouTube")
-
-			#
-			else:
-
-				#
-				self.identifiant_en_lettres_de_la_langue_uttilisee = 'fr'
-
-				#
-				self.bouton_avant.config(text = "Ville suivante")
-
-				#
-				self.bouton_arriere.config(text = "Ville précédente")
-
-				#
-                                self.bouton_de_declenchement_de_la_commande_vocale.config(text = "Appuyez ici, puis parlez")
-
-				#
-				self.menu_des_villes.entryconfig(0, label = "Inclusion d'une nouvelle ville")
-
-				#
-				self.menu_des_villes.entryconfig(1, label = "Suppression d'une ville")
-
-				#
-                                self.menu_du_reveil.entryconfig(0, label = "Configuration du réveil")
-
-				#
-				self.menu_du_reveil.entryconfig(1, label = "Est activé")
-
-				#
-				self.menu_de_configuration_des_mises_a_jour.entryconfig(0, label = "Configuration du moment pour effectuer les mises à jour")
-
-				#
-				self.menu_de_la_meteo.entryconfig(0, label = "Affichage des données météo")
-
-				#
-				self.menu_de_YouTube.entryconfig(0, label = "Lecture de singles téléchargés depuis YouTube")
-
-				#
-				self.menu_de_YouTube.entryconfig(1, label = "Extraction et téléchargement de singles depuis YouTube")
-
-				#
-				self.menu_de_YouTube.entryconfig(2, label = "Suppression d'un single télécharger depuis YouTube")
-
-			#
-                        if self.langue_uttilisee == 0:
-
-                         	#
-                                texte_a_dire_par_eSpeak = "Now, the current language is English."
-
-                        #
-                        else:
+                                        #
+                                        texte_a_dire_par_eSpeak = "Erreur: Une fenetre est ouverte"
 
                                 #
-                                texte_a_dire_par_eSpeak = "Maintenant, la langue courante est le français"
-
-                        #
-                        subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
 
 	#Cette fonction permet de vérifier si le single à jouer est bien à jour depuis la derniére modification des paramétres du reveil, et dans le cas contraire il le met à jour
 	def mise_a_jour_du_single_a_faire_jouer_pour_le_reveil(self):
@@ -1423,7 +1496,10 @@ class Horloge(Frame):
 			time.sleep(1)
 
 		 #
-		 if horloge_monde.est_minuit_dans_le_timezone_renseigne_dans_la_table_reveil() == True:
+		 if horloge_monde.mise_a_jour() == True:
+
+			#
+                        subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.texte_d_indication_du_demarrage_des_mises_a_jour_a_dire_par_eSpeak])
 
 			#
 			horloge_monde.mise_a_jour_des_modules_python_necessaires_pour_le_reveil()
@@ -1844,3 +1920,9 @@ def initialisation_et_affichage_de_l_horloge():
 
         #
         horloge.mainloop()
+
+#Bloc de test du module
+if __name__ == '__main__':
+
+	#
+	initialisation_et_affichage_de_l_horloge()

@@ -37,7 +37,7 @@ class Configuration_du_Reveil(Frame):
 		Frame.__init__(self, fenetre, width = width_fenetre_de_conf, height = height_fenetre_de_conf)
 
 		#
-		tableau_contenant_l_heure_la_minute_et_la_seconde_pour_faire_sonner_le_reveil = horloge_monde.renvoie_de_l_heure_de_la_minute_et_de_la_seconde_pour_faire_sonner_le_reveil()
+		tableau_contenant_l_heure_la_minute_et_la_seconde_pour_faire_sonner_le_reveil = horloge_monde.renvoie_de_l_heure_de_la_minute_de_la_seconde_et_de_la_timezone_pour_faire_sonner_le_reveil()
 
 		#
 		indice_du_single_courant_a_jouer_en_cas_de_sonnerie_du_reveil = horloge_monde.renvoie_de_l_id_du_single_enregistre_pour_faire_sonner_le_reveil()
@@ -136,7 +136,7 @@ class Configuration_du_Reveil(Frame):
 			self.contenu_textuel_d_indication_pour_une_erreur_de_type_valueerror = "Hour, minute and second obligatorily integers !!!!"
 
 			#
-			self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_des_mises_a_jour = "Error: The hour and the minute for updates must be strictly different from those of updates"
+			self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_des_mises_a_jour = "Error: The hour, the minute and the timezone to sound the alarm must be strictly different from those of the updates"
 
 		#
 		else:
@@ -181,7 +181,7 @@ class Configuration_du_Reveil(Frame):
 			self.contenu_textuel_d_indication_pour_une_erreur_de_type_valueerror = "Heure, minute et seconde obligatoirement entiers !!!!"
 
 			#
-			self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_des_mises_a_jour = "Erreur: L'heure et la minute pour les mises à jour doivent être strictement différents de ceux des mises à jour"
+			self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_des_mises_a_jour = "Erreur: L'heure, la minute et la timezone pour faire sonner le réveil doivent être strictement différents de ceux des mises à jour"
 
 		#
 		self.label_choix_heure = Label(fenetre, text = texte_du_label_d_indication_du_spinbox_de_l_heure_a_renseigner)
@@ -345,7 +345,7 @@ class Configuration_du_Reveil(Frame):
 				try:
 
 					#
-					tableau_contenant_l_heure_la_minute_et_la_seconde_pour_les_mises_a_jour = horloge_monde.renvoie_de_l_heure_de_la_minute_et_de_la_seconde_pour_les_mises_a_jour()
+					tableau_contenant_l_heure_la_minute_la_seconde_et_la_timezone_pour_les_mises_a_jour = horloge_monde.renvoie_de_l_heure_de_la_minute_de_la_seconde_et_de_la_timezone_pour_les_mises_a_jour()
 
 					#
 					heure_a_prendre = str(self.choix_heure.get())
@@ -357,13 +357,16 @@ class Configuration_du_Reveil(Frame):
                 			seconde_a_prendre = str(self.choix_seconde.get())
 
 					#
+                        		timezone_a_prendre = horloge_monde.renvoie_de_l_id_du_timezone_correspondant_a_l_id_de_la_ville_courante(self.liste_des_villes.current() + 1)
+
+					#
                 			frequence_selectionnee = str(self.liste_des_jours_de_la_semaine.current())
 
 					#
                 			id_de_la_ville_selectionnee = self.liste_des_villes.current() + 1
 
 					#
-					if int(heure_a_prendre) == int(tableau_contenant_l_heure_la_minute_et_la_seconde_pour_les_mises_a_jour[0]) and int(minute_a_prendre) == int(tableau_contenant_l_heure_la_minute_et_la_seconde_pour_les_mises_a_jour[1]):
+					if int(heure_a_prendre) == int(tableau_contenant_l_heure_la_minute_la_seconde_et_la_timezone_pour_les_mises_a_jour[0]) and int(minute_a_prendre) == int(tableau_contenant_l_heure_la_minute_la_seconde_et_la_timezone_pour_les_mises_a_jour[1]) and timezone_a_prendre == int(tableau_contenant_l_heure_la_minute_la_seconde_et_la_timezone_pour_les_mises_a_jour[3]):
 
 						#
 						subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_des_mises_a_jour])
