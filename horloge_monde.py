@@ -19,6 +19,7 @@ except ImportError:
 	from tkinter.messagebox import *
 
 import datetime
+import os
 import pytz
 import sqlite3
 import time
@@ -175,13 +176,31 @@ def renvoie_de_l_heure_de_la_minute_de_la_seconde_et_de_la_timezone_pour_faire_s
 def mise_a_jour_des_modules_python_necessaires_pour_le_reveil():
 
 	#
+        heure_et_date_du_systeme = time.strftime("%a %d %b %Y - %H:%M:%S")
+
+        #
+      	descripteur_du_fichier_de_logs_pour_la_mise_a_jour_des_modules = os.open("logs/logs_mise_a_jour_des_modules", os.O_WRONLY | os.O_CREAT | os.O_APPEND)
+
+	#
+	os.write(descripteur_du_fichier_de_logs_pour_la_mise_a_jour_des_modules, "{heure_et_date_de_lancement_des_mises_a_jour}".format(heure_et_date_de_lancement_des_mises_a_jour = heure_et_date_du_systeme))
+
+	#
+	os.write(descripteur_du_fichier_de_logs_pour_la_mise_a_jour_des_modules, "\n\n\n")
+
+	#
 	liste_de_tous_les_packets_python_instales = ["pytz", "pyowm", "datetime", "pygame", "SpeechRecognition", "Pillow", "PyAudio", "geojson", "chardet", "certifi", "idna", "urllib3", "requests"]
 
 	#
 	for packet in liste_de_tous_les_packets_python_instales:
 
         	#
-        	subprocess.call(["sudo", "-H", "pip", "install", "--upgrade", packet])
+        	subprocess.call(["sudo", "-H", "pip", "install", "--upgrade", packet], stdout = descripteur_du_fichier_de_logs_pour_la_mise_a_jour_des_modules)
+
+	#
+	os.write(descripteur_du_fichier_de_logs_pour_la_mise_a_jour_des_modules, "-----------------------------------------------------------------------------------------------------\n")
+
+	#
+	os.close(descripteur_du_fichier_de_logs_pour_la_mise_a_jour_des_modules)
 
 #
 def verification_d_appartenance_de_la_chaine_a_un_nom_d_une_ville_inscrite_dans_la_base(mot_dont_l_appartenance_a_un_nom_de_ville_doit_etre_verifie, langue_uttilisee):

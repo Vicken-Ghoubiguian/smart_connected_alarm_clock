@@ -26,6 +26,7 @@ except ImportError:
 
 import horloge_monde
 import time
+import os
 import extracteur_de_fichiers_audio_depuis_des_videos_YouTube
 import configuration_du_reveil
 import pygame
@@ -112,10 +113,10 @@ class Horloge(Frame):
 		self.est_active_reveil = BooleanVar()
 
 		#
-		etat_du_reveil = horloge_monde.renvoi_de_l_etat_du_reveil()
+		self.etat_du_reveil = horloge_monde.renvoi_de_l_etat_du_reveil()
 
 		#
-		self.est_active_reveil.set(etat_du_reveil)
+		self.est_active_reveil.set(self.etat_du_reveil)
 
 		#
 		barre_de_menu_du_reveil.add_cascade(label = "Villes", menu = self.menu_des_villes)
@@ -343,6 +344,9 @@ class Horloge(Frame):
                 	else:
 
 				#
+				self.unite_de_mesure_selectionnee_pour_la_temperature.set(self.unite_de_mesure_de_la_temperature)
+
+				#
                                 if self.langue_uttilisee == 0:
 
                                         #
@@ -356,7 +360,6 @@ class Horloge(Frame):
 
                                 #
                                 subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
-			
 
 	#
 	def lecture_de_fichiers_audio_telecharges_depuis_YouTube(self):
@@ -1232,6 +1235,9 @@ class Horloge(Frame):
                 	else:
 
 				#
+				self.format_de_date_selectionne.set(self.format_de_date_uttilisee)
+
+				#
                                 if self.langue_uttilisee == 0:
 
                                         #
@@ -1385,6 +1391,9 @@ class Horloge(Frame):
                 	else:
 
 				#
+				self.langue_selectionnee.set(self.langue_uttilisee)
+
+				#
                                 if self.langue_uttilisee == 0:
 
                                         #
@@ -1444,17 +1453,47 @@ class Horloge(Frame):
 		#
 		else:
 
-			#
-			if self.est_active_reveil.get() == True:
+			#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
+			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False:
 
 				#
-				horloge_monde.changement_d_etat_du_reveil(1, self.langue_uttilisee, self.identifiant_en_lettres_de_la_langue_uttilisee)
+				if self.est_active_reveil.get() == True:
+
+					#
+					horloge_monde.changement_d_etat_du_reveil(1, self.langue_uttilisee, self.identifiant_en_lettres_de_la_langue_uttilisee)
+
+				#Sinon...
+				else:
+
+					#
+					horloge_monde.changement_d_etat_du_reveil(0, self.langue_uttilisee, self.identifiant_en_lettres_de_la_langue_uttilisee)
+
+				#
+				self.etat_du_reveil = horloge_monde.renvoi_de_l_etat_du_reveil()
+
+				#
+				self.est_active_reveil.set(self.etat_du_reveil)
 
 			#Sinon...
 			else:
 
 				#
-				horloge_monde.changement_d_etat_du_reveil(0, self.langue_uttilisee, self.identifiant_en_lettres_de_la_langue_uttilisee)
+				self.est_active_reveil.set(self.etat_du_reveil)
+
+				#
+                                if self.langue_uttilisee == 0:
+
+                                        #
+                                        texte_a_dire_par_eSpeak = "Error: A window is open"
+
+                                #
+                                else:
+
+                                        #
+                                        texte_a_dire_par_eSpeak = "Erreur: Une fenetre est ouverte"
+
+                                #
+                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
 
 	#Définition de la fonction tick() qui met à jour l'heure pour un fuseau horaire donné
 	def tick(self):
@@ -1841,7 +1880,19 @@ class Horloge(Frame):
 						tableau_de_la_commande_vocale_de_l_uttilisateur = horloge_monde.filtre_de_la_commande_vocale_de_l_uttilisateur(variable_du_resultat_de_la_conversion_d_audio_a_texte, self.langue_uttilisee)
 
 						#
-						print(variable_du_resultat_de_la_conversion_d_audio_a_texte)
+						heure_et_date_du_systeme = time.strftime("%a %d %b %Y - %H:%M:%S")
+
+						#
+						descripteur_du_fichier_de_logs_pour_la_commande_vocale = os.open("logs/logs_commande_vocale", os.O_WRONLY | os.O_CREAT | os.O_APPEND)
+
+						#
+						os.write(descripteur_du_fichier_de_logs_pour_la_commande_vocale, "{heure_et_date} - {commande_passee}".format(heure_et_date = heure_et_date_du_systeme, commande_passee = variable_du_resultat_de_la_conversion_d_audio_a_texte))
+
+						#
+						os.write(descripteur_du_fichier_de_logs_pour_la_commande_vocale, "\n")
+
+						#
+						os.close(descripteur_du_fichier_de_logs_pour_la_commande_vocale)
 
 						#
 						self.appel_de_la_commande_vocale(tableau_de_la_commande_vocale_de_l_uttilisateur)
