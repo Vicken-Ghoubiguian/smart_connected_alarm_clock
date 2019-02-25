@@ -233,6 +233,9 @@ class Horloge(Frame):
 		self.menu_d_aide.add_command(label = "Voice commands...", command = self.affichage_des_commandes_vocales)
 
 		#
+		self.menu_d_aide.add_command(label = "Viewing content of log files...", command = self.affichage_du_contenu_du_fichier_de_log_de_la_commande_vocale_dans_une_fenetre)
+
+		#
 		self.menu_d_aide.add_command(label = "About...", command = self.affichage_des_informations_sur_le_reveil_intelligent_et_connecte)
 
 		#
@@ -495,6 +498,97 @@ class Horloge(Frame):
 
 		#
 		self.fenetre_courante_pour_la_lecteure_de_fichiers_audio_telecharges_depuis_YouTube = None
+
+	#
+	def affichage_du_contenu_du_fichier_de_log_de_la_commande_vocale_dans_une_fenetre(self):
+
+		#
+		#Dans le cas ou la musique du reveil joue, alors...
+                if self.est_en_train_de_sonner_reveil == True:
+
+                        #On arrete de la jouer
+                        self.sonnerie.stop()
+
+                        #
+                        self.est_en_train_de_sonner_reveil = False
+
+                        #
+                        if self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == True:
+
+                                #
+                                self.changement_d_etat_du_lecteur_de_fichiers_audio_telecharges_depuis_YouTube()
+
+                #
+                else:
+
+			#
+			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+
+				#
+				if os.path.isfile("logs/logs_commande_vocale"):
+
+					#
+					fenetre_d_affichage_du_contenu_du_fichier_de_log_de_la_commande_vocale = Toplevel()
+
+					#
+					fenetre_d_affichage_du_contenu_du_fichier_de_log_de_la_commande_vocale.title("Affichage du contenu du fichier de log de la commande vocale")
+
+					#
+					fenetre_d_affichage_du_contenu_du_fichier_de_log_de_la_commande_vocale.resizable(False, False)
+
+					#
+					affichage_du_contenu = affichage_du_contenu_des_fichiers_de_logs.Affichage_du_contenu_des_fichiers_de_logs(fenetre_d_affichage_du_contenu_du_fichier_de_log_de_la_commande_vocale, 500, 700, self.langue_uttilisee, "logs/logs_commande_vocale")
+
+					#
+					self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale = True
+
+					#
+					fenetre_d_affichage_du_contenu_du_fichier_de_log_de_la_commande_vocale.bind("<Destroy>", self.rendre_possible_l_ouverture_de_la_fenetre_d_affichage_du_fichier_de_log_de_la_commande_vocale)
+
+					#
+					fenetre_d_affichage_du_contenu_du_fichier_de_log_de_la_commande_vocale.mainloop()
+
+				#
+				else:
+
+					#
+					if self.langue_uttilisee == 0:
+
+						#
+						texte_a_dire_par_eSpeak_en_cas_de_non_disponibilite_du_fichier = "The requested file is unfortunately not available"
+
+					#
+					else:
+
+						#
+						texte_a_dire_par_eSpeak_en_cas_de_non_disponibilite_du_fichier = "Le fichier demandée n'est malheureusement pas disponible"
+
+					#
+					subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak_en_cas_de_non_disponibilite_du_fichier])
+
+			#Sinon...
+                        else:
+
+                                #
+                                if self.langue_uttilisee == 0:
+
+                                        #
+                                        texte_a_dire_par_eSpeak = "Error: Window already open"
+
+                                #
+                                else:
+
+                                        #
+                                        texte_a_dire_par_eSpeak = "Erreur: Fenetre déjà ouverte"
+
+                                #
+                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+
+	#
+	def rendre_possible_l_ouverture_de_la_fenetre_d_affichage_du_fichier_de_log_de_la_commande_vocale(self, event):
+
+		#
+		self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale = False
 
 	#
 	def affichage_des_donnees_meteo_de_la_ville_courante(self):
@@ -1497,7 +1591,10 @@ class Horloge(Frame):
 					self.menu_d_aide.entryconfig(0, label = "Voice commands...")
 
 					#
-					self.menu_d_aide.entryconfig(1, label = "About...")
+					self.menu_d_aide.entryconfig(1, label = "Viewing content of log files...")
+
+					#
+					self.menu_d_aide.entryconfig(2, label = "About...")
 
 					#
 					self.texte_d_indication_du_demarrage_des_mises_a_jour_a_dire_par_eSpeak = "Now, updates will be made"
@@ -1548,7 +1645,10 @@ class Horloge(Frame):
 					self.menu_d_aide.entryconfig(0, label = "Commandes vocales...")
 
 					#
-                                        self.menu_d_aide.entryconfig(1, label = "A propos...")
+					self.menu_d_aide.entryconfig(1, label = "Affichage du contenu des fichiers log...")
+
+					#
+                                        self.menu_d_aide.entryconfig(2, label = "A propos...")
 
 					#
                                 	self.texte_d_indication_du_demarrage_des_mises_a_jour_a_dire_par_eSpeak = "Maintenant, des mises à jour vont être effectués"
@@ -1785,7 +1885,10 @@ class Horloge(Frame):
 				self.menu_d_aide.entryconfig(0, label = "Commandes vocales...")
 
 				#
-                                self.menu_d_aide.entryconfig(1, label = "A propos...")
+                                self.menu_d_aide.entryconfig(1, label = "Affichage du contenu des fichiers log...")
+
+				#
+                                self.menu_d_aide.entryconfig(2, label = "A propos...")
 
 				#
                                 texte_a_dire_par_eSpeak = "Maintenant, la langue courante est le français"
@@ -1840,6 +1943,12 @@ class Horloge(Frame):
 
                                 #
                                 self.insertion_d_une_nouvelle_ville()
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CONSULT",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("LOG",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("VOICE",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.affichage_du_contenu_du_fichier_de_log_de_la_commande_vocale_dans_une_fenetre()
 
 			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("REMOVE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CITY",tableau_de_la_commande_vocale_de_l_uttilisateur):
@@ -1932,7 +2041,10 @@ class Horloge(Frame):
 				self.menu_d_aide.entryconfig(0, label = "Voice commands...")
 
 				#
-				self.menu_d_aide.entryconfig(1, label = "About...")
+                                self.menu_d_aide.entryconfig(1, label = "Viewing content of log files...")
+
+				#
+				self.menu_d_aide.entryconfig(2, label = "About...")
 
 				#
 				texte_a_dire_par_eSpeak = "Now, the current language is English."
@@ -1993,6 +2105,12 @@ class Horloge(Frame):
 
                                 #
                                 self.suppression_d_une_ville()
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CONSULTER",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("LOG",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("VOIX",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.affichage_du_contenu_du_fichier_de_log_de_la_commande_vocale_dans_une_fenetre()
 
 			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("LECTEUR",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("YOUTUBE",tableau_de_la_commande_vocale_de_l_uttilisateur):

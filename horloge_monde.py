@@ -188,7 +188,7 @@ def mise_a_jour_des_modules_python_necessaires_pour_le_reveil():
 	os.write(descripteur_du_fichier_de_logs_pour_la_mise_a_jour_des_modules, "\n\n\n")
 
 	#
-	liste_de_tous_les_packets_python_instales = ["pytz", "pyowm", "datetime", "pygame", "SpeechRecognition", "Pillow", "PyAudio", "geojson", "chardet", "certifi", "idna", "urllib3", "requests"]
+	liste_de_tous_les_packets_python_instales = ["pytube", "pytz", "pyowm", "datetime", "pygame", "SpeechRecognition", "Pillow", "PyAudio", "geojson", "chardet", "certifi", "idna", "urllib3", "requests"]
 
 	#
 	for packet in liste_de_tous_les_packets_python_instales:
@@ -440,6 +440,24 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
                                  tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("YOUTUBE")
 
 			#
+			elif mot == "voice" or mot == "Voice":
+
+				#
+                                tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("VOICE")
+
+			#
+			elif mot == "consult" or mot == "Consult" or mot == "consultation" or mot == "Consultation":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("CONSULT")
+
+			#
+			elif mot == "log" or mot == "Log":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("LOG")
+
+			#
                         elif mot == "previous" or mot == "Previous":
 
                                  #
@@ -527,16 +545,34 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 				 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("INCLURE")
 
 			 #
+			 elif mot == "voix" or mot == "Voix" or mot == "Vocale" or mot == "vocale" or mot == "vocales" or mot == "Vocales":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("VOIX")
+
+			 #
+                         elif mot == "consulter" or mot == "Consulter" or mot == "consultation" or mot == "Consultation":
+
+                                #
+                                tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("CONSULTER")
+
+			 #
+                         elif mot == "log" or mot == "Log":
+
+                                #
+                                tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("LOG")
+
+			 #
 			 elif mot == "ville" or mot == "Ville":
 
-				 #
-				 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("VILLE")
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("VILLE")
 
 			 #
 			 elif mot == "suppression" or mot == "Suppression" or mot == "supprime" or mot == "Supprime" or mot == "supprimer" or mot == "Supprimer":
 
-				 #
-                                 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("SUPPRIMER")
+				#
+                                tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("SUPPRIMER")
 
 			 #
                          elif mot == "lecteur" or mot == "Lecteur" or mot == "jouer" or mot == "Jouer" or mot == "joue" or mot == "Joue" or mot == "lire" or mot == "Lire":
@@ -559,20 +595,20 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 			 #
                          elif mot == "suivante" or mot == "Suivante":
 
-                                   #
-                                   tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("SUIVANT")
+                                  #
+                                  tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("SUIVANT")
 
 			 #
                          elif verification_d_une_correspondance_avec_le_nom_d_une_ville_inscrite_dans_la_base(mot, langue_uttilisee) == True:
 
-                                   #
-                                   tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append(mot)
+                                  #
+                                  tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append(mot)
 
 			 #
 			 elif contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("'", mot) == False:
 
-				   #
-				   if verification_d_appartenance_de_la_chaine_a_un_nom_d_une_ville_inscrite_dans_la_base(mot, 0) == True:
+				  #
+				  if verification_d_appartenance_de_la_chaine_a_un_nom_d_une_ville_inscrite_dans_la_base(mot, 0) == True:
 
                                    	#
                                    	if nom_de_la_ville_demandee == "":
