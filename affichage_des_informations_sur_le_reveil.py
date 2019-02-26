@@ -160,13 +160,13 @@ class Affichage_des_informations_sur_le_reveil(Frame):
 		self.label_de_presentation_des_remerciements.pack()
 
 		#
-		image1 = Image.open("imerir_logo.png")
+		image1 = Image.open("images/imerir_logo.png")
 
 		#
 		photo1 = ImageTk.PhotoImage(image1)
 
 		#
-		image2 = Image.open("squaregolab_logo.png")
+		image2 = Image.open("images/squaregolab_logo.png")
 
 		#
 		photo2 = ImageTk.PhotoImage(image2)
