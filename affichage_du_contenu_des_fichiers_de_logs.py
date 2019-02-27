@@ -12,6 +12,8 @@ except ImportError:
         #
         from tkinter import *
 
+import os
+
 #
 class Affichage_du_contenu_des_fichiers_de_logs(Frame):
 
@@ -70,13 +72,16 @@ class Affichage_du_contenu_des_fichiers_de_logs(Frame):
 			self.label_de_presentation_du_fichier.pack()
 
 		#
-		#descripteur_du_fichier_de_logs_de_la_mise_a_jour_des_modules = os.open(fichier_dont_le_contenu_doit_etre_affiche, O_RDONLY)
+		taille_en_bytes_du_fichier_dont_le_contenu_doit_etre_affiche = os.path.getsize(fichier_dont_le_contenu_doit_etre_affiche)
 
 		#
-                #os.close(fichier_dont_le_contenu_doit_etre_affiche)
+		descripteur_du_fichier_dont_le_contenu_doit_etre_affiche = os.open(fichier_dont_le_contenu_doit_etre_affiche, os.O_RDONLY)
 
 		#
-		variable_contenant_le_contenu_du_fichier_log_passe_en_parametre = "Hello..."
+		variable_contenant_le_contenu_du_fichier_log_passe_en_parametre = os.read(descripteur_du_fichier_dont_le_contenu_doit_etre_affiche, taille_en_bytes_du_fichier_dont_le_contenu_doit_etre_affiche)
+
+		#
+                os.close(descripteur_du_fichier_dont_le_contenu_doit_etre_affiche)
 
 		#
 		self.widget_d_affichage_du_contenu_du_fichier_de_logs = Text(self.fenetre)

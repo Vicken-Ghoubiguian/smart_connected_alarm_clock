@@ -233,7 +233,10 @@ class Horloge(Frame):
 		self.menu_d_aide.add_command(label = "Voice commands...", command = self.affichage_des_commandes_vocales)
 
 		#
-		self.menu_d_aide.add_command(label = "Viewing content of log files...", command = self.affichage_du_contenu_du_fichier_de_log_de_la_commande_vocale_dans_une_fenetre)
+		self.menu_d_aide.add_command(label = "Showing the contents of the voice command log file...", command = self.affichage_du_contenu_du_fichier_de_log_de_la_commande_vocale_dans_une_fenetre)
+
+		#
+		self.menu_d_aide.add_command(label = "Showing the contents of the updates log file...", command = self.affichage_du_contenu_du_fichier_de_log_des_mises_a_jour_dans_une_fenetre)
 
 		#
 		self.menu_d_aide.add_command(label = "About...", command = self.affichage_des_informations_sur_le_reveil_intelligent_et_connecte)
@@ -276,6 +279,9 @@ class Horloge(Frame):
 
 		#
 		self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale = False
+
+		#
+		self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour = False
 
 		#
 		self.time1 = 0
@@ -335,7 +341,7 @@ class Horloge(Frame):
 		else:
 
 			#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
-			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
 				#
 				numero_de_l_unite_de_mesure_choisie_pour_la_temperature = self.unite_de_mesure_selectionnee_pour_la_temperature.get()
@@ -419,7 +425,7 @@ class Horloge(Frame):
 		else:
 
 			#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
-			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
 				#
 				self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube = True
@@ -522,7 +528,7 @@ class Horloge(Frame):
                 else:
 
 			#
-			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
 				#
 				if os.path.isfile("logs/logs_commande_vocale"):
@@ -591,6 +597,97 @@ class Horloge(Frame):
 		self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale = False
 
 	#
+	def affichage_du_contenu_du_fichier_de_log_des_mises_a_jour_dans_une_fenetre(self):
+
+		#
+		#Dans le cas ou la musique du reveil joue, alors...
+                if self.est_en_train_de_sonner_reveil == True:
+
+                        #On arrete de la jouer
+                        self.sonnerie.stop()
+
+                        #
+                        self.est_en_train_de_sonner_reveil = False
+
+                        #
+                        if self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == True:
+
+                                #
+                                self.changement_d_etat_du_lecteur_de_fichiers_audio_telecharges_depuis_YouTube()
+
+                #
+                else:
+
+			#
+			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
+
+				#
+				if os.path.isfile("logs/logs_mise_a_jour_des_modules"):
+
+					#
+					fenetre_d_affichage_du_contenu_du_fichier_de_log_des_mises_a_jour = Toplevel()
+
+					#
+					fenetre_d_affichage_du_contenu_du_fichier_de_log_des_mises_a_jour.title("Affichage du contenu du fichier de log des mises à jour")
+
+					#
+					fenetre_d_affichage_du_contenu_du_fichier_de_log_des_mises_a_jour.resizable(False, False)
+
+					#
+					affichage_du_contenu = affichage_du_contenu_des_fichiers_de_logs.Affichage_du_contenu_des_fichiers_de_logs(fenetre_d_affichage_du_contenu_du_fichier_de_log_des_mises_a_jour, 500, 1700, self.langue_uttilisee, "logs/logs_mise_a_jour_des_modules")
+
+					#
+					self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour = True
+
+					#
+					fenetre_d_affichage_du_contenu_du_fichier_de_log_des_mises_a_jour.bind("<Destroy>", self.rendre_possible_l_ouverture_de_la_fenetre_d_affichage_du_fichier_de_log_des_mises_a_jour)
+
+					#
+					fenetre_d_affichage_du_contenu_du_fichier_de_log_des_mises_a_jour.mainloop()
+
+				#
+				else:
+
+					#
+					if self.langue_uttilisee == 0:
+
+						#
+						texte_a_dire_par_eSpeak_en_cas_de_non_disponibilite_du_fichier = "The requested file is unfortunately not available"
+
+					#
+					else:
+
+						#
+						texte_a_dire_par_eSpeak_en_cas_de_non_disponibilite_du_fichier = "Le fichier demandée n'est malheureusement pas disponible"
+
+					#
+					subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak_en_cas_de_non_disponibilite_du_fichier])
+
+			#Sinon...
+                        else:
+
+                                #
+                                if self.langue_uttilisee == 0:
+
+                                        #
+                                        texte_a_dire_par_eSpeak = "Error: Window already open"
+
+                                #
+                                else:
+
+                                        #
+                                        texte_a_dire_par_eSpeak = "Erreur: Fenetre déjà ouverte"
+
+                                #
+                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+
+	#
+	def rendre_possible_l_ouverture_de_la_fenetre_d_affichage_du_fichier_de_log_des_mises_a_jour(self, event):
+
+		#
+		self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour = False
+
+	#
 	def affichage_des_donnees_meteo_de_la_ville_courante(self):
 
 		#Dans le cas ou la musique du reveil joue, alors...
@@ -612,7 +709,7 @@ class Horloge(Frame):
 		else:
 
 			#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
-			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
 				#
                                 fenetre_d_affichage_des_donnees_meteo = Toplevel()
@@ -708,7 +805,7 @@ class Horloge(Frame):
 			if horloge_monde.renvoi_du_nb_de_villes_enregistrees_dans_la_base() > 2:
 
                 		#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
-                		if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+                		if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
 					#On affecte True à la variable self.est_ouverte_boite_de_suppression_des_villes, donc la fenetre de suppression des villes est ouverte, donc il est impossible d'en ouvrir une autre
 					self.est_ouverte_boite_de_suppression_des_villes = True
@@ -795,7 +892,7 @@ class Horloge(Frame):
 		else:
 
 			#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
-			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
 				#On affecte True à la variable self.est_ouverte_boite_d_insertion_des_villes, donc la fenetre d'insertion de nouvelles villes est ouverte, donc il est impossible d'en ouvrir une autre
 				self.est_ouverte_boite_d_insertion_des_villes = True
@@ -882,7 +979,7 @@ class Horloge(Frame):
 		else:
 
 			#Si la variable self.est_ouverte_boite_de_configuration_du_reveil est à False (donc, si la fenetre de configuration du reveil n'est pas ouverte) alors...
-			if self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+			if self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
 				#On affecte True à la variable self.est_ouverte_boite_de_configuration_du_reveil, donc la fenetre de configuration du reveil est ouverte, donc il est impossible d'en ouvrir une autre
 				self.est_ouverte_boite_de_configuration_du_reveil = True
@@ -950,7 +1047,7 @@ class Horloge(Frame):
 		else:
 
 			#Si la variable self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube est à False (donc, si la fenetre d'extraction et de téléchargement de singles depuis YouTube n'est pas ouverte) alors...
-                	if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+                	if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
 				#
 				self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube = True
@@ -1018,7 +1115,7 @@ class Horloge(Frame):
 		else:
 
 			#Si la variable self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube est à False (donc, si la fenetre d'extraction et de téléchargement de singles depuis YouTube n'est pas ouverte) alors...
-                	if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+                	if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
 				#
 				self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube = True
@@ -1086,7 +1183,7 @@ class Horloge(Frame):
                 else:
 
                         #Si la variable self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube est à False (donc, si la fenetre d'extraction et de téléchargement de singles depuis$
-                        if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+                        if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
                                 #
                                 self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil = True
@@ -1154,7 +1251,7 @@ class Horloge(Frame):
                 else:
 
                         #Si la variable self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube est à False (donc, si la fenetre d'extraction et de téléchargement de singles depuis$
-                        if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+                        if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
                                 #
                                 self.est_ouverte_boite_d_affichage_des_commandes_vocales = True
@@ -1222,7 +1319,7 @@ class Horloge(Frame):
                 else:
 
                         #Si la variable self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube est à False (donc, si la fenetre d'extraction et de téléchargement de singles depuis$
-                        if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+                        if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
                                 #
                                 self.est_ouverte_boite_de_configuration_des_mises_a_jour = True
@@ -1291,7 +1388,7 @@ class Horloge(Frame):
 		else:
 
 			#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
-                	if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+                	if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
 				#Si la somme de la valeur contenue dans incrementeur avec 1 est strictement supérieur au maximum de l'incrémenteur, alors...
 				if self.incrementeur + 1 > self.maximum_de_l_incrementeur:
@@ -1360,7 +1457,7 @@ class Horloge(Frame):
 		else:
 
 			#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
-                	if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+                	if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
 				#Si la différence de la valeur contenue dans incrementeur avec 1 est strictement inférieur à 0, alors...
 				if self.incrementeur - 1 < 0:
@@ -1429,7 +1526,7 @@ class Horloge(Frame):
                 else:
 
 			#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
-			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
 				#
 				numero_du_format_de_date_choisi = self.format_de_date_selectionne.get()
@@ -1537,7 +1634,7 @@ class Horloge(Frame):
 		else:
 
 			#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
-			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
 				#
 				numero_de_la_langue_choisie = self.langue_selectionnee.get()
@@ -1591,10 +1688,13 @@ class Horloge(Frame):
 					self.menu_d_aide.entryconfig(0, label = "Voice commands...")
 
 					#
-					self.menu_d_aide.entryconfig(1, label = "Viewing content of log files...")
+					self.menu_d_aide.entryconfig(1, label = "Showing the contents of the voice command log file...")
 
 					#
-					self.menu_d_aide.entryconfig(2, label = "About...")
+					self.menu_d_aide.entryconfig(2, label = "Showing the contents of the updates log file...")
+
+					#
+					self.menu_d_aide.entryconfig(3, label = "About...")
 
 					#
 					self.texte_d_indication_du_demarrage_des_mises_a_jour_a_dire_par_eSpeak = "Now, updates will be made"
@@ -1645,10 +1745,13 @@ class Horloge(Frame):
 					self.menu_d_aide.entryconfig(0, label = "Commandes vocales...")
 
 					#
-					self.menu_d_aide.entryconfig(1, label = "Affichage du contenu des fichiers log...")
+					self.menu_d_aide.entryconfig(1, label = "Affichage du contenu du fichier log de la commande vocale...")
 
 					#
-                                        self.menu_d_aide.entryconfig(2, label = "A propos...")
+					self.menu_d_aide.entryconfig(2, label = "Affichage du contenu du fichier log des mises à jour...")
+
+					#
+                                        self.menu_d_aide.entryconfig(3, label = "A propos...")
 
 					#
                                 	self.texte_d_indication_du_demarrage_des_mises_a_jour_a_dire_par_eSpeak = "Maintenant, des mises à jour vont être effectués"
@@ -1735,7 +1838,7 @@ class Horloge(Frame):
 		else:
 
 			#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
-			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
 				#
 				if self.est_active_reveil.get() == True:
@@ -1885,10 +1988,13 @@ class Horloge(Frame):
 				self.menu_d_aide.entryconfig(0, label = "Commandes vocales...")
 
 				#
-                                self.menu_d_aide.entryconfig(1, label = "Affichage du contenu des fichiers log...")
+                                self.menu_d_aide.entryconfig(1, label = "Affichage du contenu du fichier log de la commande vocale...")
 
 				#
-                                self.menu_d_aide.entryconfig(2, label = "A propos...")
+				self.menu_d_aide.entryconfig(2, label = "Affichage du contenu du fichier des mises à jour...")
+
+				#
+                                self.menu_d_aide.entryconfig(3, label = "A propos...")
 
 				#
                                 texte_a_dire_par_eSpeak = "Maintenant, la langue courante est le français"
@@ -1949,6 +2055,12 @@ class Horloge(Frame):
 
 				#
 				self.affichage_du_contenu_du_fichier_de_log_de_la_commande_vocale_dans_une_fenetre()
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CONSULT",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("LOG",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("UPDATES",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.affichage_du_contenu_du_fichier_de_log_des_mises_a_jour_dans_une_fenetre()
 
 			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("REMOVE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CITY",tableau_de_la_commande_vocale_de_l_uttilisateur):
@@ -2041,10 +2153,13 @@ class Horloge(Frame):
 				self.menu_d_aide.entryconfig(0, label = "Voice commands...")
 
 				#
-                                self.menu_d_aide.entryconfig(1, label = "Viewing content of log files...")
+                                self.menu_d_aide.entryconfig(1, label = "Showing the contents of the voice command log file...")
 
 				#
-				self.menu_d_aide.entryconfig(2, label = "About...")
+				self.menu_d_aide.entryconfig(2, label = "Showing the contents of the updates log file...")
+
+				#
+				self.menu_d_aide.entryconfig(3, label = "About...")
 
 				#
 				texte_a_dire_par_eSpeak = "Now, the current language is English."
@@ -2113,6 +2228,12 @@ class Horloge(Frame):
 				self.affichage_du_contenu_du_fichier_de_log_de_la_commande_vocale_dans_une_fenetre()
 
 			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CONSULTER",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("LOG",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("MAJ",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.affichage_du_contenu_du_fichier_de_log_des_mises_a_jour_dans_une_fenetre()
+
+			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("LECTEUR",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("YOUTUBE",tableau_de_la_commande_vocale_de_l_uttilisateur):
 
                                 #
@@ -2164,7 +2285,7 @@ class Horloge(Frame):
                 else:
 
 			#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
-			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False:
+			if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
 				#
 				enregistreur_de_la_commande_vocale_de_l_uttilisateur = speech_recognition.Recognizer()

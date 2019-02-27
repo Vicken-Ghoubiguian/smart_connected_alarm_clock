@@ -458,6 +458,12 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("LOG")
 
 			#
+			elif mot == "updates" or mot == "Updates" or mot == "Update" or mot == "update":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("UPDATES")
+
+			#
                         elif mot == "previous" or mot == "Previous":
 
                                  #
@@ -557,6 +563,11 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
                                 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("CONSULTER")
 
 			 #
+			 elif mot == "mise" or mot == "Mise" or mot == "jour" or mot == "Jour":
+
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("MAJ")
+
+			 #
                          elif mot == "log" or mot == "Log":
 
                                 #
@@ -577,32 +588,32 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 			 #
                          elif mot == "lecteur" or mot == "Lecteur" or mot == "jouer" or mot == "Jouer" or mot == "joue" or mot == "Joue" or mot == "lire" or mot == "Lire":
 
-                                  #
-                                  tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("LECTEUR")
+                                 #
+                                 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("LECTEUR")
 
 			 #
 			 elif mot == "single" or mot == "YouTube" or mot == "fichier":
 
-				  #
-				  tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("YOUTUBE")
+				 #
+				 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("YOUTUBE")
 
 			 #
 			 elif mot == "précédente" or mot == "Précédente":
 
-				  #
-				  tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("PRECEDENT")
+				 #
+				 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("PRECEDENT")
 
 			 #
                          elif mot == "suivante" or mot == "Suivante":
 
-                                  #
-                                  tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("SUIVANT")
+                                 #
+                                 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("SUIVANT")
 
 			 #
                          elif verification_d_une_correspondance_avec_le_nom_d_une_ville_inscrite_dans_la_base(mot, langue_uttilisee) == True:
 
-                                  #
-                                  tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append(mot)
+                                 #
+                                 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append(mot)
 
 			 #
 			 elif contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("'", mot) == False:
