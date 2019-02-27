@@ -2098,6 +2098,12 @@ class Horloge(Frame):
 				#
 				self.incrementeur = horloge_monde.renvoi_de_l_id_d_une_ville_a_partir_de_son_nom(tableau_de_la_commande_vocale_de_l_uttilisateur[1], self.langue_uttilisee) - 1
 
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("SHOW",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("ABOUT",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.affichage_des_informations_sur_le_reveil_intelligent_et_connecte()
+
                 #
                 else:
 
@@ -2262,6 +2268,12 @@ class Horloge(Frame):
 
 				#
 				self.incrementeur = horloge_monde.renvoi_de_l_id_d_une_ville_a_partir_de_son_nom(tableau_de_la_commande_vocale_de_l_uttilisateur[1], self.langue_uttilisee) - 1
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("AFFICHER",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("PROPOS",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.affichage_des_informations_sur_le_reveil_intelligent_et_connecte()
 
 	#
 	def commande_vocale_du_reveil(self):

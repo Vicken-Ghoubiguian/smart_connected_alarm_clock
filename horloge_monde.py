@@ -458,6 +458,12 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("LOG")
 
 			#
+			elif mot == "about" or mot == "About":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("ABOUT")
+
+			#
 			elif mot == "updates" or mot == "Updates" or mot == "Update" or mot == "update":
 
 				#
@@ -596,6 +602,12 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 
 				 #
 				 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("YOUTUBE")
+
+			 #
+			 elif mot == "propos" or mot == "Propos":
+
+				 #
+				 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("PROPOS")
 
 			 #
 			 elif mot == "précédente" or mot == "Précédente":
