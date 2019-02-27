@@ -84,7 +84,13 @@ class Affichage_du_contenu_des_fichiers_de_logs(Frame):
                 os.close(descripteur_du_fichier_dont_le_contenu_doit_etre_affiche)
 
 		#
-		self.widget_d_affichage_du_contenu_du_fichier_de_logs = Text(self.fenetre)
+		yscrollbar = Scrollbar(self.fenetre, orient = VERTICAL)
+
+		#
+		yscrollbar.pack(side=RIGHT, fill=Y)
+
+		#
+		self.widget_d_affichage_du_contenu_du_fichier_de_logs = Text(self.fenetre, yscrollcommand = yscrollbar.set)
 
 		#
 		self.widget_d_affichage_du_contenu_du_fichier_de_logs.insert(INSERT, variable_contenant_le_contenu_du_fichier_log_passe_en_parametre)

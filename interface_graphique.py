@@ -634,7 +634,7 @@ class Horloge(Frame):
 					fenetre_d_affichage_du_contenu_du_fichier_de_log_des_mises_a_jour.resizable(False, False)
 
 					#
-					affichage_du_contenu = affichage_du_contenu_des_fichiers_de_logs.Affichage_du_contenu_des_fichiers_de_logs(fenetre_d_affichage_du_contenu_du_fichier_de_log_des_mises_a_jour, 500, 1700, self.langue_uttilisee, "logs/logs_mise_a_jour_des_modules")
+					affichage_du_contenu = affichage_du_contenu_des_fichiers_de_logs.Affichage_du_contenu_des_fichiers_de_logs(fenetre_d_affichage_du_contenu_du_fichier_de_log_des_mises_a_jour, 1500, 1700, self.langue_uttilisee, "logs/logs_mise_a_jour_des_modules")
 
 					#
 					self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour = True
