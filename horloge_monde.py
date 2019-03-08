@@ -344,7 +344,7 @@ def verification_d_une_correspondance_avec_le_nom_d_une_ville_inscrite_dans_la_b
 def uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, identifiant_en_lettres_de_la_langue_uttilisee):
 
 	#
-	subprocess.call(["espeak", "-v" + identifiant_en_lettres_de_la_langue_uttilisee, texte_a_dire_par_eSpeak])
+	subprocess.call(["espeak", "-v" + identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
 
 #
 def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisateur_sous_forme_d_un_string, langue_uttilisee):
@@ -2196,9 +2196,6 @@ def changement_d_etat_du_reveil(valeur_de_l_etat_du_reveil_pour_modification, la
 
 			#
 			uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(contenu_du_texte_a_dire_en_cas_de_reussite, identifiant_en_lettres_de_la_langue_uttilisee)
-
-			#
-			#showinfo(titre_de_la_fenetre_en_cas_de_succes, contenu_textuel_de_la_fenetre_en_cas_de_reussite)
 
 		#
 		else:
