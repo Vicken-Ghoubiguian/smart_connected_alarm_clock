@@ -1,13 +1,12 @@
-# smart_connected_alarm_clock
-Ceci est un projet de reveil intélligent et connecté.
+# SmartAlarmClock
 
-Ce reveil permet:
+Ce projet consiste en la création d'un réveil intelligent.
+Ce reveil est développé avec Rapsberry Pi, une boite découpée au laser, et des supports imprimés grace à des imprimantes 3D, et intégre trois fonctionnalités de base:
 
-* d'afficher l'heure et la date pour tous les fuseaux horaires du monde,
-* d'afficher la météo dans la ville courante (la ville qui est affichée),
-* d'insérer une nouvelle ville dans la base de données,
-* de configurer le reveil pour qu'il sonne à l'heure, la minute, et la seconde renseignée dans la ville courante,
-* de télécharger et de lire des fichiers audio depuis YouTube.
+* Affichage de l'heure et de la date sur tous les fuseaux horaires,
 
-Pour fonctionner correctement, ce reveil necessite la base registre_des_timezones_des_villes_et_des_pays instalée en tant que base sqlite grâce au script sql script_de_creation_et_mise_en_place_des_tables.sql.
-Il necessite aussi le langage Python installé et configué correctement, ainsi que les modules suivants: pygame, pyowm, pytube, pytz, datetime, pyaudio, et SpeechRecognition.
+* Reveil pour une heure particulière et pour un fuseau horaire particulier,
+
+* Agent conversationnel pour intéragir avec par la voix et implémenter de nouvelles fonctionnalités.
+
+Lancez le reveil grâce à la commande python smart_connected_alarm_clock.py, ou python3 smart_connected_alarm_clock.py.

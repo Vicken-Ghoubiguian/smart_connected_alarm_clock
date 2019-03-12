@@ -2040,7 +2040,7 @@ def renvoi_de_l_auteur_du_single_a_ecouter(id_du_single_choisi_a_ecouter):
         return resultat_de_la_requete_de_renvoi_de_l_auteur_du_single_a_ecouter[0][0]
 
 #
-def renvoi_du_nom_du_pays_d_origine_du_single_a_ecouter(id_du_single_choisi_a_ecouter):
+def renvoi_du_nom_du_pays_d_origine_du_single_a_ecouter(id_du_single_choisi_a_ecouter, language):
 
         #Connection à la base de données registre_des_timezones_des_villes_et_des_pays
         connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
@@ -2048,8 +2048,17 @@ def renvoi_du_nom_du_pays_d_origine_du_single_a_ecouter(id_du_single_choisi_a_ec
         #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les don$
         curseur = connecteur.cursor()
 
-        #
-        curseur.execute("SELECT pays.pays_en_fr FROM pays INNER JOIN Single ON pays.id = Single.pays WHERE Single.id = ?", (id_du_single_choisi_a_ecouter,))
+	#
+	if language == 0:
+
+		#
+		curseur.execute("SELECT pays.pays_en_en FROM pays INNER JOIN Single ON pays.id = Single.pays WHERE Single.id = ?", (id_du_single_choisi_a_ecouter,))
+
+	#
+	if language == 1:
+
+        	#
+        	curseur.execute("SELECT pays.pays_en_fr FROM pays INNER JOIN Single ON pays.id = Single.pays WHERE Single.id = ?", (id_du_single_choisi_a_ecouter,))
 
         #
         resultat_de_la_requete_de_renvoi_du_nom_du_pays_d_origine_du_single_a_ecouter = curseur.fetchall()

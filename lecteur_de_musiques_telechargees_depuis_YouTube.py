@@ -286,7 +286,7 @@ class Lecteur_de_musiques_telechargees_depuis_YouTube(Frame):
 			nom_de_l_auteur = horloge_monde.renvoi_de_l_auteur_du_single_a_ecouter(id_du_single_choisi_pour_etre_ecoute)
 
 			#
-			nom_du_pays_d_origine = horloge_monde.renvoi_du_nom_du_pays_d_origine_du_single_a_ecouter(id_du_single_choisi_pour_etre_ecoute)
+			nom_du_pays_d_origine = horloge_monde.renvoi_du_nom_du_pays_d_origine_du_single_a_ecouter(id_du_single_choisi_pour_etre_ecoute, self.langue)
 
 			#
 			self.est_en_pause = False
