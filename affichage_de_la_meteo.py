@@ -41,7 +41,7 @@ class Affichage_de_la_Meteo(Frame):
 		code_du_pays_ou_de_la_zone_correspondant = horloge_monde.renvoi_du_code_du_pays_ou_de_la_zone_correspondant(id_de_la_ville_courante)
 
 		#
-		nom_de_la_ville_courante = horloge_monde.renvoi_du_nom_de_la_ville_courante_a_partir_de_son_id(id_de_la_ville_courante)
+		nom_de_la_ville_courante = horloge_monde.renvoi_du_nom_de_la_ville_courante_pour_la_meteo_a_partir_de_son_id(id_de_la_ville_courante)
 
 		#
 		nom_du_pays_correspondant_a_la_ville_courante = horloge_monde.renvoi_du_nom_du_pays_correspondant_a_l_id_de_la_ville_passe_en_parametre(id_de_la_ville_courante, language)

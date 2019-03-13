@@ -2288,7 +2288,7 @@ def renvoi_du_nom_du_pays_correspondant_a_l_id_de_la_ville_passe_en_parametre(id
 	return resultat_de_la_requete_de_selection_du_nom_du_pays_dans_la_langue_choisie_correspondant_a_la_ville_demandee[0]
 
 #
-def renvoi_du_nom_de_la_ville_courante_a_partir_de_son_id(id_de_la_ville_courante):
+def renvoi_du_nom_de_la_ville_courante_pour_la_meteo_a_partir_de_son_id(id_de_la_ville_courante):
 
 	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
         connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
@@ -2337,6 +2337,129 @@ def renvoi_du_timezone_correspondant_a_l_id_de_la_ville_passe_en_parametre(id_de
 
 	#
 	return resultat_de_la_requete_de_renvoi_du_nom_du_timezone_correspondant_a_la_ville_courante[0]
+
+#
+def renvoi_de_la_ville_parametree_pour_faire_sonner_le_reveil(langue_uttilise):
+
+	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
+        connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
+
+        #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les don$
+        curseur = connecteur.cursor()
+
+	#
+	if langue_uttilise == 0:
+
+		#
+		curseur.execute("SELECT Ville.ville_en_en FROM Ville INNER JOIN Reveil ON Reveil.ville WHERE Reveil.ville = Ville.id")
+
+	#
+	else:
+
+		#
+		curseur.execute("SELECT Ville.ville_en_fr FROM Ville INNER JOIN Reveil ON Reveil.ville WHERE Reveil.ville = Ville.id")
+
+	#
+	resultat_de_la_requete_de_renvoi_de_la_ville_parametree_pour_faire_sonner_le_reveil = curseur.fetchone()
+
+	#Le connecteur à la base de données SQLITE est fermé
+        connecteur.close()
+
+	#
+	return resultat_de_la_requete_de_renvoi_de_la_ville_parametree_pour_faire_sonner_le_reveil[0]
+
+#
+def renvoi_du_nom_du_pays_correspondant_au_timezone_renseignee_pour_faire_sonner_le_reveil(langue_uttilisee):
+
+	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
+        connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
+
+        #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les don$
+        curseur = connecteur.cursor()
+
+        #
+        if langue_uttilise == 0:
+
+                #
+                curseur.execute("SELECT pays.pays_en_en FROM pays INNER JOIN timezone ON timezone.pays = pays.id WHERE timezone.id = (SELECT Reveil.timezone FROM Reveil)")
+
+        #
+        else:
+
+                #
+                curseur.execute("SELECT pays.pays_en_fr FROM pays INNER JOIN timezone ON timezone.pays = pays.id WHERE timezone.id = (SELECT Reveil.timezone FROM Reveil)")
+
+        #
+        resultat_de_renvoi_du_pays_parametre_pour_faire_sonner_le_reveil = curseur.fetchone()
+
+        #Le connecteur à la base de données SQLITE est fermé
+        connecteur.close()
+
+	#
+	return resultat_de_renvoi_du_pays_parametre_pour_faire_sonner_le_reveil[0]
+
+#
+def renvoi_des_donnees_concernant_le_single_enregistre_pour_le_reveil():
+
+	#
+	tableau_des_donnees_concernant_le_single_enregistre_pour_le_reveil = []
+
+	#
+	id_du_single_enregistre_pour_faire_sonner_le_reveil = renvoie_de_l_id_du_single_enregistre_pour_faire_sonner_le_reveil()
+
+	#
+	titre_du_single_enregistre_pour_le_reveil = renvoi_du_titre_du_single_a_ecouter(id_du_single_enregistre_pour_faire_sonner_le_reveil)
+
+	#
+	tableau_des_donnees_concernant_le_single_enregistre_pour_le_reveil.append(titre_du_single_enregistre_pour_le_reveil)
+
+	#
+	auteur_du_single_enregistre_pour_faire_sonner_le_reveil = renvoi_de_l_auteur_du_single_a_ecouter(id_du_single_enregistre_pour_faire_sonner_le_reveil)
+
+	#
+	tableau_des_donnees_concernant_le_single_enregistre_pour_le_reveil.append(auteur_du_single_enregistre_pour_faire_sonner_le_reveil)
+
+	#
+	return tableau_des_donnees_concernant_le_single_enregistre_pour_le_reveil
+
+#
+def renvoi_de_l_heure_de_la_frequence_et_de_la_ville_parametrees_pour_faire_sonner_le_reveil(langue_uttilisee):
+
+	#
+	tableau_de_l_heure_de_la_frequence_et_de_la_ville_parametrees_pour_faire_sonner_le_reveil = []
+
+	#
+	heure_minute_seconde_et_timezone_pour_faire_sonner_le_reveil = renvoie_de_l_heure_de_la_minute_de_la_seconde_et_de_la_timezone_pour_faire_sonner_le_reveil()
+
+	#
+	tableau_de_l_heure_de_la_frequence_et_de_la_ville_parametrees_pour_faire_sonner_le_reveil.append(heure_minute_seconde_et_timezone_pour_faire_sonner_le_reveil[0])
+
+	#
+	tableau_de_l_heure_de_la_frequence_et_de_la_ville_parametrees_pour_faire_sonner_le_reveil.append(heure_minute_seconde_et_timezone_pour_faire_sonner_le_reveil[1])
+
+	#
+	tableau_de_l_heure_de_la_frequence_et_de_la_ville_parametrees_pour_faire_sonner_le_reveil.append(heure_minute_seconde_et_timezone_pour_faire_sonner_le_reveil[2])
+
+	#
+	pays_correspondant_au_timezone_renseignee_dans_les_parametres_du_reveil = renvoi_du_nom_du_pays_correspondant_au_timezone_renseignee_pour_faire_sonner_le_reveil(langue_uttilisee)
+
+	#
+	tableau_de_l_heure_de_la_frequence_et_de_la_ville_parametrees_pour_faire_sonner_le_reveil.append(pays_correspondant_au_timezone_renseignee_dans_les_parametres_du_reveil)
+
+	#
+	nom_de_la_ville_parametree_pour_faire_sonner_le_reveil = renvoi_de_la_ville_parametree_pour_faire_sonner_le_reveil(langue_uttilisee)
+
+	#
+	tableau_de_l_heure_de_la_frequence_et_de_la_ville_parametrees_pour_faire_sonner_le_reveil.append(nom_de_la_ville_parametree_pour_faire_sonner_le_reveil)
+
+	#
+	frequence_pour_faire_sonner_le_reveil = renvoie_de_la_frequence_de_la_sonnerie_du_reveil()
+
+	#
+	tableau_de_l_heure_de_la_frequence_et_de_la_ville_parametrees_pour_faire_sonner_le_reveil.append(frequence_pour_faire_sonner_le_reveil)
+
+	#
+	return tableau_de_l_heure_de_la_frequence_et_de_la_ville_parametrees_pour_faire_sonner_le_reveil
 
 #Les lignes de code suivants permettent de tester si toutes les fonctionnalités du module sont au point
 if __name__ == '__main__':
