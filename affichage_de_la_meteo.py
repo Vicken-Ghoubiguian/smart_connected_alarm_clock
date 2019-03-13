@@ -44,6 +44,9 @@ class Affichage_de_la_Meteo(Frame):
 		nom_de_la_ville_courante = horloge_monde.renvoi_du_nom_de_la_ville_courante_pour_la_meteo_a_partir_de_son_id(id_de_la_ville_courante)
 
 		#
+		nom_de_la_ville_courante_dans_la_langue_courante = horloge_monde.renvoi_du_nom_de_la_ville_courante_dans_le_language_passe_en_parametre(id_de_la_ville_courante, language)
+
+		#
 		nom_du_pays_correspondant_a_la_ville_courante = horloge_monde.renvoi_du_nom_du_pays_correspondant_a_l_id_de_la_ville_passe_en_parametre(id_de_la_ville_courante, language)
 
 		#
@@ -101,7 +104,7 @@ class Affichage_de_la_Meteo(Frame):
 			texte_du_label_d_affichage_de_presentation_de_l_heure_du_coucher_de_soleil = "Heure du coucher de soleil: "
 
 		#
-		self.label_d_affichage_du_nom_de_la_ville_concernee = Label(fenetre, text = nom_de_la_ville_courante + " ( " + nom_du_pays_correspondant_a_la_ville_courante + " ): ")
+		self.label_d_affichage_du_nom_de_la_ville_concernee = Label(fenetre, text = nom_de_la_ville_courante_dans_la_langue_courante+ " ( " + nom_du_pays_correspondant_a_la_ville_courante + " ): ")
 
 		#
 		self.label_d_affichage_du_nom_de_la_ville_concernee.pack()

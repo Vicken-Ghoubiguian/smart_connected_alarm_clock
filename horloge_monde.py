@@ -2399,6 +2399,36 @@ def renvoi_du_nom_du_pays_correspondant_au_timezone_renseignee_pour_faire_sonner
 	return resultat_de_renvoi_du_pays_parametre_pour_faire_sonner_le_reveil[0]
 
 #
+def renvoi_du_nom_de_la_ville_courante_dans_le_language_passe_en_parametre(id_de_la_ville_courante, langue_courante):
+
+	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
+        connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
+
+        #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les don$
+        curseur = connecteur.cursor()
+
+        #
+        if langue_courante == 0:
+
+                #
+		curseur.execute("SELECT ville.ville_en_en FROM Ville WHERE ville.id = ?", (id_de_la_ville_courante,))
+
+        #
+        else:
+
+                #
+		curseur.execute("SELECT ville.ville_en_fr FROM Ville WHERE ville.id = ?", (id_de_la_ville_courante,))
+
+        #
+        resultat_de_renvoi_du_nom_de_la_ville_courante_dans_la_langue_uttilisee = curseur.fetchone()
+
+        #Le connecteur à la base de données SQLITE est fermé
+        connecteur.close()
+
+        #
+        return resultat_de_renvoi_du_nom_de_la_ville_courante_dans_la_langue_uttilisee[0]
+
+#
 def renvoi_des_donnees_concernant_le_single_enregistre_pour_le_reveil():
 
 	#
