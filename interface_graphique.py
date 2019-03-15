@@ -1931,6 +1931,48 @@ class Horloge(Frame):
 		 self.afficheur.after(200, self.tick)
 
 	#
+	def expression_des_donnees_concernant_le_single_enregistre_pour_le_reveil(self):
+
+		#
+		tableau_des_donnees_concernant_le_single_enregistre_pour_le_reveil = horloge_monde.renvoi_des_donnees_concernant_le_single_enregistre_pour_le_reveil(self.langue_uttilisee)
+
+		#
+		if self.langue_uttilisee == 0:
+
+			#
+			texte_a_dire_par_eSpeak = "The musical single defined for the alarm clock is {} by {} and originally from {}".format(tableau_des_donnees_concernant_le_single_enregistre_pour_le_reveil[0], tableau_des_donnees_concernant_le_single_enregistre_pour_le_reveil[1], tableau_des_donnees_concernant_le_single_enregistre_pour_le_reveil[2])
+
+		#
+		else:
+
+			#
+			texte_a_dire_par_eSpeak = "Le single musical défini pour le réveil est {} par {} et originaire de {}".format(tableau_des_donnees_concernant_le_single_enregistre_pour_le_reveil[0], tableau_des_donnees_concernant_le_single_enregistre_pour_le_reveil[1], tableau_des_donnees_concernant_le_single_enregistre_pour_le_reveil[2])
+
+		#
+		horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
+
+	#
+	def expression_de_l_heure_de_la_frequence_et_de_la_ville_parametrees_pour_faire_sonner_le_reveil(self):
+
+		#
+		tableau_des_donnees_concernant_l_heure_la_frequence_et_la_ville_parametrees_pour_faire_sonner_le_reveil = horloge_monde.renvoi_de_l_heure_de_la_frequence_et_de_la_ville_parametrees_pour_faire_sonner_le_reveil(self.langue_uttilisee)
+
+		#
+		if self.langue_uttilisee == 0:
+
+			#
+			texte_a_dire_par_eSpeak = "The alarm is set to ring {} hours {} minutes and {} seconds {} time in the country named {} {}".format(tableau_des_donnees_concernant_l_heure_la_frequence_et_la_ville_parametrees_pour_faire_sonner_le_reveil[0], tableau_des_donnees_concernant_l_heure_la_frequence_et_la_ville_parametrees_pour_faire_sonner_le_reveil[1], tableau_des_donnees_concernant_l_heure_la_frequence_et_la_ville_parametrees_pour_faire_sonner_le_reveil[2], tableau_des_donnees_concernant_l_heure_la_frequence_et_la_ville_parametrees_pour_faire_sonner_le_reveil[3], tableau_des_donnees_concernant_l_heure_la_frequence_et_la_ville_parametrees_pour_faire_sonner_le_reveil[5], tableau_des_donnees_concernant_l_heure_la_frequence_et_la_ville_parametrees_pour_faire_sonner_le_reveil[4])
+
+		#
+		else:
+
+			#
+			texte_a_dire_par_eSpeak = "Le reveil est paramétré pour sonner à {} heures {} minutes et {} secondes heure de {} dans le pays nommé {} {}".format(tableau_des_donnees_concernant_l_heure_la_frequence_et_la_ville_parametrees_pour_faire_sonner_le_reveil[0], tableau_des_donnees_concernant_l_heure_la_frequence_et_la_ville_parametrees_pour_faire_sonner_le_reveil[1], tableau_des_donnees_concernant_l_heure_la_frequence_et_la_ville_parametrees_pour_faire_sonner_le_reveil[2], tableau_des_donnees_concernant_l_heure_la_frequence_et_la_ville_parametrees_pour_faire_sonner_le_reveil[3], tableau_des_donnees_concernant_l_heure_la_frequence_et_la_ville_parametrees_pour_faire_sonner_le_reveil[5], tableau_des_donnees_concernant_l_heure_la_frequence_et_la_ville_parametrees_pour_faire_sonner_le_reveil[4])
+
+		#
+		horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
+
+	#
 	def appel_de_la_commande_vocale(self, tableau_de_la_commande_vocale_de_l_uttilisateur):
 
 		#
@@ -2037,6 +2079,18 @@ class Horloge(Frame):
 
                         	#
                                 self.affichage_des_donnees_meteo_de_la_ville_courante()
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("SETTINGS",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("ALARM",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.expression_de_l_heure_de_la_frequence_et_de_la_ville_parametrees_pour_faire_sonner_le_reveil()
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("SINGLE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("ALARM",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.expression_des_donnees_concernant_le_single_enregistre_pour_le_reveil()
 
 			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CONFIGURE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("ALARM",tableau_de_la_commande_vocale_de_l_uttilisateur):
@@ -2210,6 +2264,12 @@ class Horloge(Frame):
                                 self.affichage_des_donnees_meteo_de_la_ville_courante()
 
 			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("SINGLE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("REVEIL",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.expression_des_donnees_concernant_le_single_enregistre_pour_le_reveil()
+
+			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CONFIGURER",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("REVEIL",tableau_de_la_commande_vocale_de_l_uttilisateur):
 
                                 #
@@ -2238,6 +2298,12 @@ class Horloge(Frame):
 
 				#
 				self.affichage_du_contenu_du_fichier_de_log_des_mises_a_jour_dans_une_fenetre()
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("REVEIL",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("PARAMETRES",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.expression_de_l_heure_de_la_frequence_et_de_la_ville_parametrees_pour_faire_sonner_le_reveil()
 
 			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("LECTEUR",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("YOUTUBE",tableau_de_la_commande_vocale_de_l_uttilisateur):

@@ -398,6 +398,12 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
                                 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("WEATHER")
 
                         #
+			elif mot == "single" or mot == "Single":
+
+				#
+                                tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("SINGLE")
+
+			#
                         elif mot == "configure" or mot == "Configure":
 
                                 #
@@ -456,6 +462,12 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 
 				#
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("LOG")
+
+			#
+			elif mot == "settings" or mot == "Settings" or mot == "setting" or mot == "Setting":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("SETTINGS")
 
 			#
 			elif mot == "about" or mot == "About":
@@ -555,6 +567,18 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 
 				 #
 				 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("INCLURE")
+
+			 #
+			 elif mot == "single" or mot == "Single":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("SINGLE")
+
+			 #
+			 elif mot == "Paramètres" or mot == "paramètres" or mot == "paramètre" or mot == "Paramètre":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("PARAMETRES")
 
 			 #
 			 elif mot == "voix" or mot == "Voix" or mot == "Vocale" or mot == "vocale" or mot == "vocales" or mot == "Vocales":
@@ -2378,7 +2402,7 @@ def renvoi_du_nom_du_pays_correspondant_au_timezone_renseignee_pour_faire_sonner
         curseur = connecteur.cursor()
 
         #
-        if langue_uttilise == 0:
+        if langue_uttilisee == 0:
 
                 #
                 curseur.execute("SELECT pays.pays_en_en FROM pays INNER JOIN timezone ON timezone.pays = pays.id WHERE timezone.id = (SELECT Reveil.timezone FROM Reveil)")
@@ -2429,7 +2453,7 @@ def renvoi_du_nom_de_la_ville_courante_dans_le_language_passe_en_parametre(id_de
         return resultat_de_renvoi_du_nom_de_la_ville_courante_dans_la_langue_uttilisee[0]
 
 #
-def renvoi_des_donnees_concernant_le_single_enregistre_pour_le_reveil():
+def renvoi_des_donnees_concernant_le_single_enregistre_pour_le_reveil(langue_uttilisee):
 
 	#
 	tableau_des_donnees_concernant_le_single_enregistre_pour_le_reveil = []
@@ -2448,6 +2472,12 @@ def renvoi_des_donnees_concernant_le_single_enregistre_pour_le_reveil():
 
 	#
 	tableau_des_donnees_concernant_le_single_enregistre_pour_le_reveil.append(auteur_du_single_enregistre_pour_faire_sonner_le_reveil)
+
+	#
+	pays_d_origine_du_single_enregistre_pour_faire_sonner_le_reveil = renvoi_du_nom_du_pays_d_origine_du_single_a_ecouter(id_du_single_enregistre_pour_faire_sonner_le_reveil, langue_uttilisee)
+
+	#
+	tableau_des_donnees_concernant_le_single_enregistre_pour_le_reveil.append(pays_d_origine_du_single_enregistre_pour_faire_sonner_le_reveil)
 
 	#
 	return tableau_des_donnees_concernant_le_single_enregistre_pour_le_reveil
