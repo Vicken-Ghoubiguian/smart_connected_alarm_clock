@@ -2,7 +2,6 @@
 
 #
 import pyowm
-import subprocess
 
 #Cette classe permet de déterminer la situation météorologique d'une ville passée en paramétre du constructeur dans une unité de mesure des températures passée en paramétre
 class Situation_de_la_Meteo():

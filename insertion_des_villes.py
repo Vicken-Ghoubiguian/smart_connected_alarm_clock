@@ -19,7 +19,6 @@ except ImportError:
 	from tkinter.messagebox import *
 
 import horloge_monde
-import subprocess
 
 #Cette classe permet de définir une interface graphique pour insérer une ville dans la base de données
 class Insertion_des_Villes(Frame):
@@ -200,7 +199,7 @@ class Insertion_des_Villes(Frame):
 						identifiant_en_lettres_de_la_langue_uttilisee = "fr"
 
 				#
-				subprocess.call(["espeak", "-v" + identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", contenu_textuel_du_texte_a_dire_par_eSpeak_en_tant_qu_indication_du_succes_de_l_insertion_de_la_ville_dans_la_base_de_donnees])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(contenu_textuel_du_texte_a_dire_par_eSpeak_en_tant_qu_indication_du_succes_de_l_insertion_de_la_ville_dans_la_base_de_donnees, identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#
 			except:
@@ -224,7 +223,7 @@ class Insertion_des_Villes(Frame):
                                         identifiant_en_lettres_de_la_langue_uttilisee = "fr"
 
 				#
-				subprocess.call(["espeak", "-v" + identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", contenu_textuel_du_texte_a_dire_par_eSpeak_en_tant_qu_indication__d_une_ville_dans_la_base_de_donnees_pour_une_erreur_non_traitee])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(contenu_textuel_du_texte_a_dire_par_eSpeak_en_tant_qu_indication__d_une_ville_dans_la_base_de_donnees_pour_une_erreur_non_traitee, identifiant_en_lettres_de_la_langue_uttilisee)
 
 		#Sinon, dans le cas contraire...
 		else:
@@ -248,7 +247,7 @@ class Insertion_des_Villes(Frame):
 				identifiant_en_lettres_de_la_langue_uttilisee = "fr"
 
 			#
-                        subprocess.call(["espeak", "-v" + identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", contenu_textuel_du_texte_a_dire_par_eSpeak_en_tant_qu_indication__d_une_ville_dans_la_base_de_donnees_pour_une_erreur_non_traitee])
+			horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(contenu_textuel_du_texte_a_dire_par_eSpeak_en_tant_qu_indication__d_une_ville_dans_la_base_de_donnees_pour_une_erreur_non_traitee, identifiant_en_lettres_de_la_langue_uttilisee)
 
                 #
                 self.fenetre.destroy()

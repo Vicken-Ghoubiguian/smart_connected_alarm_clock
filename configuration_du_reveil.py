@@ -25,7 +25,6 @@ except ImportError:
 	import tkinter.ttk
 
 import horloge_monde
-import subprocess
 
 #
 class Configuration_du_Reveil(Frame):
@@ -369,7 +368,7 @@ class Configuration_du_Reveil(Frame):
 					if int(heure_a_prendre) == int(tableau_contenant_l_heure_la_minute_la_seconde_et_la_timezone_pour_les_mises_a_jour[0]) and int(minute_a_prendre) == int(tableau_contenant_l_heure_la_minute_la_seconde_et_la_timezone_pour_les_mises_a_jour[1]) and timezone_a_prendre == int(tableau_contenant_l_heure_la_minute_la_seconde_et_la_timezone_pour_les_mises_a_jour[3]):
 
 						#
-						subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_des_mises_a_jour])
+						horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_des_mises_a_jour, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 					#
 					else:
@@ -378,24 +377,24 @@ class Configuration_du_Reveil(Frame):
 						self.modification_des_parametres_du_reveil(heure_a_prendre, minute_a_prendre, seconde_a_prendre, frequence_selectionnee, id_de_la_ville_selectionnee, str(indice_du_single_a_faire_jouer))
 
 						#
-						subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.contenu_textuel_d_indication_du_succee])
+						horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(self.contenu_textuel_d_indication_du_succee, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 				#
 				except Exception:
 
 					#
-					subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.contenu_textuel_d_indication_pour_une_erreur_classique])
+					horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(self.contenu_textuel_d_indication_pour_une_erreur_classique, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#Sinon...
 			else:
 				#
-				subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.contenu_textuel_d_indication_pour_une_erreur_classique])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(self.contenu_textuel_d_indication_pour_une_erreur_classique, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 		#Dans le cas où les données entrées dans les champs de l'heure, de la minute et de la seconde ne sont pas des entiers (une erreur de type ValueError est générée), alors...
 		except ValueError:
 
 			#
-			subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.contenu_textuel_d_indication_pour_une_erreur_de_type_valueerror])
+			horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(self.contenu_textuel_d_indication_pour_une_erreur_de_type_valueerror, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 		#
 		finally:

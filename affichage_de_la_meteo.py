@@ -26,7 +26,6 @@ from PIL import ImageTk, Image
 import requests
 import io
 import base64
-import subprocess
 
 #Cette classe permet de définir une interface graphique pour afficher la météo d'une ville enregistrée dans la base de données
 class Affichage_de_la_Meteo(Frame):

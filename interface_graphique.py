@@ -753,7 +753,7 @@ class Horloge(Frame):
 					fenetre_d_affichage_des_donnees_meteo.destroy()
 
                 			#
-					horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
+					horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak_en_cas_d_erreur, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#Sinon...
 			else:
@@ -2443,7 +2443,7 @@ class Horloge(Frame):
                                 			texte_a_dire_par_eSpeak_en_cas_d_erreur = "Désolé, impossible de demander les résultats du service de reconnaissance vocale de Google"
 
                         			#
-						horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
+						horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak_en_cas_d_erreur, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#Sinon...
                 	else:

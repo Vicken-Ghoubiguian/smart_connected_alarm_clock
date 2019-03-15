@@ -29,7 +29,6 @@ import pytube
 import horloge_monde
 from PIL import ImageTk, Image
 import requests
-import subprocess
 from io import BytesIO
 
 #Cette classe permet de définir une interface graphique pour configurer les mises à jour
@@ -294,7 +293,7 @@ class Configuration_des_mises_a_jour(Frame):
 					if int(heure_a_prendre) == int(tableau_contenant_l_heure_la_minute_la_seconde_et_la_timezone_pour_faire_sonner_le_reveil[0]) and int(minute_a_prendre) == int(tableau_contenant_l_heure_la_minute_la_seconde_et_la_timezone_pour_faire_sonner_le_reveil[1]) and int(timezone_a_prendre) == int(tableau_contenant_l_heure_la_minute_la_seconde_et_la_timezone_pour_faire_sonner_le_reveil[3]):
 
 						#
-						subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_du_reveil])
+						horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(self.contenu_textuel_d_indication_de_la_similitude_avec_heure_et_minute_du_reveil, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 					#
 					else:
@@ -303,25 +302,25 @@ class Configuration_des_mises_a_jour(Frame):
 						self.modification_des_parametres_des_mises_a_jour(heure_a_prendre, minute_a_prendre, seconde_a_prendre, id_de_la_ville_selectionnee)
 
 						#
-						subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.contenu_textuel_d_indication_du_succee])
+						horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(self.contenu_textuel_d_indication_du_succee, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 				#
 				except Exception:
 
 					#
-					subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.contenu_textuel_d_indication_pour_une_erreur_classique])
+					horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(self.contenu_textuel_d_indication_pour_une_erreur_classique, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#
 			else:
 
 				#
-				subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.contenu_textuel_d_indication_pour_une_erreur_classique])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(self.contenu_textuel_d_indication_pour_une_erreur_classique, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 		#
 		except ValueError:
 
 			#
-			subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.contenu_textuel_d_indication_pour_une_erreur_de_type_valueerror])
+			horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(self.contenu_textuel_d_indication_pour_une_erreur_de_type_valueerror, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 		#
 		finally:
