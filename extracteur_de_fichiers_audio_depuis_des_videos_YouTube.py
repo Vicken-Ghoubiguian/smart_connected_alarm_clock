@@ -29,7 +29,6 @@ import pytube
 import horloge_monde
 from PIL import ImageTk, Image
 import requests
-import subprocess
 from io import BytesIO
 
 #Cette classe permet de définir une interface graphique pour extraire les fichiers audio depuis YouTube à partir de l'id de la video passée en paramétre
@@ -264,7 +263,7 @@ class Extracteur_de_fichiers_audio_depuis_YouTube(Frame):
 							self.video_YouTube_a_partir_duquel_extraire_le_fichier_audio.streams.filter(only_audio = True).first().download(output_path = "./media", filename = nom_du_fichier_audio_extrait_depuis_YouTube)
 
 							#
-							subprocess.call(["ffmpeg", "-loglevel", "quiet", "./media/" + nom_du_fichier_audio_extrait_depuis_YouTube + ".wav", "-i", "./media/" + nom_du_fichier_audio_extrait_depuis_YouTube + ".mp4"], shell = False)
+							horloge_monde.conversion_du_fichier_audio_extrait_depuis_YouTube_en_wav(nom_du_fichier_audio_extrait_depuis_YouTube)
 
 							#
 							os.remove("./media/" + nom_du_fichier_audio_extrait_depuis_YouTube  + ".mp4")

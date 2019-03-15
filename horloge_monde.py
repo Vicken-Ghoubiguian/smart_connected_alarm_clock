@@ -346,6 +346,11 @@ def uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire
 	#
 	subprocess.call(["espeak", "-v" + identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
 
+def conversion_du_fichier_audio_extrait_depuis_YouTube_en_wav(nom_du_fichier_audio_extrait_depuis_YouTube):
+
+	#
+	subprocess.call(["ffmpeg", "-loglevel", "quiet", "./media/" + nom_du_fichier_audio_extrait_depuis_YouTube + ".wav", "-i", "./media/" + nom_du_fichier_audio_extrait_depuis_YouTube + ".mp4"], shell = False)
+
 #
 def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisateur_sous_forme_d_un_string, langue_uttilisee):
 
