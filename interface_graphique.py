@@ -33,7 +33,6 @@ import pygame
 import pygame.mixer
 import affichage_de_la_meteo
 import insertion_des_villes
-import subprocess
 import suppression_des_villes
 import lecteur_de_musiques_telechargees_depuis_YouTube
 import suppression_de_musiques_telechargees_depuis_YouTube
@@ -380,7 +379,7 @@ class Horloge(Frame):
                                         	texte_a_dire_par_eSpeak = "Maintenant, température en fahrenheit."
 
                         	#
-                        	subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#Sinon...
                 	else:
@@ -401,7 +400,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Fenetre déjà ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#
 	def lecture_de_fichiers_audio_telecharges_depuis_YouTube(self):
@@ -476,7 +475,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Fenetre déjà ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#
 	def verification_pour_savoir_si_le_lecteur_de_fichiers_audio_telecharges_depuis_YouTube_peut_etre_ferme_ou_pas(self):
@@ -570,7 +569,7 @@ class Horloge(Frame):
 						texte_a_dire_par_eSpeak_en_cas_de_non_disponibilite_du_fichier = "Le fichier demandée n'est malheureusement pas disponible"
 
 					#
-					subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak_en_cas_de_non_disponibilite_du_fichier])
+					horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#Sinon...
                         else:
@@ -588,7 +587,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Fenetre déjà ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#
 	def rendre_possible_l_ouverture_de_la_fenetre_d_affichage_du_fichier_de_log_de_la_commande_vocale(self, event):
@@ -661,7 +660,7 @@ class Horloge(Frame):
 						texte_a_dire_par_eSpeak_en_cas_de_non_disponibilite_du_fichier = "Le fichier demandée n'est malheureusement pas disponible"
 
 					#
-					subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak_en_cas_de_non_disponibilite_du_fichier])
+					horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#Sinon...
                         else:
@@ -679,7 +678,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Fenetre déjà ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#
 	def rendre_possible_l_ouverture_de_la_fenetre_d_affichage_du_fichier_de_log_des_mises_a_jour(self, event):
@@ -754,7 +753,7 @@ class Horloge(Frame):
 					fenetre_d_affichage_des_donnees_meteo.destroy()
 
                 			#
-                			subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak_en_cas_d_erreur])
+					horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#Sinon...
 			else:
@@ -772,7 +771,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Fenetre déjà ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#
 	def rendre_possible_l_ouverture_de_l_affichage_des_donnees_meteo_des_villes(self, event):
@@ -844,7 +843,7 @@ class Horloge(Frame):
                                         	texte_a_dire_par_eSpeak = "Erreur: Fenetre déjà ouverte"
 
                                 	#
-                                	subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+					horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#Sinon...
 			else:
@@ -940,7 +939,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Fenetre déjà ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#
 	def rendre_possible_l_ouverture_de_l_insertion_des_villes(self, event):
@@ -1018,7 +1017,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Une fenetre déjà ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#Cette fonction a pour finalité de rendre possible l'ouverture de la fenetre de la configuration du reveil
         def rendre_possible_l_ouverture_de_la_configuration_du_reveil(self, event):
@@ -1086,7 +1085,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Fenetre déjà ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#Cette fonction a pour finalité de rendre possible l'ouverture de la fenetre d'extraction et de téléchargement de single depuis YouTube
 	def rendre_possible_l_ouverture_de_l_extraction_et_du_telechargement_de_single_depuis_YouTube(self, event):
@@ -1154,7 +1153,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Fenetre déjà ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#
 	def rendre_possible_l_ouverture_de_la_suppression_d_un_single_telecharge_depuis_YouTube(self, event):
@@ -1222,7 +1221,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Fenetre déjà ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#
 	def rendre_possible_l_ouverture_de_l_affichage_des_informations_sur_le_reveil_intelligent_et_connecte(self, event):
@@ -1290,7 +1289,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Fenetre déjà ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#
 	def rendre_possible_l_ouverture_de_l_affichage_des_commandes_vocales(self, event):
@@ -1358,7 +1357,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Fenetre déjà ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#
 	def rendre_possible_l_ouverture_de_la_configuration_des_mises_a_jour(self, event):
@@ -1415,7 +1414,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Ville suivante: " + self.tableau_des_villes[self.incrementeur]
 
 				#
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#Sinon...
 			else:
@@ -1433,7 +1432,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Une fenetre est ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#Cette fonction permet d'afficher l'heure et la date de la ville précédente (dans le tableau)
 	def precedent(self):
@@ -1484,7 +1483,7 @@ class Horloge(Frame):
 					texte_a_dire_par_eSpeak = "Ville précédente: " + self.tableau_des_villes[self.incrementeur]
 
 				#
-				subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#Sinon...
                 	else:
@@ -1502,7 +1501,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Une fenetre est ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#
 	def choix_du_format_de_date(self):
@@ -1589,7 +1588,7 @@ class Horloge(Frame):
                                         	texte_a_dire_par_eSpeak = "Format de date en vigueur: Année Jour Mois"
 
                         	#
-                        	subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#Sinon...
                 	else:
@@ -1610,7 +1609,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Une fenetre est ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#Définition d'une fonction choix_langue() qui met à jour l'heure pour afficher l'heure soit en format français, soit en format anglo-saxon
 	def choix_de_la_langue(self):
@@ -1769,7 +1768,7 @@ class Horloge(Frame):
                                 	texte_a_dire_par_eSpeak = "Maintenant, la langue courante est le français"
 
                         	#
-                        	subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#Sinon...
                 	else:
@@ -1790,7 +1789,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Une fenetre est ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#Cette fonction permet de vérifier si le single à jouer est bien à jour depuis la derniére modification des paramétres du reveil, et dans le cas contraire il le met à jour
 	def mise_a_jour_du_single_a_faire_jouer_pour_le_reveil(self):
@@ -1877,7 +1876,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Une fenetre est ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#Définition de la fonction tick() qui met à jour l'heure pour un fuseau horaire donné
 	def tick(self):
@@ -1922,7 +1921,7 @@ class Horloge(Frame):
 		 if horloge_monde.mise_a_jour() == True:
 
 			#
-                        subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", self.texte_d_indication_du_demarrage_des_mises_a_jour_a_dire_par_eSpeak])
+			horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#
 			horloge_monde.mise_a_jour_des_modules_python_necessaires_pour_le_reveil()
@@ -2042,7 +2041,7 @@ class Horloge(Frame):
                                 texte_a_dire_par_eSpeak = "Maintenant, la langue courante est le français"
 
                         	#
-                        	subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CONFIGURE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CELSIUS",tableau_de_la_commande_vocale_de_l_uttilisateur):
@@ -2057,7 +2056,7 @@ class Horloge(Frame):
                                 texte_a_dire_par_eSpeak = "Now, temperature in celsius."
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CONFIGURE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("FAHRENHEIT",tableau_de_la_commande_vocale_de_l_uttilisateur):
@@ -2072,7 +2071,7 @@ class Horloge(Frame):
                                 texte_a_dire_par_eSpeak = "Now, temperature in fahrenheit."
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("SHOW",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("WEATHER",tableau_de_la_commande_vocale_de_l_uttilisateur):
@@ -2225,7 +2224,7 @@ class Horloge(Frame):
 				texte_a_dire_par_eSpeak = "Now, the current language is English."
 
 				#
-				subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CONFIGURER",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CELSIUS",tableau_de_la_commande_vocale_de_l_uttilisateur):
@@ -2240,7 +2239,7 @@ class Horloge(Frame):
                                 texte_a_dire_par_eSpeak = "Maintenant, température en celsius"
 
                         	#
-                        	subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CONFIGURER",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("FAHRENHEIT",tableau_de_la_commande_vocale_de_l_uttilisateur):
@@ -2255,7 +2254,7 @@ class Horloge(Frame):
                                 texte_a_dire_par_eSpeak = "Maintenant, température en fahrenheit."
 
                         	#
-                        	subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("AFFICHER",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("METEO",tableau_de_la_commande_vocale_de_l_uttilisateur):
@@ -2426,7 +2425,7 @@ class Horloge(Frame):
 							texte_a_dire_par_eSpeak_en_cas_d_erreur = "Désolé, impossible de vous comprendre"
 
 						#
-						subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak_en_cas_d_erreur])
+						horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 					#
 					except speech_recognition.RequestError as e:
@@ -2444,7 +2443,7 @@ class Horloge(Frame):
                                 			texte_a_dire_par_eSpeak_en_cas_d_erreur = "Désolé, impossible de demander les résultats du service de reconnaissance vocale de Google"
 
                         			#
-                        			subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak_en_cas_d_erreur])
+						horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#Sinon...
                 	else:
@@ -2462,7 +2461,7 @@ class Horloge(Frame):
                                         texte_a_dire_par_eSpeak = "Erreur: Fenetre déjà ouverte"
 
                                 #
-                                subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
+				horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 #Cette fonction (qui sera appellée pour faire tourner l'horloge
 def initialisation_et_affichage_de_l_horloge():
