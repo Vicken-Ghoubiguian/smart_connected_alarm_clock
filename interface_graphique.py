@@ -130,7 +130,7 @@ class Horloge(Frame):
 		self.menu_du_reveil.add_command(label = "Alarm clock configuration", command = self.configuration_du_reveil)
 
 		#
-		self.menu_du_reveil.add_checkbutton(label = "Is activated", variable = self.est_active_reveil, command = self.changement_de_l_etat_du_reveil)
+		self.menu_du_reveil.add_checkbutton(label = "Is activated", variable = self.est_active_reveil, command = self.changement_de_l_etat_du_reveil_a_l_aide_de_la_case_a_cocher)
 
 		#
 		barre_de_menu_du_reveil.add_cascade(label = "Réveil", menu = self.menu_du_reveil)
@@ -1815,8 +1815,71 @@ class Horloge(Frame):
 				#
 				self.frame_courant_de_lecteur_courant_de_fichiers_audio_telecharges_depuis_YouTube.lecture_ou_pause_de_la_musique()
 
+	#
+	def changement_de_l_etat_du_reveil_a_l_aide_de_la_commande_vocale(self, mot_cle_de_la_commande_vocale):
+
+		#
+		etat_actuel_du_reveil = horloge_monde.renvoi_de_l_etat_du_reveil()
+
+		#
+		if etat_actuel_du_reveil == 1 and (mot_cle_de_la_commande_vocale == "ACTIVATE" or mot_cle_de_la_commande_vocale == "ACTIVER"):
+
+			#
+                        if self.langue_uttilisee == 0:
+
+                        	#
+                                texte_a_dire_par_eSpeak = "Error: The alarm is already activated"
+
+                        #
+                        else:
+
+                        	#
+                                texte_a_dire_par_eSpeak = "Erreur: Le reveil est déjà activé"
+
+                        #
+                        horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
+
+		#
+		elif etat_actuel_du_reveil == 0 and (mot_cle_de_la_commande_vocale == "DISABLE" or mot_cle_de_la_commande_vocale == "DESACTIVER"):
+
+			#
+                        if self.langue_uttilisee == 0:
+
+                                #
+                                texte_a_dire_par_eSpeak = "Error: The alarm is already disable"
+
+                        #
+                        else:
+
+                                #
+                                texte_a_dire_par_eSpeak = "Erreur: Le reveil est déjà désactivé"
+
+                        #
+                        horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
+
+		#
+		else:
+
+			#
+			if mot_cle_de_la_commande_vocale == "DESACTIVER" or mot_cle_de_la_commande_vocale == "DISABLE":
+
+				#
+				horloge_monde.changement_d_etat_du_reveil(0, self.langue_uttilisee, self.identifiant_en_lettres_de_la_langue_uttilisee)
+
+			#
+			else:
+
+				#
+                                horloge_monde.changement_d_etat_du_reveil(1, self.langue_uttilisee, self.identifiant_en_lettres_de_la_langue_uttilisee)
+
+			#
+                        self.etat_du_reveil = horloge_monde.renvoi_de_l_etat_du_reveil()
+
+                        #
+                        self.est_active_reveil.set(self.etat_du_reveil)
+
 	#Cette fonction permet l'activation ou la désactivation de la fonctionnalité révéil grâce à la checkbox du menu menu_du_reveil
-	def changement_de_l_etat_du_reveil(self):
+	def changement_de_l_etat_du_reveil_a_l_aide_de_la_case_a_cocher(self):
 
 		#Dans le cas ou la musique du reveil joue, alors...
                 if self.est_en_train_de_sonner_reveil == True:
@@ -2157,6 +2220,18 @@ class Horloge(Frame):
 				#
 				self.affichage_des_informations_sur_le_reveil_intelligent_et_connecte()
 
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("ACTIVATE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("ALARM",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.changement_de_l_etat_du_reveil_a_l_aide_de_la_commande_vocale("ACTIVATE")
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("DISABLE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("ALARM",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.changement_de_l_etat_du_reveil_a_l_aide_de_la_commande_vocale("DISABLE")
+
                 #
                 else:
 
@@ -2339,6 +2414,18 @@ class Horloge(Frame):
 
 				#
 				self.affichage_des_informations_sur_le_reveil_intelligent_et_connecte()
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("ACTIVER",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("REVEIL",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.changement_de_l_etat_du_reveil_a_l_aide_de_la_commande_vocale("ACTIVER")
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("DESACTIVER",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("REVEIL",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.changement_de_l_etat_du_reveil_a_l_aide_de_la_commande_vocale("DESACTIVER")
 
 	#
 	def commande_vocale_du_reveil(self):

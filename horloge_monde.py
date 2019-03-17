@@ -469,6 +469,18 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("LOG")
 
 			#
+			elif mot == "Disable" or mot == "disable":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("DISABLE")
+
+			#
+			elif mot == "Activate" or mot == "activate":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("ACTIVATE")
+
+			#
 			elif mot == "settings" or mot == "Settings" or mot == "setting" or mot == "Setting":
 
 				#
@@ -578,6 +590,18 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 
 				#
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("SINGLE")
+
+			 #
+                         elif mot == "Désactiver" or mot == "désactiver":
+
+                                #
+                                tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("DESACTIVER")
+
+                         #
+                         elif mot == "Activer" or mot == "activer":
+
+                                #
+                                tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("ACTIVER")
 
 			 #
 			 elif mot == "Paramètres" or mot == "paramètres" or mot == "paramètre" or mot == "Paramètre":
