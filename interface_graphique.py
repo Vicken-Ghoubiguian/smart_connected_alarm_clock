@@ -82,6 +82,9 @@ class Horloge(Frame):
 		self.afficheur.pack()
 
 		#
+		self.cle_de_l_API_pour_uttilisation_des_fonctionnalites_d_OpenWeather = "adf02119ee79c20ceea9e04073a15bc2"
+
+		#
 		self.bouton_avant = Button(self, text = "Next city", command = self.suivant)
 
 		#
@@ -723,7 +726,7 @@ class Horloge(Frame):
 				try:
 
 					#
-					affichage_des_donnees_meteorologiques_relatives_a_la_ville_courante = affichage_de_la_meteo.Affichage_de_la_Meteo(fenetre_d_affichage_des_donnees_meteo, 500, 700, self.incrementeur + 1, "adf02119ee79c20ceea9e04073a15bc2", self.unite_de_mesure_de_la_temperature, self.langue_uttilisee)
+					affichage_des_donnees_meteorologiques_relatives_a_la_ville_courante = affichage_de_la_meteo.Affichage_de_la_Meteo(fenetre_d_affichage_des_donnees_meteo, 500, 700, self.incrementeur + 1, self.cle_de_l_API_pour_uttilisation_des_fonctionnalites_d_OpenWeather, self.unite_de_mesure_de_la_temperature, self.langue_uttilisee)
 
 					#On affecte True à la variable self.est_ouverte_boite_d_insertion_des_villes, donc la fenetre d'insertion de nouvelles villes est ouverte, donc il est impossible d$
                                 	self.est_ouverte_boite_d_affichage_des_donnees_meteo = True
@@ -2143,6 +2146,12 @@ class Horloge(Frame):
                                 self.affichage_des_donnees_meteo_de_la_ville_courante()
 
 			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("TEMPERATURE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CITY",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				horloge_monde.expression_de_donnees_meteo_par_la_commande_vocale(["TEMPERATURE"], self.incrementeur + 1, self.cle_de_l_API_pour_uttilisation_des_fonctionnalites_d_OpenWeather, self.unite_de_mesure_de_la_temperature, self.langue_uttilisee)
+
+			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("SETTINGS",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("ALARM",tableau_de_la_commande_vocale_de_l_uttilisateur):
 
 				#
@@ -2342,6 +2351,12 @@ class Horloge(Frame):
 
 				#
 				self.expression_des_donnees_concernant_le_single_enregistre_pour_le_reveil()
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("TEMPERATURE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("VILLE",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				horloge_monde.expression_de_donnees_meteo_par_la_commande_vocale(["TEMPERATURE"], self.incrementeur + 1, self.cle_de_l_API_pour_uttilisation_des_fonctionnalites_d_OpenWeather, self.unite_de_mesure_de_la_temperature, self.langue_uttilisee)
 
 			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CONFIGURER",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("REVEIL",tableau_de_la_commande_vocale_de_l_uttilisateur):

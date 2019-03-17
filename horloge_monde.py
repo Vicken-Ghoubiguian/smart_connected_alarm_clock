@@ -24,6 +24,7 @@ import pytz
 import sqlite3
 import time
 import subprocess
+import situation_de_la_meteo
 
 #
 def renvoie_de_l_id_du_timezone_correspondant_a_l_id_de_la_ville_courante(indice_de_la_ville_courante):
@@ -463,6 +464,12 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("CONSULT")
 
 			#
+			elif mot == "temperature" or mot == "Temperature":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("TEMPERATURE")
+
+			#
 			elif mot == "log" or mot == "Log":
 
 				#
@@ -566,6 +573,12 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 
 				 #
                                  tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("METEO")
+
+			 #
+                         elif mot == "température" or mot == "Température":
+
+                                 #
+                                 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("TEMPERATURE")
 
 			 #
 			 elif mot == "configure" or mot == "configurer" or mot == "Configure" or mot == "Configurer":
@@ -2549,6 +2562,99 @@ def renvoi_de_l_heure_de_la_frequence_et_de_la_ville_parametrees_pour_faire_sonn
 
 	#
 	return tableau_de_l_heure_de_la_frequence_et_de_la_ville_parametrees_pour_faire_sonner_le_reveil
+
+#
+def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo_demandees, id_de_la_ville_courante, cle_de_l_API, unite_de_mesure_en_chiffre_de_la_temperature, langue_uttilisee):
+
+	#
+	code_du_pays_ou_de_la_zone_correspondant = renvoi_du_code_du_pays_ou_de_la_zone_correspondant(id_de_la_ville_courante)
+
+	#
+	nom_de_la_ville_courante_a_uttiliser_pour_la_situation_de_la_meteo = renvoi_du_nom_de_la_ville_courante_pour_la_meteo_a_partir_de_son_id(id_de_la_ville_courante)
+
+	#
+	nom_de_la_ville_courante_a_uttiliser_pour_eSpeak = renvoi_du_nom_de_la_ville_courante_dans_le_language_passe_en_parametre(id_de_la_ville_courante, langue_uttilisee)
+
+	#
+        nom_du_pays = renvoi_du_nom_du_pays_correspondant_a_l_id_de_la_ville_passe_en_parametre(id_de_la_ville_courante, langue_uttilisee)
+
+	#
+	instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre = situation_de_la_meteo.Situation_de_la_Meteo(nom_de_la_ville_courante_a_uttiliser_pour_la_situation_de_la_meteo, code_du_pays_ou_de_la_zone_correspondant, cle_de_l_API, unite_de_mesure_en_chiffre_de_la_temperature, langue_uttilisee)
+
+	#
+	if langue_uttilisee == 0:
+
+		#
+		identifiant_en_lettres_de_la_langue_uttilisee = 'en'
+
+	#
+	else:
+
+		#
+		identifiant_en_lettres_de_la_langue_uttilisee = 'fr'
+
+	#
+	if unite_de_mesure_en_chiffre_de_la_temperature == 0:
+
+		#
+		unite_de_mesure_en_lettres_de_la_temperature = "Celsius"
+
+	#
+	else:
+
+		#
+		unite_de_mesure_en_lettres_de_la_temperature = "Fahrenheit"
+
+	#
+	if len(tableau_des_donnees_meteo_demandees) == 1:
+
+		#
+		if langue_uttilisee == 0:
+
+			#
+			nom_du_pays = renvoi_du_nom_du_pays_correspondant_a_l_id_de_la_ville_passe_en_parametre(id_de_la_ville_courante, langue_uttilisee)
+
+			#
+			if tableau_des_donnees_meteo_demandees[0] == "TEMPERATURE":
+
+				#
+				texte_a_dire_par_eSpeak = "Temperature in the city " + nom_de_la_ville_courante_a_uttiliser_pour_eSpeak + " located in the country " + nom_du_pays + ": " + str(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.temperature_dans_la_ville_donnee) + " degrees " + unite_de_mesure_en_lettres_de_la_temperature
+
+			#
+			elif tableau_des_donnees_meteo_demandees[0] == "SUNRISE":
+
+				#
+				texte_a_dire_par_eSpeak = ""
+
+			#
+			elif tableau_des_donnees_meteo_demandees[0] == "SUNSET":
+
+				#
+				texte_a_dire_par_eSpeak = ""
+
+		#
+		else:
+
+			#
+                        if tableau_des_donnees_meteo_demandees[0] == "TEMPERATURE":
+
+                                #
+                                texte_a_dire_par_eSpeak = "Température dans la ville " + nom_de_la_ville_courante_a_uttiliser_pour_eSpeak + " située dans le pays " + nom_du_pays + ": " + str(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.temperature_dans_la_ville_donnee) + " degrès " + unite_de_mesure_en_lettres_de_la_temperature
+
+                        #
+                        elif tableau_des_donnees_meteo_demandees[0] == "LEVE":
+
+                                #
+                                texte_a_dire_par_eSpeak = ""
+
+                        #
+                        elif tableau_des_donnees_meteo_demandees[0] == "SUNSET":
+
+                                #
+                                texte_a_dire_par_eSpeak = ""
+
+		#
+		uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, identifiant_en_lettres_de_la_langue_uttilisee)
 
 #Les lignes de code suivants permettent de tester si toutes les fonctionnalités du module sont au point
 if __name__ == '__main__':
