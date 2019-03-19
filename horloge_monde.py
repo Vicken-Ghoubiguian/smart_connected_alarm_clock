@@ -2654,7 +2654,7 @@ def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo
 				affichage_de_la_date_et_de_l_heure_du_leve_de_soleil = datetime.datetime.fromtimestamp(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.heure_du_leve_de_soleil_pour_la_date_courante_sous_forme_de_timestamp, tz = tz_name)
 
 				#
-				heure_correspondant_a_l_heure_du_leve_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_leve_de_soleil.hour % 12)
+				heure_correspondant_a_l_heure_du_leve_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_leve_de_soleil.hour)
 
 				#
 				minute_correspondant_a_l_heure_du_leve_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_leve_de_soleil.minute)
@@ -2663,16 +2663,13 @@ def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo
 				seconde_correspondant_a_l_heure_du_leve_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_leve_de_soleil.second)
 
 				#
-				texte_a_dire_par_eSpeak = ""
+				texte_a_dire_par_eSpeak = "The sun rises at " + heure_correspondant_a_l_heure_du_leve_de_soleil + " hours " + minute_correspondant_a_l_heure_du_leve_de_soleil + " minutes and " + seconde_correspondant_a_l_heure_du_leve_de_soleil + " seconds AM"
 
 			#
 			elif tableau_des_donnees_meteo_demandees[0] == "SUNSET":
 
 				#
 				affichage_de_la_date_et_de_l_heure_du_couche_de_soleil = datetime.datetime.fromtimestamp(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.heure_du_couche_de_soleil_pour_la_date_courante_sous_forme_de_timestamp, tz = tz_name)
-
-				#
-				indication_apres_midi = "PM"
 
 				#
 				heure_correspondant_a_l_heure_du_couche_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_couche_de_soleil.hour % 12)
@@ -2684,7 +2681,7 @@ def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo
 				seconde_correspondant_a_l_heure_du_couche_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_couche_de_soleil.second)
 
 				#
-				texte_a_dire_par_eSpeak = ""
+				texte_a_dire_par_eSpeak = "The sun sets at " + heure_correspondant_a_l_heure_du_couche_de_soleil + " hours " + minute_correspondant_a_l_heure_du_couche_de_soleil + " minutes and " + seconde_correspondant_a_l_heure_du_couche_de_soleil + " seconds PM"
 
 		#
 		else:
@@ -2711,7 +2708,7 @@ def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo
 				seconde_correspondant_a_l_heure_du_leve_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_leve_de_soleil.second)
 
 				#
-				texte_a_dire_par_eSpeak = ""
+				texte_a_dire_par_eSpeak = "Le soleil se lève à " + heure_correspondant_a_l_heure_du_leve_de_soleil + " heures " + minute_correspondant_a_l_heure_du_leve_de_soleil + " minutes et " + seconde_correspondant_a_l_heure_du_leve_de_soleil + "secondes"
 
                         #
                         elif tableau_des_donnees_meteo_demandees[0] == "COUCHER":
@@ -2729,7 +2726,7 @@ def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo
 				seconde_correspondant_a_l_heure_du_couche_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_couche_de_soleil.second)
 
 				#
-				texte_a_dire_par_eSpeak = ""
+				texte_a_dire_par_eSpeak = "Le soleil se couche à "+ heure_correspondant_a_l_heure_du_couche_de_soleil + " heures " + minute_correspondant_a_l_heure_du_couche_de_soleil + " minutes et " + seconde_correspondant_a_l_heure_du_couche_de_soleil + " secondes"
 
 	#
 	else:
