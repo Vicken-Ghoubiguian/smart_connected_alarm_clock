@@ -2146,6 +2146,18 @@ class Horloge(Frame):
                                 self.affichage_des_donnees_meteo_de_la_ville_courante()
 
 			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("TEMPERATURE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("MAXIMUM",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CITY",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				horloge_monde.expression_de_donnees_meteo_par_la_commande_vocale(["TEMPERATURE","MAXIMUM"], self.incrementeur + 1, self.cle_de_l_API_pour_uttilisation_des_fonctionnalites_d_OpenWeather, self.unite_de_mesure_de_la_temperature, self.langue_uttilisee)
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("TEMPERATURE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("MINIMUM",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CITY",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				horloge_monde.expression_de_donnees_meteo_par_la_commande_vocale(["TEMPERATURE","MINIMUM"], self.incrementeur + 1, self.cle_de_l_API_pour_uttilisation_des_fonctionnalites_d_OpenWeather, self.unite_de_mesure_de_la_temperature, self.langue_uttilisee)
+
+			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("TEMPERATURE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CITY",tableau_de_la_commande_vocale_de_l_uttilisateur):
 
 				#
@@ -2351,6 +2363,18 @@ class Horloge(Frame):
 
 				#
 				self.expression_des_donnees_concernant_le_single_enregistre_pour_le_reveil()
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("TEMPERATURE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("MAXIMALE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("VILLE",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				horloge_monde.expression_de_donnees_meteo_par_la_commande_vocale(["TEMPERATURE","MAXIMALE"], self.incrementeur + 1, self.cle_de_l_API_pour_uttilisation_des_fonctionnalites_d_OpenWeather, self.unite_de_mesure_de_la_temperature, self.langue_uttilisee)
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("TEMPERATURE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("MINIMALE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("VILLE",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				horloge_monde.expression_de_donnees_meteo_par_la_commande_vocale(["TEMPERATURE","MINIMALE"], self.incrementeur + 1, self.cle_de_l_API_pour_uttilisation_des_fonctionnalites_d_OpenWeather, self.unite_de_mesure_de_la_temperature, self.langue_uttilisee)
 
 			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("TEMPERATURE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("VILLE",tableau_de_la_commande_vocale_de_l_uttilisateur):

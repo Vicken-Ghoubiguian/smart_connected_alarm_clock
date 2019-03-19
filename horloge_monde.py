@@ -458,6 +458,18 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
                                 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("VOICE")
 
 			#
+                        elif mot == "Maximum" or mot == "maximum":
+
+                               #
+                               tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("MAXIMUM")
+
+                        #
+                        elif mot == "Minimum" or mot == "minimum":
+
+                               #
+                               tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("MINIMUM")
+
+			#
 			elif mot == "consult" or mot == "Consult" or mot == "consultation" or mot == "Consultation":
 
 				#
@@ -627,6 +639,18 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 
 				#
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("VOIX")
+
+			 #
+			 elif mot == "maximale" or mot == "Maximale" or mot == "Maximum" or mot == "maximum":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("MAXIMALE")
+
+			 #
+			 elif mot == "minimale" or mot == "Minimale" or mot == "Minimum" or mot == "minimum":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("MINIMALE")
 
 			 #
                          elif mot == "consulter" or mot == "Consulter" or mot == "consultation" or mot == "Consultation":
@@ -2567,6 +2591,9 @@ def renvoi_de_l_heure_de_la_frequence_et_de_la_ville_parametrees_pour_faire_sonn
 def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo_demandees, id_de_la_ville_courante, cle_de_l_API, unite_de_mesure_en_chiffre_de_la_temperature, langue_uttilisee):
 
 	#
+	texte_a_dire_par_eSpeak = ""
+
+	#
 	code_du_pays_ou_de_la_zone_correspondant = renvoi_du_code_du_pays_ou_de_la_zone_correspondant(id_de_la_ville_courante)
 
 	#
@@ -2606,19 +2633,16 @@ def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo
 		unite_de_mesure_en_lettres_de_la_temperature = "Fahrenheit"
 
 	#
-	if len(tableau_des_donnees_meteo_demandees) == 1:
+	if len(tableau_des_donnees_meteo_demandees) < 2:
 
 		#
 		if langue_uttilisee == 0:
 
 			#
-			nom_du_pays = renvoi_du_nom_du_pays_correspondant_a_l_id_de_la_ville_passe_en_parametre(id_de_la_ville_courante, langue_uttilisee)
-
-			#
 			if tableau_des_donnees_meteo_demandees[0] == "TEMPERATURE":
 
 				#
-				texte_a_dire_par_eSpeak = "Temperature in the city " + nom_de_la_ville_courante_a_uttiliser_pour_eSpeak + " located in the country " + nom_du_pays + ": " + str(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.temperature_dans_la_ville_donnee) + " degrees " + unite_de_mesure_en_lettres_de_la_temperature
+				texte_a_dire_par_eSpeak = "Observed temperature in the city " + nom_de_la_ville_courante_a_uttiliser_pour_eSpeak + " located in the country " + nom_du_pays + ": " + str(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.temperature_dans_la_ville_donnee) + " degrees " + unite_de_mesure_en_lettres_de_la_temperature
 
 			#
 			elif tableau_des_donnees_meteo_demandees[0] == "SUNRISE":
@@ -2639,7 +2663,7 @@ def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo
                         if tableau_des_donnees_meteo_demandees[0] == "TEMPERATURE":
 
                                 #
-                                texte_a_dire_par_eSpeak = "Température dans la ville " + nom_de_la_ville_courante_a_uttiliser_pour_eSpeak + " située dans le pays " + nom_du_pays + ": " + str(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.temperature_dans_la_ville_donnee) + " degrès " + unite_de_mesure_en_lettres_de_la_temperature
+                                texte_a_dire_par_eSpeak = "Température observée dans la ville " + nom_de_la_ville_courante_a_uttiliser_pour_eSpeak + " située dans le pays " + nom_du_pays + ": " + str(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.temperature_dans_la_ville_donnee) + " degrès " + unite_de_mesure_en_lettres_de_la_temperature
 
                         #
                         elif tableau_des_donnees_meteo_demandees[0] == "LEVE":
@@ -2653,8 +2677,41 @@ def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo
                                 #
                                 texte_a_dire_par_eSpeak = ""
 
+	#
+	else:
+
 		#
-		uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, identifiant_en_lettres_de_la_langue_uttilisee)
+		if langue_uttilisee == 0:
+
+			#
+			if tableau_des_donnees_meteo_demandees[0] == "TEMPERATURE" and tableau_des_donnees_meteo_demandees[1] == "MAXIMUM":
+
+				#
+				texte_a_dire_par_eSpeak = "Maximum temperature expected in the city " + nom_de_la_ville_courante_a_uttiliser_pour_eSpeak + " located in the country " + nom_du_pays + ": " + str(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.prevision_de_la_temperature_la_plus_haute_pour_la_ville_donnee) + " degrees " + unite_de_mesure_en_lettres_de_la_temperature
+
+			#
+			elif tableau_des_donnees_meteo_demandees[0] == "TEMPERATURE" and tableau_des_donnees_meteo_demandees[1] == "MINIMUM":
+
+				#
+				texte_a_dire_par_eSpeak = "Minimum temperature expected in the city " + nom_de_la_ville_courante_a_uttiliser_pour_eSpeak + " located in the country " + nom_du_pays + ": " + str(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.prevision_de_la_temperature_la_plus_basse_pour_la_ville_donnee) + " degrees " + unite_de_mesure_en_lettres_de_la_temperature
+
+		#
+		else:
+
+			#
+			if tableau_des_donnees_meteo_demandees[0] == "TEMPERATURE" and tableau_des_donnees_meteo_demandees[1] == "MAXIMALE":
+
+                                #
+                                texte_a_dire_par_eSpeak = "Température maximale prévue dans la ville " + nom_de_la_ville_courante_a_uttiliser_pour_eSpeak + " située dans le pays " + nom_du_pays + ": " + str(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.prevision_de_la_temperature_la_plus_haute_pour_la_ville_donnee) + " degrès " + unite_de_mesure_en_lettres_de_la_temperature
+
+                        #
+                        elif tableau_des_donnees_meteo_demandees[0] == "TEMPERATURE" and tableau_des_donnees_meteo_demandees[1] == "MINIMALE":
+
+                                #
+                                texte_a_dire_par_eSpeak = "Température minimale prévue dans la ville " + nom_de_la_ville_courante_a_uttiliser_pour_eSpeak + " située dans le pays " + nom_du_pays + ": " + str(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.prevision_de_la_temperature_la_plus_basse_pour_la_ville_donnee) + " degrès " + unite_de_mesure_en_lettres_de_la_temperature
+
+	#
+	uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, identifiant_en_lettres_de_la_langue_uttilisee)
 
 #Les lignes de code suivants permettent de tester si toutes les fonctionnalités du module sont au point
 if __name__ == '__main__':
