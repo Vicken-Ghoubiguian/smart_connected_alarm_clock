@@ -2603,6 +2603,9 @@ def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo
 	nom_de_la_ville_courante_a_uttiliser_pour_eSpeak = renvoi_du_nom_de_la_ville_courante_dans_le_language_passe_en_parametre(id_de_la_ville_courante, langue_uttilisee)
 
 	#
+	tz_name = renvoi_du_timezone_correspondant_a_l_id_de_la_ville_passe_en_parametre(id_de_la_ville_courante)
+
+	#
         nom_du_pays = renvoi_du_nom_du_pays_correspondant_a_l_id_de_la_ville_passe_en_parametre(id_de_la_ville_courante, langue_uttilisee)
 
 	#
@@ -2648,10 +2651,37 @@ def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo
 			elif tableau_des_donnees_meteo_demandees[0] == "SUNRISE":
 
 				#
+				affichage_de_la_date_et_de_l_heure_du_leve_de_soleil = datetime.datetime.fromtimestamp(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.heure_du_leve_de_soleil_pour_la_date_courante_sous_forme_de_timestamp, tz = tz_name)
+
+				#
+				heure_correspondant_a_l_heure_du_leve_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_leve_de_soleil.hour % 12)
+
+				#
+				minute_correspondant_a_l_heure_du_leve_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_leve_de_soleil.minute)
+
+				#
+				seconde_correspondant_a_l_heure_du_leve_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_leve_de_soleil.second)
+
+				#
 				texte_a_dire_par_eSpeak = ""
 
 			#
 			elif tableau_des_donnees_meteo_demandees[0] == "SUNSET":
+
+				#
+				affichage_de_la_date_et_de_l_heure_du_couche_de_soleil = datetime.datetime.fromtimestamp(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.heure_du_couche_de_soleil_pour_la_date_courante_sous_forme_de_timestamp, tz = tz_name)
+
+				#
+				indication_apres_midi = "PM"
+
+				#
+				heure_correspondant_a_l_heure_du_couche_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_couche_de_soleil.hour % 12)
+
+				#
+				minute_correspondant_a_l_heure_du_couche_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_couche_de_soleil.minute)
+
+				#
+				seconde_correspondant_a_l_heure_du_couche_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_couche_de_soleil.second)
 
 				#
 				texte_a_dire_par_eSpeak = ""
@@ -2666,16 +2696,40 @@ def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo
                                 texte_a_dire_par_eSpeak = "Température observée dans la ville " + nom_de_la_ville_courante_a_uttiliser_pour_eSpeak + " située dans le pays " + nom_du_pays + ": " + str(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.temperature_dans_la_ville_donnee) + " degrès " + unite_de_mesure_en_lettres_de_la_temperature
 
                         #
-                        elif tableau_des_donnees_meteo_demandees[0] == "LEVE":
+                        elif tableau_des_donnees_meteo_demandees[0] == "LEVER":
 
                                 #
-                                texte_a_dire_par_eSpeak = ""
+				affichage_de_la_date_et_de_l_heure_du_leve_de_soleil = datetime.datetime.fromtimestamp(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.heure_du_leve_de_soleil_pour_la_date_courante_sous_forme_de_timestamp, tz = tz_name)
+
+				#
+				heure_correspondant_a_l_heure_du_leve_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_leve_de_soleil.hour)
+
+				#
+				minute_correspondant_a_l_heure_du_leve_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_leve_de_soleil.minute)
+
+				#
+				seconde_correspondant_a_l_heure_du_leve_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_leve_de_soleil.second)
+
+				#
+				texte_a_dire_par_eSpeak = ""
 
                         #
-                        elif tableau_des_donnees_meteo_demandees[0] == "SUNSET":
+                        elif tableau_des_donnees_meteo_demandees[0] == "COUCHER":
 
-                                #
-                                texte_a_dire_par_eSpeak = ""
+				#
+				affichage_de_la_date_et_de_l_heure_du_couche_de_soleil = datetime.datetime.fromtimestamp(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.heure_du_couche_de_soleil_pour_la_date_courante_sous_forme_de_timestamp, tz = tz_name)
+
+				#
+				heure_correspondant_a_l_heure_du_couche_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_couche_de_soleil.hour)
+
+				#
+				minute_correspondant_a_l_heure_du_couche_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_couche_de_soleil.minute)
+
+				#
+				seconde_correspondant_a_l_heure_du_couche_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_couche_de_soleil.second)
+
+				#
+				texte_a_dire_par_eSpeak = ""
 
 	#
 	else:
