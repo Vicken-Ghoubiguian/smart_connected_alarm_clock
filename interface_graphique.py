@@ -2164,6 +2164,18 @@ class Horloge(Frame):
 				horloge_monde.expression_de_donnees_meteo_par_la_commande_vocale(["TEMPERATURE"], self.incrementeur + 1, self.cle_de_l_API_pour_uttilisation_des_fonctionnalites_d_OpenWeather, self.unite_de_mesure_de_la_temperature, self.langue_uttilisee)
 
 			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("SUNRISE",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				horloge_monde.expression_de_donnees_meteo_par_la_commande_vocale(["SUNRISE"], self.incrementeur + 1, self.cle_de_l_API_pour_uttilisation_des_fonctionnalites_d_OpenWeather, self.unite_de_mesure_de_la_temperature, self.langue_uttilisee)
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("SUNSET",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				horloge_monde.expression_de_donnees_meteo_par_la_commande_vocale(["SUNSET"], self.incrementeur + 1, self.cle_de_l_API_pour_uttilisation_des_fonctionnalites_d_OpenWeather, self.unite_de_mesure_de_la_temperature, self.langue_uttilisee)
+
+			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("SETTINGS",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("ALARM",tableau_de_la_commande_vocale_de_l_uttilisateur):
 
 				#
@@ -2381,6 +2393,18 @@ class Horloge(Frame):
 
 				#
 				horloge_monde.expression_de_donnees_meteo_par_la_commande_vocale(["TEMPERATURE"], self.incrementeur + 1, self.cle_de_l_API_pour_uttilisation_des_fonctionnalites_d_OpenWeather, self.unite_de_mesure_de_la_temperature, self.langue_uttilisee)
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("COUCHER",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("SOLEIL",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				horloge_monde.expression_de_donnees_meteo_par_la_commande_vocale(["COUCHER"], self.incrementeur + 1, self.cle_de_l_API_pour_uttilisation_des_fonctionnalites_d_OpenWeather, self.unite_de_mesure_de_la_temperature, self.langue_uttilisee)
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("LEVER",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("SOLEIL",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				horloge_monde.expression_de_donnees_meteo_par_la_commande_vocale(["LEVER"], self.incrementeur + 1, self.cle_de_l_API_pour_uttilisation_des_fonctionnalites_d_OpenWeather, self.unite_de_mesure_de_la_temperature, self.langue_uttilisee)
 
 			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("CONFIGURER",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("REVEIL",tableau_de_la_commande_vocale_de_l_uttilisateur):

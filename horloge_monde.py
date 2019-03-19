@@ -482,6 +482,18 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("TEMPERATURE")
 
 			#
+			elif mot == "Sunrise" or mot == "sunrise":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("SUNRISE")
+
+			#
+			elif mot == "Sunset" or mot == "sunset":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("SUNSET")
+
+			#
 			elif mot == "log" or mot == "Log":
 
 				#
@@ -591,6 +603,18 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 
                                  #
                                  tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("TEMPERATURE")
+
+			 #
+			 elif mot == "Couché" or mot == "couché" or mot == "Couche" or mot == "couche" or mot == "Coucher" or mot == "coucher":
+
+				 #
+				 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("COUCHER")
+
+			 #
+			 elif mot == "Levé" or mot == "levé" or mot == "Léve" or mot == "léve" or mot == "Lever" or mot == "lever":
+
+				 #
+				 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("LEVER")
 
 			 #
 			 elif mot == "configure" or mot == "configurer" or mot == "Configure" or mot == "Configurer":
@@ -704,6 +728,12 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 
 				 #
 				 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("PRECEDENT")
+
+			 #
+			 elif mot == "Soleil" or mot == "soleil":
+
+				 #
+				 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("SOLEIL")
 
 			 #
                          elif mot == "suivante" or mot == "Suivante":
@@ -2651,7 +2681,7 @@ def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo
 			elif tableau_des_donnees_meteo_demandees[0] == "SUNRISE":
 
 				#
-				affichage_de_la_date_et_de_l_heure_du_leve_de_soleil = datetime.datetime.fromtimestamp(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.heure_du_leve_de_soleil_pour_la_date_courante_sous_forme_de_timestamp, tz = tz_name)
+				affichage_de_la_date_et_de_l_heure_du_leve_de_soleil = datetime.datetime.fromtimestamp(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.heure_du_leve_de_soleil_pour_la_date_courante_sous_forme_de_timestamp, tz = pytz.timezone(tz_name))
 
 				#
 				heure_correspondant_a_l_heure_du_leve_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_leve_de_soleil.hour)
@@ -2669,7 +2699,7 @@ def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo
 			elif tableau_des_donnees_meteo_demandees[0] == "SUNSET":
 
 				#
-				affichage_de_la_date_et_de_l_heure_du_couche_de_soleil = datetime.datetime.fromtimestamp(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.heure_du_couche_de_soleil_pour_la_date_courante_sous_forme_de_timestamp, tz = tz_name)
+				affichage_de_la_date_et_de_l_heure_du_couche_de_soleil = datetime.datetime.fromtimestamp(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.heure_du_couche_de_soleil_pour_la_date_courante_sous_forme_de_timestamp, tz = pytz.timezone(tz_name))
 
 				#
 				heure_correspondant_a_l_heure_du_couche_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_couche_de_soleil.hour % 12)
@@ -2696,7 +2726,7 @@ def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo
                         elif tableau_des_donnees_meteo_demandees[0] == "LEVER":
 
                                 #
-				affichage_de_la_date_et_de_l_heure_du_leve_de_soleil = datetime.datetime.fromtimestamp(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.heure_du_leve_de_soleil_pour_la_date_courante_sous_forme_de_timestamp, tz = tz_name)
+				affichage_de_la_date_et_de_l_heure_du_leve_de_soleil = datetime.datetime.fromtimestamp(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.heure_du_leve_de_soleil_pour_la_date_courante_sous_forme_de_timestamp, tz = pytz.timezone(tz_name))
 
 				#
 				heure_correspondant_a_l_heure_du_leve_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_leve_de_soleil.hour)
@@ -2714,7 +2744,7 @@ def expression_de_donnees_meteo_par_la_commande_vocale(tableau_des_donnees_meteo
                         elif tableau_des_donnees_meteo_demandees[0] == "COUCHER":
 
 				#
-				affichage_de_la_date_et_de_l_heure_du_couche_de_soleil = datetime.datetime.fromtimestamp(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.heure_du_couche_de_soleil_pour_la_date_courante_sous_forme_de_timestamp, tz = tz_name)
+				affichage_de_la_date_et_de_l_heure_du_couche_de_soleil = datetime.datetime.fromtimestamp(instance_de_la_situation_de_la_meteo_dans_la_ville_passee_en_parametre.heure_du_couche_de_soleil_pour_la_date_courante_sous_forme_de_timestamp, tz = pytz.timezone(tz_name))
 
 				#
 				heure_correspondant_a_l_heure_du_couche_de_soleil = str(affichage_de_la_date_et_de_l_heure_du_couche_de_soleil.hour)
