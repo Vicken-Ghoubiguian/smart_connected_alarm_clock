@@ -494,6 +494,30 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("SUNSET")
 
 			#
+			elif mot == "What" or mot == "what":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("WHAT")
+
+			#
+			elif mot == "time" or mot == "Time":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("TIME")
+
+			#
+			elif mot == "date" or mot == "Date":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("DATE")
+
+			#
+			elif mot == "is" or mot == "Is":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("IS")
+
+			#
 			elif mot == "log" or mot == "Log":
 
 				#
@@ -609,6 +633,30 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 
 				 #
 				 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("COUCHER")
+
+			 #
+			 elif mot == "Quelle" or mot == "quelle":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("QUELLE")
+
+			 #
+			 elif mot == "Heure" or mot == "heure":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("HEURE")
+
+			 #
+			 elif mot == "Date" or mot == "date":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("DATE")
+
+			 #
+			 elif mot == "est-il":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("EST")
 
 			 #
 			 elif mot == "Levé" or mot == "levé" or mot == "Léve" or mot == "léve" or mot == "Lever" or mot == "lever":
