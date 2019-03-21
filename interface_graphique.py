@@ -2041,6 +2041,9 @@ class Horloge(Frame):
 	def expression_de_l_heure_et_de_la_date_par_commande_vocale(self, tableau_des_elements_demandes):
 
 		#
+		texte_a_dire_par_eSpeak = ""
+
+		#
 		tz_correspondant_a_la_ville_courante = horloge_monde.renvoi_du_timezone_correspondant_a_l_id_de_la_ville_passe_en_parametre(self.incrementeur + 1)
 
 		#
@@ -2129,6 +2132,63 @@ class Horloge(Frame):
                 				#
                 				texte_a_dire_par_eSpeak = "It is " + jour_courant_dans_la_semaine + " " + str(horaire_courant_dans_la_ville_courante.year) + " " + jour + " " + mois_courant_dans_l_annee + " in " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
 
+			#
+			else:
+
+				#
+                		jour_courant_dans_la_semaine = days_of_the_week[horaire_courant_dans_la_ville_courante.weekday()]
+
+                		#
+                		mois_courant_dans_l_annee = months_in_the_year[horaire_courant_dans_la_ville_courante.month - 1]
+
+				#
+				jour = str(horaire_courant_dans_la_ville_courante.day)
+
+				#
+				heure_a_faire_dire_a_eSpeak = str(horaire_courant_dans_la_ville_courante.hour % 12)
+
+				#
+				minute_a_faire_dire_a_eSpeak = str(horaire_courant_dans_la_ville_courante.minute)
+
+				#
+				seconde_a_faire_dire_a_eSpeak = str(horaire_courant_dans_la_ville_courante.second)
+
+				#
+				if horaire_courant_dans_la_ville_courante.hour < 13:
+
+					#
+					identificateur_du_moment_de_la_journee = "AM"
+
+				#
+				else:
+
+					#
+					identificateur_du_moment_de_la_journee = "PM"
+
+				#
+        			if self.format_de_date_uttilisee == 0:
+
+                			#
+                			texte_a_dire_par_eSpeak = "It is " + heure_a_faire_dire_a_eSpeak + " hours " + minute_a_faire_dire_a_eSpeak + " minutes and " + seconde_a_faire_dire_a_eSpeak + " seconds " + identificateur_du_moment_de_la_journee + " on " + jour_courant_dans_la_semaine + " " + mois_courant_dans_l_annee + " " + jour + " " + str(horaire_courant_dans_la_ville_courante.year) + " in " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
+
+        			#
+        			elif self.format_de_date_uttilisee == 1:
+
+                			#
+                			texte_a_dire_par_eSpeak = "It is " + heure_a_faire_dire_a_eSpeak + " hours " + minute_a_faire_dire_a_eSpeak + " minutes and " + seconde_a_faire_dire_a_eSpeak + " seconds " + identificateur_du_moment_de_la_journee + " on " + jour_courant_dans_la_semaine + " " + jour + " " + mois_courant_dans_l_annee + " " + str(horaire_courant_dans_la_ville_courante.year) + " in " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
+
+        			#
+        			elif self.format_de_date_uttilisee == 2:
+
+                			#
+                			texte_a_dire_par_eSpeak = "It is " + heure_a_faire_dire_a_eSpeak + " hours " + minute_a_faire_dire_a_eSpeak + " minutes and " + seconde_a_faire_dire_a_eSpeak + " seconds " + identificateur_du_moment_de_la_journee + " on " + jour_courant_dans_la_semaine + " " + str(horaire_courant_dans_la_ville_courante.year) + " " + mois_courant_dans_l_annee + " " + jour + " in " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
+
+        			#
+        			else:
+
+                			#
+                			texte_a_dire_par_eSpeak = "It is " + heure_a_faire_dire_a_eSpeak + " hours " + minute_a_faire_dire_a_eSpeak + " minutes and " + seconde_a_faire_dire_a_eSpeak + " seconds " + identificateur_du_moment_de_la_journee + " on " + jour_courant_dans_la_semaine + " " + str(horaire_courant_dans_la_ville_courante.year) + " " + jour + " " + mois_courant_dans_l_annee + " in " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
+
 		#
 		else:
 
@@ -2160,7 +2220,7 @@ class Horloge(Frame):
 						identificateur_du_moment_de_la_journee = "PM"
 
 					#
-					texte_a_dire_par_eSpeak = "Il est " + heure_a_faire_dire_a_eSpeak + " heures " + minute_a_faire_dire_a_eSpeak + " minutes et " + seconde_a_faire_dire_a_eSpeak + " secondes " + identificateur_du_moment_de_la_journee + " dans " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
+					texte_a_dire_par_eSpeak = "Il est " + heure_a_faire_dire_a_eSpeak + " heures " + minute_a_faire_dire_a_eSpeak + " minutes et " + seconde_a_faire_dire_a_eSpeak + " secondes " + identificateur_du_moment_de_la_journee + " à " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
 
 				#
 				else:
@@ -2178,25 +2238,70 @@ class Horloge(Frame):
         				if self.format_de_date_uttilisee == 0:
 
                 				#
-                				texte_a_dire_par_eSpeak = "On est " + jour_courant_dans_la_semaine + " " + mois_courant_dans_l_annee + " " + jour + " " + str(horaire_courant_dans_la_ville_courante.year) + " dans " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
+                				texte_a_dire_par_eSpeak = "On est " + jour_courant_dans_la_semaine + " " + mois_courant_dans_l_annee + " " + jour + " " + str(horaire_courant_dans_la_ville_courante.year) + " à " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
 
         				#
         				elif self.format_de_date_uttilisee == 1:
 
                 				#
-                				texte_a_dire_par_eSpeak = "On est " + jour_courant_dans_la_semaine + " " + jour + " " + mois_courant_dans_l_annee + " " + str(horaire_courant_dans_la_ville_courante.year) + " in " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
+                				texte_a_dire_par_eSpeak = "On est " + jour_courant_dans_la_semaine + " " + jour + " " + mois_courant_dans_l_annee + " " + str(horaire_courant_dans_la_ville_courante.year) + " à " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
 
         				#
         				elif self.format_de_date_uttilisee == 2:
 
                 				#
-                				texte_a_dire_par_eSpeak = "On est " + jour_courant_dans_la_semaine + " " + str(horaire_courant_dans_la_ville_courante.year) + " " + mois_courant_dans_l_annee + " " + jour + " in " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
+                				texte_a_dire_par_eSpeak = "On est " + jour_courant_dans_la_semaine + " " + str(horaire_courant_dans_la_ville_courante.year) + " " + mois_courant_dans_l_annee + " " + jour + " à " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
 
         				#
         				else:
 
                 				#
-                				texte_a_dire_par_eSpeak = "On est " + jour_courant_dans_la_semaine + " " + str(horaire_courant_dans_la_ville_courante.year) + " " + jour + " " + mois_courant_dans_l_annee + " in " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
+                				texte_a_dire_par_eSpeak = "On est " + jour_courant_dans_la_semaine + " " + str(horaire_courant_dans_la_ville_courante.year) + " " + jour + " " + mois_courant_dans_l_annee + " à " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
+
+			#
+			else:
+
+				#
+                		jour_courant_dans_la_semaine = jour_de_la_semaine[horaire_courant_dans_la_ville_courante.weekday()]
+
+                		#
+                		mois_courant_dans_l_annee = mois_de_l_annee[horaire_courant_dans_la_ville_courante.month - 1]
+
+				#
+				jour = str(horaire_courant_dans_la_ville_courante.day)
+
+				#
+				heure_a_faire_dire_a_eSpeak = str(horaire_courant_dans_la_ville_courante.hour)
+
+				#
+				minute_a_faire_dire_a_eSpeak = str(horaire_courant_dans_la_ville_courante.minute)
+
+				#
+				seconde_a_faire_dire_a_eSpeak = str(horaire_courant_dans_la_ville_courante.second)
+
+				#
+        			if self.format_de_date_uttilisee == 0:
+
+                			#
+                			texte_a_dire_par_eSpeak = "On est " + heure_a_faire_dire_a_eSpeak + " heures " + minute_a_faire_dire_a_eSpeak + " minutes et " + seconde_a_faire_dire_a_eSpeak + " secondes " + " le " + jour_courant_dans_la_semaine + " " + mois_courant_dans_l_annee + " " + jour + " " + str(horaire_courant_dans_la_ville_courante.year) + " à " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
+
+        			#
+        			elif self.format_de_date_uttilisee == 1:
+
+                			#
+                			texte_a_dire_par_eSpeak = "On est " + heure_a_faire_dire_a_eSpeak + " heures " + minute_a_faire_dire_a_eSpeak + " minutes et " + seconde_a_faire_dire_a_eSpeak + " secondes " + " le " + jour_courant_dans_la_semaine + " " + jour + " " + mois_courant_dans_l_annee + " " + str(horaire_courant_dans_la_ville_courante.year) + " à " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
+
+        			#
+        			elif self.format_de_date_uttilisee == 2:
+
+                			#
+                			texte_a_dire_par_eSpeak = "On est " + heure_a_faire_dire_a_eSpeak + " heures " + minute_a_faire_dire_a_eSpeak + " minutes et " + seconde_a_faire_dire_a_eSpeak + " secondes " + " le " + jour_courant_dans_la_semaine + " " + str(horaire_courant_dans_la_ville_courante.year) + " " + mois_courant_dans_l_annee + " " + jour + " à " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
+
+        			#
+        			else:
+
+                			#
+                			texte_a_dire_par_eSpeak = "On est " + heure_a_faire_dire_a_eSpeak + " heures " + minute_a_faire_dire_a_eSpeak + " minutes et " + seconde_a_faire_dire_a_eSpeak + " secondes " + " le " + jour_courant_dans_la_semaine + " " + str(horaire_courant_dans_la_ville_courante.year) + " " + jour + " " + mois_courant_dans_l_annee + " à " + nom_de_la_ville_courante_dans_la_langue_courante + "(" + nom_du_pays_dans_lequel_se_situe_la_ville_courante_dans_la_langue_courante + ")"
 
 		#
 		horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
@@ -2428,6 +2533,12 @@ class Horloge(Frame):
 
 				#
 				self.changement_de_l_etat_du_reveil_a_l_aide_de_la_commande_vocale("DISABLE")
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("WHAT",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("IS",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("DATE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("TIME",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.expression_de_l_heure_et_de_la_date_par_commande_vocale(["TIME", "DATE"])
 
 			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("WHAT",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("TIME",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("IS",tableau_de_la_commande_vocale_de_l_uttilisateur):
@@ -2665,6 +2776,12 @@ class Horloge(Frame):
 
 				#
 				self.changement_de_l_etat_du_reveil_a_l_aide_de_la_commande_vocale("DESACTIVER")
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("QUELLE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("EST",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("DATE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("HEURE",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.expression_de_l_heure_et_de_la_date_par_commande_vocale(["HEURE", "DATE"])
 
 			#
 			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("QUELLE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("HEURE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("EST",tableau_de_la_commande_vocale_de_l_uttilisateur):

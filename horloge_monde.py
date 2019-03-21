@@ -512,7 +512,7 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("DATE")
 
 			#
-			elif mot == "is" or mot == "Is":
+			elif mot == "is" or mot == "Is" or mot == "are" or mot == "Are":
 
 				#
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("IS")
@@ -635,13 +635,13 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 				 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("COUCHER")
 
 			 #
-			 elif mot == "Quelle" or mot == "quelle":
+			 elif mot == "Quelle" or mot == "quelle" or mot == "quelles" or mot == "Quelles" or mot == "quel" or mot == "Quel" or mot == "Quels" or mot == "quels":
 
 				#
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("QUELLE")
 
 			 #
-			 elif mot == "Heure" or mot == "heure":
+			 elif mot == "Heure" or mot == "heure" or mot == "l'heure" or mot == "L'heure":
 
 				#
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("HEURE")
@@ -653,7 +653,7 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("DATE")
 
 			 #
-			 elif mot == "est-il" or mot == "est" or mot == "Est":
+			 elif mot == "est-il" or mot == "est" or mot == "Est" or mot == "sont" or mot == "Sont":
 
 				#
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("EST")
