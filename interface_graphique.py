@@ -2666,6 +2666,18 @@ class Horloge(Frame):
 				#
 				self.changement_de_l_etat_du_reveil_a_l_aide_de_la_commande_vocale("DESACTIVER")
 
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("QUELLE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("HEURE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("EST",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.expression_de_l_heure_et_de_la_date_par_commande_vocale(["HEURE"])
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("QUELLE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("DATE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("EST",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.expression_de_l_heure_et_de_la_date_par_commande_vocale(["DATE"])
+
 	#
 	def commande_vocale_du_reveil(self):
 

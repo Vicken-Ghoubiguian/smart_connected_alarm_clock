@@ -653,7 +653,7 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("DATE")
 
 			 #
-			 elif mot == "est-il":
+			 elif mot == "est-il" or mot == "est" or mot == "Est":
 
 				#
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("EST")
