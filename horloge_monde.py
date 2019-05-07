@@ -374,6 +374,12 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 		if langue_uttilisee == 0:
 
 			#
+			if mot == "delete" or mot == "Delete":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("DELETE")
+
+			#
 			if mot == "french" or mot == "French":
 
 				#
@@ -518,7 +524,7 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("IS")
 
 			#
-			elif mot == "log" or mot == "Log":
+			elif mot == "log" or mot == "Log" or mot == "logs" or mot == "Logs":
 
 				#
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("LOG")
@@ -591,6 +597,12 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 
 		#
 		else:
+
+			 #
+			 if mot == "supprimer" or mot == "Supprimer" or mot == "suppression" or mot == "Suppression":
+
+				#
+				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("SUPPRESSION")
 
 			 #
 			 if mot == "anglais" or mot == "Anglais":
@@ -736,7 +748,7 @@ def filtre_de_la_commande_vocale_de_l_uttilisateur(commande_vocale_de_l_uttilisa
 				tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("MAJ")
 
 			 #
-                         elif mot == "log" or mot == "Log":
+                         elif mot == "log" or mot == "Log" or mot == "logs" or mot == "Logs":
 
                                 #
                                 tableau_des_mots_cles_a_retourner_pour_le_declenchement_des_commandes.append("LOG")

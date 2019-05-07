@@ -2654,6 +2654,18 @@ class Horloge(Frame):
 				#
 				self.expression_de_l_heure_et_de_la_date_par_commande_vocale(["DATE"])
 
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("DELETE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("LOG",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("VOICE",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.suppression_du_fichier_de_log_de_la_commande_vocale()
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("DELETE",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("LOG",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("UPDATES",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.suppression_du_fichier_de_log_des_mises_a_jour()
+
                 #
                 else:
 
@@ -2902,6 +2914,18 @@ class Horloge(Frame):
 
 				#
 				self.expression_de_l_heure_et_de_la_date_par_commande_vocale(["DATE"])
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("SUPPRESSION",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("LOG",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("VOIX",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.suppression_du_fichier_de_log_de_la_commande_vocale()
+
+			#
+			elif horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("SUPPRESSION",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("LOG",tableau_de_la_commande_vocale_de_l_uttilisateur) and horloge_monde.contient_l_element_passe_en_parametre_dans_le_tableau_passe_en_parametre("MAJ",tableau_de_la_commande_vocale_de_l_uttilisateur):
+
+				#
+				self.suppression_du_fichier_de_log_des_mises_a_jour()
 
 	#
 	def commande_vocale_du_reveil(self):
