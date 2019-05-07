@@ -572,7 +572,7 @@ class Horloge(Frame):
 						texte_a_dire_par_eSpeak_en_cas_de_non_disponibilite_du_fichier = "Le fichier demandée n'est malheureusement pas disponible"
 
 					#
-					horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
+					horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak_en_cas_de_non_disponibilite_du_fichier, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#Sinon...
                         else:
@@ -663,7 +663,7 @@ class Horloge(Frame):
 						texte_a_dire_par_eSpeak_en_cas_de_non_disponibilite_du_fichier = "Le fichier demandée n'est malheureusement pas disponible"
 
 					#
-					horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
+					horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak_en_cas_de_non_disponibilite_du_fichier, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 			#Sinon...
                         else:
