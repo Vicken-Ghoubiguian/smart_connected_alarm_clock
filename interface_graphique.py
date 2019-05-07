@@ -241,10 +241,10 @@ class Horloge(Frame):
 		self.menu_d_aide.add_command(label = "Showing the contents of the updates log file...", command = self.affichage_du_contenu_du_fichier_de_log_des_mises_a_jour_dans_une_fenetre)
 
 		#
-		self.menu_d_aide.add_command(label = "Delete the voice command log file", command = self.suppression_du_fichier_de_log_de_la_commande_vocale)
+		self.menu_d_aide.add_command(label = "Delete the voice command log file...", command = self.suppression_du_fichier_de_log_de_la_commande_vocale)
 
 		#
-		self.menu_d_aide.add_command(label = "Delete the update log file", command = self.suppression_du_fichier_de_log_des_mises_a_jour)
+		self.menu_d_aide.add_command(label = "Delete the update log file...", command = self.suppression_du_fichier_de_log_des_mises_a_jour)
 
 		#
 		self.menu_d_aide.add_command(label = "About...", command = self.affichage_des_informations_sur_le_reveil_intelligent_et_connecte)
@@ -1780,7 +1780,13 @@ class Horloge(Frame):
 					self.menu_d_aide.entryconfig(2, label = "Showing the contents of the updates log file...")
 
 					#
-					self.menu_d_aide.entryconfig(3, label = "About...")
+					self.menu_d_aide.entryconfig(3, label = "Delete the voice command log file...")
+
+					#
+					self.menu_d_aide.entryconfig(4, label = "Delete the update log file...")
+
+					#
+					self.menu_d_aide.entryconfig(5, label = "About...")
 
 					#
 					self.texte_d_indication_du_demarrage_des_mises_a_jour_a_dire_par_eSpeak = "Now, updates will be made"
@@ -1837,7 +1843,13 @@ class Horloge(Frame):
 					self.menu_d_aide.entryconfig(2, label = "Affichage du contenu du fichier log des mises à jour...")
 
 					#
-                                        self.menu_d_aide.entryconfig(3, label = "A propos...")
+					self.menu_d_aide.entryconfig(3, label = "Suppression du fichier de log de la commande vocale...")
+
+					#
+					self.menu_d_aide.entryconfig(4, label = "Suppression du fichier de log des mises à jour...")
+
+					#
+                                        self.menu_d_aide.entryconfig(5, label = "A propos...")
 
 					#
                                 	self.texte_d_indication_du_demarrage_des_mises_a_jour_a_dire_par_eSpeak = "Maintenant, des mises à jour vont être effectués"
@@ -2454,7 +2466,13 @@ class Horloge(Frame):
 				self.menu_d_aide.entryconfig(2, label = "Affichage du contenu du fichier des mises à jour...")
 
 				#
-                                self.menu_d_aide.entryconfig(3, label = "A propos...")
+				self.menu_d_aide.entryconfig(3, label = "Suppression du fichier de log de la commande vocale...")
+
+				#
+				self.menu_d_aide.entryconfig(4, label = "Suppression du fichier de log des mises à jour...")
+
+				#
+                                self.menu_d_aide.entryconfig(5, label = "A propos...")
 
 				#
                                 texte_a_dire_par_eSpeak = "Maintenant, la langue courante est le français"
@@ -2697,7 +2715,13 @@ class Horloge(Frame):
 				self.menu_d_aide.entryconfig(2, label = "Showing the contents of the updates log file...")
 
 				#
-				self.menu_d_aide.entryconfig(3, label = "About...")
+				self.menu_d_aide.entryconfig(3, label = "Delete the voice command log file...")
+
+				#
+				self.menu_d_aide.entryconfig(4, label = "Delete the update log file...")
+
+				#
+				self.menu_d_aide.entryconfig(5, label = "About...")
 
 				#
 				texte_a_dire_par_eSpeak = "Now, the current language is English."
