@@ -241,13 +241,13 @@ class Horloge(Frame):
 		self.menu_d_aide.add_command(label = "Showing the contents of the updates log file...", command = self.affichage_du_contenu_du_fichier_de_log_des_mises_a_jour_dans_une_fenetre)
 
 		#
+		self.menu_d_aide.add_command(label = "Delete the voice command log file", command = self.suppression_du_fichier_de_log_de_la_commande_vocale)
+
+		#
+		self.menu_d_aide.add_command(label = "Delete the update log file", command = self.suppression_du_fichier_de_log_des_mises_a_jour)
+
+		#
 		self.menu_d_aide.add_command(label = "About...", command = self.affichage_des_informations_sur_le_reveil_intelligent_et_connecte)
-
-		#
-		#self.menu_d_aide.add_command(label = "update logs", command = self.affichage_du_contenu_des_logs_des_mises_a_jour)
-
-		#
-		#self.menu_d_aide.add_command(label = "voice command logs", command = self.affichage_du_contenu_des_logs_de_la_commande_vocale)
 
 		#
 		barre_de_menu_du_reveil.add_cascade(label = "Aide", menu = self.menu_d_aide)
@@ -1299,6 +1299,90 @@ class Horloge(Frame):
 
 		#
 		self.est_ouverte_boite_d_affichage_des_commandes_vocales = False
+
+	#
+	def suppression_du_fichier_de_log_des_mises_a_jour(self):
+
+		#
+		if os.path.isfile("logs/logs_mise_a_jour_des_modules"):
+
+			#
+			os.remove("logs/logs_mise_a_jour_des_modules")
+
+			#
+			if self.langue_uttilisee == 0:
+
+				#
+				texte_a_dire_par_eSpeak = "Log file successfully deleted"
+
+			#
+			else:
+
+				#
+				texte_a_dire_par_eSpeak = "Fichier de log supprimé avec succès"
+
+			#
+			horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
+
+		#
+		else:
+
+			#
+			if self.langue_uttilisee == 0:
+
+				#
+				texte_a_dire_par_eSpeak_en_cas_d_inexistance_du_fichier = "Error: Non-existent log file"
+
+			#
+			else:
+
+				#
+				texte_a_dire_par_eSpeak_en_cas_d_inexistance_du_fichier = "Erreur: Fichier de log inexistant"
+
+			#
+			horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak_en_cas_d_inexistance_du_fichier, self.identifiant_en_lettres_de_la_langue_uttilisee)
+
+	#
+	def suppression_du_fichier_de_log_de_la_commande_vocale(self):
+
+		#
+		if os.path.isfile("logs/logs_commande_vocale"):
+
+			#
+			os.remove("logs/logs_commande_vocale")
+
+			#
+			if self.langue_uttilisee == 0:
+
+				#
+				texte_a_dire_par_eSpeak = "Log file successfully deleted"
+
+			#
+			else:
+
+				#
+				texte_a_dire_par_eSpeak = "Fichier de log supprimé avec succès"
+
+			#
+			horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak, self.identifiant_en_lettres_de_la_langue_uttilisee)
+
+		#
+		else:
+
+			#
+			if self.langue_uttilisee == 0:
+
+				#
+				texte_a_dire_par_eSpeak_en_cas_d_inexistance_du_fichier = "Error: Non-existent log file"
+
+			#
+			else:
+
+				#
+				texte_a_dire_par_eSpeak_en_cas_d_inexistance_du_fichier = "Erreur: Fichier de log inexistant"
+
+			#
+			horloge_monde.uttilisation_de_la_conversion_du_texte_a_la_voix_grace_a_eSpeak(texte_a_dire_par_eSpeak_en_cas_d_inexistance_du_fichier, self.identifiant_en_lettres_de_la_langue_uttilisee)
 
 	#
 	def configuration_des_mises_a_jour(self):
