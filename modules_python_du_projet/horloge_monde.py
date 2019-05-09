@@ -25,7 +25,6 @@ import sqlite3
 import time
 import subprocess
 import situation_de_la_meteo
-import interface_graphique
 
 #
 def renvoie_de_l_id_du_timezone_correspondant_a_l_id_de_la_ville_courante(indice_de_la_ville_courante):
@@ -1744,16 +1743,13 @@ def mise_en_forme_de_la_ville_passee_en_parametre(nom_de_la_ville):
 	return nom_de_la_ville_mis_en_forme
 
 #Cette fonction permet la suppression d'une ville dans la table ville
-def suppression_d_une_ville_dans_la_base(fenetre_courante_de_l_horloge, nom_de_la_ville):
+def suppression_d_une_ville_dans_la_base(nom_de_la_ville):
 
 	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
         connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
 
         #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les don$
         curseur = connecteur.cursor()
-
-	#
-	fenetre_courante_de_l_horloge.destroy()
 
 	#
 	curseur.execute("DELETE FROM ville WHERE ville.ville_en_fr = ?", (nom_de_la_ville,))
@@ -1765,13 +1761,7 @@ def suppression_d_une_ville_dans_la_base(fenetre_courante_de_l_horloge, nom_de_l
 	connecteur.close()
 
 	#
-	fenetre_courante_de_l_horloge.destroy()
-
-	#
 	remise_en_etat_de_tous_les_ids_de_la_table_Ville()
-
-	#
-	interface_graphique.initialisation_et_affichage_de_l_horloge()
 
 #Cette fonction permet de déterminer si le nom de la ville passé en paramétre (variable nom_de_la_ville) est valide
 def est_valide_comme_nom_de_ville(nom_de_la_ville):

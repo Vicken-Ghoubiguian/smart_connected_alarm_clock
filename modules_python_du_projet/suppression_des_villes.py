@@ -30,7 +30,7 @@ import horloge_monde
 class Suppression_des_Villes(Frame):
 
 	#Définition du constructeur de la classe Suppression_des_Villes
-	def __init__(self, fenetre, width_fenetre_de_conf, height_fenetre_de_conf, id_de_la_ville_courante, fenetre_courante_de_l_horloge):
+	def __init__(self, fenetre, width_fenetre_de_conf, height_fenetre_de_conf, id_de_la_ville_courante):
 
 		#Appel au constructeur de la classe parente
 		Frame.__init__(self, fenetre, width = width_fenetre_de_conf, height = height_fenetre_de_conf)
@@ -66,7 +66,7 @@ class Suppression_des_Villes(Frame):
 			nom_de_la_ville_a_supprimer = self.liste_des_villes_avec_le_pays_correspondant.get()
 
 			#
-			horloge_monde.suppression_d_une_ville_dans_la_base(nom_de_la_ville_a_supprimer, fenetre_courante_de_l_horloge)
+			horloge_monde.suppression_d_une_ville_dans_la_base(nom_de_la_ville_a_supprimer)
 
 			#
                         showinfo("Ville supprimée", "Bonne nouvelle: La ville que vous avez séléctionnée a bien été supprimée")
