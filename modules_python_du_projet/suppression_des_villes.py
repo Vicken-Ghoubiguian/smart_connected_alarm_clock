@@ -60,7 +60,7 @@ class Suppression_des_Villes(Frame):
 	def validation_de_la_suppression_de_la_ville_dans_la_base(self):
 
 		#
-		try:
+		#try:
 
 			#
 			nom_de_la_ville_a_supprimer = self.liste_des_villes_avec_le_pays_correspondant.get()
@@ -72,12 +72,12 @@ class Suppression_des_Villes(Frame):
                         showinfo("Ville supprimée", "Bonne nouvelle: La ville que vous avez séléctionnée a bien été supprimée")
 
 		#Si une erreur a été rencontrée, alors...
-		except:
+		#except:
 
 			#
-			showerror("Erreur dans la suppression d'une ville", "Erreur: La suppression de la ville séléctionnée n'a pas pu se faire corretement !!!!")
+			#showerror("Erreur dans la suppression d'une ville", "Erreur: La suppression de la ville séléctionnée n'a pas pu se faire corretement !!!!")
 
-		finally:
+		#finally:
 
 			#
-			self.fenetre.destroy()
+			#self.fenetre.destroy()

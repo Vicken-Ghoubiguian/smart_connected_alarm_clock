@@ -1073,7 +1073,7 @@ def retour_des_villes_enregistrees_dans_la_base(fenetre, id_de_la_premiere_ville
 		nom_du_pays_correspondant = resultat_de_la_requete_de_la_requete_de_renvoi_du_nom_du_pays_correspondant_a_la_ville[0]
 
 		#L'enregistrement courant est inséré à l'indice incrementeur
-		tableau_des_villes.insert(incrementeur, ville[1] + " (" + nom_du_pays_correspondant  + ")")
+		tableau_des_villes.insert(incrementeur, ville[1] + "-(" + nom_du_pays_correspondant  + ")")
 
 		#La valeur contenue dans la variable incrementeur est additionée à 1
 		incrementeur = incrementeur + 1
@@ -1743,13 +1743,22 @@ def mise_en_forme_de_la_ville_passee_en_parametre(nom_de_la_ville):
 	return nom_de_la_ville_mis_en_forme
 
 #Cette fonction permet la suppression d'une ville dans la table ville
-def suppression_d_une_ville_dans_la_base(nom_de_la_ville):
+def suppression_d_une_ville_dans_la_base(nom_de_la_ville_renseigne_en_parametre):
+
+	#
+	tableau_resultant_du_split_du_nom_de_la_ville_choisie = nom_de_la_ville_renseigne_en_parametre.split("-")
+
+	#
+	nom_de_la_ville = tableau_resultant_du_split_du_nom_de_la_ville_choisie[0]
 
 	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
         connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
 
         #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les don$
         curseur = connecteur.cursor()
+
+	#
+	print(nom_de_la_ville)
 
 	#
 	curseur.execute("DELETE FROM ville WHERE ville.ville_en_fr = ?", (nom_de_la_ville,))
@@ -2017,7 +2026,6 @@ def insertion_d_une_ville_dans_la_base_concernant_les_pays_a_plusieurs_timezones
 
 #
 def insertion_d_une_ville_dans_la_base(nom_de_la_ville_en_fr, nom_de_la_ville_en_en, id_du_timezone_correspondant, id_du_pays_correspondant):
-
 
 	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
         connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
