@@ -52,6 +52,9 @@ class Horloge(Frame):
 		Frame.__init__(self, fenetre, width = width_fenetre, height = height_fenetre)
 
 		#
+		self.fenetre_courante_de_l_horloge = fenetre
+
+		#
 		self.langue_selectionnee = IntVar()
 
 		#
@@ -822,7 +825,7 @@ class Horloge(Frame):
 					fenetre_de_suppression.resizable(False, False)
 
 					#
-					suppression_d_une_ville = suppression_des_villes.Suppression_des_Villes(fenetre_de_suppression, 500, 700, self.incrementeur + 1)
+					suppression_d_une_ville = suppression_des_villes.Suppression_des_Villes(fenetre_de_suppression, 500, 700, self.incrementeur + 1, self.fenetre_courante_de_l_horloge)
 
 					#Dans le cas ou la fenetre est détruite (événement <Destroy>), alors on appelle la fonction rendre_possible_l_ouverture_de_la_suppression_des_villes
 					fenetre_de_suppression.bind("<Destroy>", self.rendre_possible_l_ouverture_de_la_suppression_des_villes)
