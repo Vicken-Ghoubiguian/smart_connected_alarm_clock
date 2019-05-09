@@ -1,3 +1,5 @@
+import sys
+sys.path.append("modules_python_du_projet/")
 from interface_graphique import initialisation_et_affichage_de_l_horloge
 from horloge_monde import mise_a_jour_des_modules_python_necessaires_pour_le_reveil
 
