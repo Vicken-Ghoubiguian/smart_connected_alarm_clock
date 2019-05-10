@@ -30,13 +30,31 @@ import horloge_monde
 class Suppression_des_Villes(Frame):
 
 	#Définition du constructeur de la classe Suppression_des_Villes
-	def __init__(self, fenetre, width_fenetre_de_conf, height_fenetre_de_conf, id_de_la_ville_courante):
+	def __init__(self, fenetre, width_fenetre_de_conf, height_fenetre_de_conf, id_de_la_ville_courante, langue_uttilisee):
 
 		#Appel au constructeur de la classe parente
 		Frame.__init__(self, fenetre, width = width_fenetre_de_conf, height = height_fenetre_de_conf)
 
 		#
-		self.label_entree_de_la_ville = Label(fenetre, text = "Ville à supprimer: ")
+		if langue_uttilisee == 0:
+
+			#
+			self.label_entree_de_la_ville = Label(fenetre, text = "City ​​to be deleted: ")
+
+			#
+			texte_de_description_de_l_action_du_bouton = "Validate the deletion of the selected city"
+
+		#
+		else:
+
+			#
+			self.label_entree_de_la_ville = Label(fenetre, text = "Ville à supprimer: ")
+
+			#
+			texte_de_description_de_l_action_du_bouton = "Valider la suppression de la ville séléctionnée"
+
+		#
+		self.langue_uttilisee = langue_uttilisee
 
 		#
 		self.label_entree_de_la_ville.pack()
@@ -48,7 +66,7 @@ class Suppression_des_Villes(Frame):
 		self.liste_des_villes_avec_le_pays_correspondant.pack()
 
 		#
-		self.boutton_de_validation = Button(fenetre, text = "Valider la suppression de la ville séléctionnée", command = self.validation_de_la_suppression_de_la_ville_dans_la_base)
+		self.boutton_de_validation = Button(fenetre, text = texte_de_description_de_l_action_du_bouton, command = self.validation_de_la_suppression_de_la_ville_dans_la_base)
 
 		#
 		self.boutton_de_validation.pack()
