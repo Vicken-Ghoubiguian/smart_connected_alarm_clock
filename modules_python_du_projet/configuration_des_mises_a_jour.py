@@ -203,7 +203,7 @@ class Configuration_des_mises_a_jour(Frame):
                 self.label_du_choix_de_la_ville.pack()
 
                 #
-                self.liste_des_villes = horloge_monde.retour_des_villes_enregistrees_dans_la_base(fenetre, -1, -1, indice_de_la_ville_courante_pour_les_mises_a_jour, self.langue_utilisee)
+                self.liste_des_villes = horloge_monde.retour_des_villes_enregistrees_dans_la_base(fenetre, -1, indice_de_la_ville_courante_pour_les_mises_a_jour, self.langue_utilisee)
 
                 #
                 self.liste_des_villes.pack()

@@ -27,6 +27,18 @@ import subprocess
 import situation_de_la_meteo
 
 #
+def renvoie_du_nom_de_la_ville_a_supprimer_apres_traitement_pour_extraction_de_la_combobox(nom_de_la_ville_a_supprimer_avant_traitement_pour_extraction_de_la_combobox):
+
+	#
+        tableau_resultant_du_split_du_nom_de_la_ville_choisie = nom_de_la_ville_a_supprimer_avant_traitement_pour_extraction_de_la_combobox.split("-")
+
+        #
+        nom_de_la_ville = tableau_resultant_du_split_du_nom_de_la_ville_choisie[0]
+
+	#
+	return nom_de_la_ville
+
+#
 def renvoie_de_l_id_du_timezone_correspondant_a_l_id_de_la_ville_courante(indice_de_la_ville_courante):
 
 	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
@@ -1024,7 +1036,7 @@ def initialisation_du_tableau_des_villes(language):
 	return tableau_des_villes
 
 #
-def retour_des_villes_enregistrees_dans_la_base(fenetre, id_de_la_premiere_ville_a_ne_pas_prendre_en_compte, id_de_la_seconde_ville_a_ne_pas_prendre_en_compte, indice_a_mettre_en_place, langue_uttilisee):
+def retour_des_villes_enregistrees_dans_la_base(fenetre, id_de_la_ville_a_ne_pas_prendre_en_compte, indice_a_mettre_en_place, langue_uttilisee):
 
 	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
         connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
@@ -1036,13 +1048,13 @@ def retour_des_villes_enregistrees_dans_la_base(fenetre, id_de_la_premiere_ville
 	if langue_uttilisee == 0:
 
 		#Execution de la requette qui permet de récupérer l'id de la ville passée en paramétre et l'id du timezone correspondant
-		curseur.execute("SELECT ville.id, ville.ville_en_en, ville.pays FROM ville WHERE ville.id != ? AND ville.id != ?", (id_de_la_premiere_ville_a_ne_pas_prendre_en_compte, id_de_la_seconde_ville_a_ne_pas_prendre_en_compte))
+		curseur.execute("SELECT ville.id, ville.ville_en_en, ville.pays FROM ville WHERE ville.id != ?", (id_de_la_ville_a_ne_pas_prendre_en_compte,))
 
 	#
 	else:
 
         	#Execution de la requette qui permet de récupérer l'id de la ville passée en paramétre et l'id du timezone correspondant
-        	curseur.execute("SELECT ville.id, ville.ville_en_fr, ville.pays FROM ville WHERE ville.id != ? AND ville.id != ?", (id_de_la_premiere_ville_a_ne_pas_prendre_en_compte, id_de_la_seconde_ville_a_ne_pas_prendre_en_compte))
+        	curseur.execute("SELECT ville.id, ville.ville_en_fr, ville.pays FROM ville WHERE ville.id != ?", (id_de_la_ville_a_ne_pas_prendre_en_compte,))
 
 	#
 	tableau_des_resultats = curseur.fetchall()
@@ -1743,13 +1755,10 @@ def mise_en_forme_de_la_ville_passee_en_parametre(nom_de_la_ville):
 	return nom_de_la_ville_mis_en_forme
 
 #Cette fonction permet la suppression d'une ville dans la table ville
-def suppression_d_une_ville_dans_la_base(nom_de_la_ville_renseigne_en_parametre):
+def suppression_d_une_ville_dans_la_base(nom_de_la_ville, langue_uttilisee):
 
 	#
-	tableau_resultant_du_split_du_nom_de_la_ville_choisie = nom_de_la_ville_renseigne_en_parametre.split("-")
-
-	#
-	nom_de_la_ville = tableau_resultant_du_split_du_nom_de_la_ville_choisie[0]
+	id_de_la_ville_passee_en_parametre_pour_suppression = renvoi_de_l_id_d_une_ville_a_partir_de_son_nom(nom_de_la_ville, langue_uttilisee)
 
 	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
         connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
@@ -1758,10 +1767,7 @@ def suppression_d_une_ville_dans_la_base(nom_de_la_ville_renseigne_en_parametre)
         curseur = connecteur.cursor()
 
 	#
-	print(nom_de_la_ville)
-
-	#
-	curseur.execute("DELETE FROM ville WHERE ville.ville_en_fr = ?", (nom_de_la_ville,))
+	curseur.execute("DELETE FROM ville WHERE ville.id = ?", (id_de_la_ville_passee_en_parametre_pour_suppression,))
 
 	#
 	connecteur.commit()

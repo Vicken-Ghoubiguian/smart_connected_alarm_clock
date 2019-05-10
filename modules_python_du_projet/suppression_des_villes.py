@@ -60,7 +60,7 @@ class Suppression_des_Villes(Frame):
 		self.label_entree_de_la_ville.pack()
 
 		#
-		self.liste_des_villes_avec_le_pays_correspondant = horloge_monde.retour_des_villes_enregistrees_dans_la_base(fenetre, id_de_la_ville_courante, 1, 0, 1)
+		self.liste_des_villes_avec_le_pays_correspondant = horloge_monde.retour_des_villes_enregistrees_dans_la_base(fenetre, id_de_la_ville_courante, 0, self.langue_uttilisee)
 
 		#
 		self.liste_des_villes_avec_le_pays_correspondant.pack()
@@ -81,10 +81,13 @@ class Suppression_des_Villes(Frame):
 		#try:
 
 			#
-			nom_de_la_ville_a_supprimer = self.liste_des_villes_avec_le_pays_correspondant.get()
+			nom_de_la_ville_a_supprimer_avant_traitement_pour_extraction_de_la_combobox = self.liste_des_villes_avec_le_pays_correspondant.get()
 
 			#
-			horloge_monde.suppression_d_une_ville_dans_la_base(nom_de_la_ville_a_supprimer)
+			nom_de_la_ville_a_supprimer = horloge_monde.renvoie_du_nom_de_la_ville_a_supprimer_apres_traitement_pour_extraction_de_la_combobox(nom_de_la_ville_a_supprimer_avant_traitement_pour_extraction_de_la_combobox)
+
+			#
+			horloge_monde.suppression_d_une_ville_dans_la_base(nom_de_la_ville_a_supprimer, self.langue_uttilisee)
 
 			#
                         showinfo("Ville supprimée", "Bonne nouvelle: La ville que vous avez séléctionnée a bien été supprimée")

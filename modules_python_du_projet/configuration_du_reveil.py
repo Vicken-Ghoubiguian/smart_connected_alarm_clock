@@ -36,6 +36,9 @@ class Configuration_du_Reveil(Frame):
 		Frame.__init__(self, fenetre, width = width_fenetre_de_conf, height = height_fenetre_de_conf)
 
 		#
+		self.langue_uttilisee = langue_uttilisee
+
+		#
 		tableau_contenant_l_heure_la_minute_et_la_seconde_pour_faire_sonner_le_reveil = horloge_monde.renvoie_de_l_heure_de_la_minute_de_la_seconde_et_de_la_timezone_pour_faire_sonner_le_reveil()
 
 		#
@@ -273,7 +276,7 @@ class Configuration_du_Reveil(Frame):
                 self.label_du_choix_de_la_ville.pack()
 
 		#
-		self.liste_des_villes = horloge_monde.retour_des_villes_enregistrees_dans_la_base(fenetre, -1, -1, indice_de_la_ville_courante_pour_faire_sonner_le_reveil, langue_uttilisee)
+		self.liste_des_villes = horloge_monde.retour_des_villes_enregistrees_dans_la_base(fenetre, -1, indice_de_la_ville_courante_pour_faire_sonner_le_reveil, self.langue_uttilisee)
 
 		#
 		self.liste_des_villes.pack()
