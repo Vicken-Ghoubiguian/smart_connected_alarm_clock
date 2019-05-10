@@ -804,7 +804,7 @@ class Horloge(Frame):
 		else:
 
 			#Si le nombre de villes enregistrées dans la table ville est strictement supérieur à 1 alors...
-			if horloge_monde.renvoi_du_nb_de_villes_enregistrees_dans_la_base() > 2:
+			if horloge_monde.renvoi_du_nb_de_villes_enregistrees_dans_la_base() > 1:
 
                 		#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
                 		if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
