@@ -27,6 +27,52 @@ import subprocess
 import situation_de_la_meteo
 
 #
+def remise_en_etat_de_tous_les_ids_de_la_table_Ville():
+
+	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
+        connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
+
+        #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les données de la table
+        curseur = connecteur.cursor()
+
+	#
+	curseur.execute("SELECT Ville.id FROM Ville")
+
+	#
+	resultats_de_la_requete_de_selection_de_tous_les_ids_de_la_table_Ville = curseur.fetchall()
+
+	#
+	connecteur.close()
+
+	#
+	id_theorique_de_l_enregistrement_courant = 1
+
+	#
+	for identifiant_de_la_ville_courante in resultats_de_la_requete_de_selection_de_tous_les_ids_de_la_table_Ville:
+
+		#
+		if id_theorique_de_l_enregistrement_courant != identifiant_de_la_ville_courante[0]:
+
+			#
+			#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
+        		connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
+
+        		#instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les données de la table
+        		curseur = connecteur.cursor()
+
+        		#
+			curseur.execute("UPDATE Ville SET id = ? WHERE id = ?", (id_theorique_de_l_enregistrement_courant, identifiant_de_la_ville_courante[0]))
+
+			#
+			connecteur.commit()
+
+			#
+			connecteur.close()
+
+		#
+		id_theorique_de_l_enregistrement_courant = id_theorique_de_l_enregistrement_courant + 1
+
+#
 def renvoie_du_nom_de_la_ville_a_supprimer_apres_traitement_pour_extraction_de_la_combobox(nom_de_la_ville_a_supprimer_avant_traitement_pour_extraction_de_la_combobox):
 
 	#
