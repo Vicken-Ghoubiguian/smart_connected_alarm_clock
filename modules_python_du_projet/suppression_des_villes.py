@@ -26,6 +26,8 @@ except ImportError:
 
 import horloge_monde
 
+import subprocess
+
 #Cette classe permet de définir une interface graphique pour supprimer une ville dans la base de données
 class Suppression_des_Villes(Frame):
 
@@ -42,6 +44,9 @@ class Suppression_des_Villes(Frame):
 			self.label_entree_de_la_ville = Label(fenetre, text = "City ​​to be deleted: ")
 
 			#
+			self.identifiant_en_lettres_de_la_langue_uttilisee = "en"
+
+			#
 			texte_de_description_de_l_action_du_bouton = "Validate the deletion of the selected city"
 
 		#
@@ -49,6 +54,9 @@ class Suppression_des_Villes(Frame):
 
 			#
 			self.label_entree_de_la_ville = Label(fenetre, text = "Ville à supprimer: ")
+
+			#
+			self.identifiant_en_lettres_de_la_langue_uttilisee = "fr"
 
 			#
 			texte_de_description_de_l_action_du_bouton = "Valider la suppression de la ville séléctionnée"
@@ -90,13 +98,37 @@ class Suppression_des_Villes(Frame):
 			horloge_monde.suppression_d_une_ville_dans_la_base(nom_de_la_ville_a_supprimer, self.langue_uttilisee)
 
 			#
-                        showinfo("Ville supprimée", "Bonne nouvelle: La ville que vous avez séléctionnée a bien été supprimée")
+			if self.langue_uttilisee == 0:
+
+				#
+				texte_a_dire_par_eSpeak = "City deleted succesfully"
+
+			#
+			else:
+
+				#
+                        	texte_a_dire_par_eSpeak = "Ville supprimée avec succès"
+
+			#
+			subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
 
 		#Si une erreur a été rencontrée, alors...
 		except:
 
 			#
-			showerror("Erreur dans la suppression d'une ville", "Erreur: La suppression de la ville séléctionnée n'a pas pu se faire corretement !!!!")
+                        if self.langue_uttilisee == 0:
+
+                                #
+                                texte_a_dire_par_eSpeak = "Error deleting city"
+
+                        #
+                        else:
+
+                                #
+                                texte_a_dire_par_eSpeak = "Erreur lors de la suppression de la ville"
+
+                        #
+                        subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_uttilisee, "-s", "20", texte_a_dire_par_eSpeak])
 
 		finally:
 
