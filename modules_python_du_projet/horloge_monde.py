@@ -69,9 +69,6 @@ def remise_en_etat_de_tous_les_ids_de_la_table_Ville():
 	nombre_de_reset_de_l_id_de_la_table_Ville = len(resultats_de_la_requete_de_selection_de_tous_les_ids_de_la_table_Ville) - 1
 
 	#
-	print(nombre_de_reset_de_l_id_de_la_table_Ville)
-
-	#
 	for identifiant_de_la_ville_courante in resultats_de_la_requete_de_selection_de_tous_les_ids_de_la_table_Ville:
 
 		#
