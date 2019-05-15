@@ -304,6 +304,9 @@ class Horloge(Frame):
 		self.incrementeur = 0
 
 		#
+		self.ville_courante_lors_de_la_suppression_d_une_ville = ""
+
+		#
 		pygame.mixer.init(44100, -16, 2, 2048)
 
 		#
@@ -809,6 +812,9 @@ class Horloge(Frame):
                 		#Si la variable self.est_ouverte_boite_d_insertion_des_villes est à False (donc, si la fenetre d'insertion de nouvelles villes n'est pas ouverte) alors...
                 		if self.est_ouverte_boite_d_insertion_des_villes == False and self.est_ouverte_boite_de_configuration_du_reveil == False and self.est_ouverte_boite_de_suppression_des_villes == False and self.est_ouverte_boite_d_affichage_des_donnees_meteo == False and self.est_ouverte_boite_de_lecture_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_d_extraction_et_de_telechargement_depuis_YouTube == False and self.est_ouverte_boite_de_suppression_de_fichiers_audio_telecharges_depuis_YouTube == False and self.est_ouverte_boite_de_configuration_des_mises_a_jour == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_informations_sur_le_reveil == False and self.est_ouverte_boite_d_affichage_des_commandes_vocales == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False and self.est_ouverte_boite_de_consultation_des_logs_de_la_commande_vocale == False and self.est_ouverte_boite_de_consultation_des_logs_des_mises_a_jour == False:
 
+					#
+					self.ville_courante_lors_de_la_suppression_d_une_ville = horloge_monde.renvoi_du_nom_de_la_ville_courante_dans_le_language_passe_en_parametre(self.incrementeur + 1, self.langue_uttilisee)
+
 					#On affecte True à la variable self.est_ouverte_boite_de_suppression_des_villes, donc la fenetre de suppression des villes est ouverte, donc il est impossible d'en ouvrir une autre
 					self.est_ouverte_boite_de_suppression_des_villes = True
 
@@ -868,6 +874,12 @@ class Horloge(Frame):
 
                 #Modification du nombre total de villes traité par le reveil
                 self.maximum_de_l_incrementeur = horloge_monde.initialisation_du_nombre_total_de_villes() - 1
+
+		#
+		identifiant_de_la_ville_courante = horloge_monde.renvoi_de_l_id_d_une_ville_a_partir_de_son_nom(self.ville_courante_lors_de_la_suppression_d_une_ville, self.langue_uttilisee)
+
+		#
+		self.incrementeur = identifiant_de_la_ville_courante - 1
 
 	#Cette fonction permet de créer une nouvelle instance de Tkinter pour l'insertion de nouvelles villes dna sle reveil
 	def insertion_d_une_nouvelle_ville(self):
