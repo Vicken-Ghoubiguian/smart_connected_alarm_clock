@@ -860,9 +860,6 @@ class Horloge(Frame):
 		#La boite d'insertion de nouvelles villes est fermée, donc False est affectée comme valeur à la variable self.est_ouverte_boite_d_insertion_des_villes, donc il est possible de l'ouvrir
                 self.est_ouverte_boite_de_suppression_des_villes = False
 
-		horloge_monde.mise_a_jour_de_la_table_ville()
-		#horloge_monde.mise_a_jour_de_l_identifiant_de_la_table_ville()
-
                 #Modification du tableau tableau_des_villes grâce à la fonction initialisation_du_tableau_des_villes du module horloge_monde
                 self.array_of_cities = horloge_monde.initialisation_du_tableau_des_villes(0)
 

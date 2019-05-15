@@ -1952,45 +1952,6 @@ def verification_de_la_validite_de_la_ville(nom_de_la_ville_en_fr, nom_de_la_vil
 	#La valeur contenue dans la variable est_valide est retournée
 	return est_valide
 
-#Cette fonction met à jour la table ville en recopiant toutes les données conservées dans la table ville (excepté les id) pour les remettres dans la table après suppression de toutes les données présentes
-def mise_a_jour_de_la_table_ville():
-
-	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
-        connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
-
-        #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les don$
-        curseur = connecteur.cursor()
-
-	#Execution de la requête qui permet de recueillir toutes les données relatives aux villes enregistrées dnas la base
-	curseur.execute("""SELECT ville.ville_en_fr, ville.ville_en_en, ville.pays, ville.timezone FROM ville""")
-
-	#
-	tableau_des_villes_retournees = curseur.fetchall()
-
-	#Execution de la requête qui permet de supprimer toutes les données enregistrées dans la base
-        curseur.execute("DELETE FROM ville")
-
-	#
-	connecteur.commit()
-
-	#Execution de la requête qui permet de mettre à jour l'id (autoincrémentée) de la table ville
-	curseur.execute("""UPDATE sqlite_sequence SET seq = 0 WHERE name = 'ville'""")
-
-        #
-        connecteur.commit()
-
-	#Parcours du tableau tableau_des_villes contenant tous les enregistrements de la table ville
-	for ville in tableau_des_villes_retournees:
-
-		#Insertion de l'enregistrement courant dans la table ville
-		curseur.execute("INSERT INTO ville(ville_en_fr, ville_en_en, pays, timezone) VALUES(?, ?, ?, ?)", (ville[0], ville[1], ville[2], ville[3]))
-
-		#
-		connecteur.commit()
-
-	#Le connecteur à la base de données SQLITE est fermé
-        connecteur.close()
-
 #Cette fonction permet de remplacer les caractéres espaces par des underscores à partir d'une chaine passée en paramétre
 def remplacement_des_espaces_par_des_underscores(chaine_de_caracteres_initiale):
 
