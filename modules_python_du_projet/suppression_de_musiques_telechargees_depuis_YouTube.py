@@ -93,4 +93,43 @@ class Suppression_de_musiques_telechargees_depuis_YouTube(Frame):
 	def validation_de_la_suppression_d_un_single_dans_la_base(self):
 
 		#
-		print("ffffffffff")
+		try:
+
+			#
+			if self.langue_utilisee == 0:
+
+				#
+				texte_a_dire_par_eSpeak = "Single deleted succesfully"
+
+			#
+			else:
+
+				#
+				texte_a_dire_par_eSpeak = "Single supprimé avec succès"
+
+			#
+			subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_utilisee, "-s", "20", texte_a_dire_par_eSpeak])
+
+		#
+		except:
+
+			#
+			if self.langue_utilisee == 0:
+
+				#
+				texte_a_dire_par_eSpeak = "Error deleting single"
+
+			#
+			else:
+
+				#
+				texte_a_dire_par_eSpeak = "Erreur lors de la suppression d'un single"
+
+			#
+			subprocess.call(["espeak", "-v" + self.identifiant_en_lettres_de_la_langue_utilisee, "-s", "20", texte_a_dire_par_eSpeak])
+
+		#
+		finally:
+
+			#
+			self.fenetre.destroy()
