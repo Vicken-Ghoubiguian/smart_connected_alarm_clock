@@ -96,6 +96,18 @@ class Suppression_de_musiques_telechargees_depuis_YouTube(Frame):
 		try:
 
 			#
+			nom_du_single_a_supprimer_avant_traitement_pour_extraction_de_la_combobox = self.liste_des_singles.get()
+
+			#
+			nom_du_single_a_supprimer_avant_traitement_pour_extraction_de_la_combobox = horloge_monde.renvoie_du_nom_du_single_a_supprimer_apres_traitement_pour_extraction_de_la_combobox(nom_du_single_a_supprimer_avant_traitement_pour_extraction_de_la_combobox)
+
+			#
+			print(nom_du_single_a_supprimer_avant_traitement_pour_extraction_de_la_combobox)
+
+			#
+			#horloge_monde.suppression_du_single_selectionne(indice_du_single_a_supprimer)
+
+			#
 			if self.langue_utilisee == 0:
 
 				#

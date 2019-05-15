@@ -97,6 +97,18 @@ def remise_en_etat_de_tous_les_ids_de_la_table_Ville():
 	mise_a_jour_de_l_id_de_la_table_Ville(nombre_de_reset_de_l_id_de_la_table_Ville)
 
 #
+def renvoie_du_nom_du_single_a_supprimer_apres_traitement_pour_extraction_de_la_combobox(nom_du_single_a_supprimer_avant_traitement_pour_extraction_de_la_combobox):
+
+	#
+        tableau_resultant_du_split_du_nom_du_single_choisi = nom_du_single_a_supprimer_avant_traitement_pour_extraction_de_la_combobox.split("-")
+
+        #
+        nom_du_single = tableau_resultant_du_split_du_nom_du_single_choisi[0]
+
+        #
+        return nom_du_single
+
+#
 def renvoie_du_nom_de_la_ville_a_supprimer_apres_traitement_pour_extraction_de_la_combobox(nom_de_la_ville_a_supprimer_avant_traitement_pour_extraction_de_la_combobox):
 
 	#
