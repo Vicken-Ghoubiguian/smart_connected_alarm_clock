@@ -246,7 +246,7 @@ class Configuration_du_Reveil(Frame):
 		self.label_du_choix_du_single_pour_le_reveil.pack()
 
 		#
-		self.liste_des_singles_pour_choisir_celui_du_reveil = horloge_monde.retour_des_singles_enregistres_dans_la_base(fenetre, indice_du_single_courant_a_jouer_en_cas_de_sonnerie_du_reveil - 1)
+		self.liste_des_singles_pour_choisir_celui_du_reveil = horloge_monde.retour_des_singles_enregistres_dans_la_base(fenetre, indice_du_single_courant_a_jouer_en_cas_de_sonnerie_du_reveil - 1, -1)
 
 		#
 		self.liste_des_singles_pour_choisir_celui_du_reveil.pack()

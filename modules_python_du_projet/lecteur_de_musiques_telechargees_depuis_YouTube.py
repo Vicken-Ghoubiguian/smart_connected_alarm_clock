@@ -151,7 +151,7 @@ class Lecteur_de_musiques_telechargees_depuis_YouTube(Frame):
 		self.label_de_selection_du_fichier_audio_a_ecouter.pack()
 
 		#
-                self.liste_des_singles_a_choisir_pour_ecouter = horloge_monde.retour_des_singles_enregistres_dans_la_base(fenetre, 0)
+                self.liste_des_singles_a_choisir_pour_ecouter = horloge_monde.retour_des_singles_enregistres_dans_la_base(fenetre, 0, -1)
 
 		#
 		self.liste_des_singles_a_choisir_pour_ecouter.current(0)

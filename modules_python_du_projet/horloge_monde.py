@@ -2184,7 +2184,7 @@ def renvoi_du_single_utilise_pour_le_reveil():
 	return resultat_de_la_requete_de_recuperation_du_chemin_d_accee_du_fichier_audio_a_jouer_pour_le_reveil[0][0]
 
 #
-def retour_des_singles_enregistres_dans_la_base(fenetre, indice_a_mettre_en_place):
+def retour_des_singles_enregistres_dans_la_base(fenetre, indice_a_mettre_en_place, indice_du_single_a_exclure_de_la_selection):
 
 	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
         connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
@@ -2193,7 +2193,7 @@ def retour_des_singles_enregistres_dans_la_base(fenetre, indice_a_mettre_en_plac
         curseur = connecteur.cursor()
 
         #
-	curseur.execute("""SELECT Single.nom_du_single, Single.nom_de_l_auteur FROM Single""")
+	curseur.execute("""SELECT Single.nom_du_single, Single.nom_de_l_auteur FROM Single WHERE Single.id != ?""", (indice_du_single_a_exclure_de_la_selection,))
 
 	#
 	resultat_de_la_requete_de_recuperation_des_noms_des_singles_et_de_leurs_auteurs = curseur.fetchall()
