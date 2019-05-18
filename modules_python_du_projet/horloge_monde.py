@@ -27,7 +27,7 @@ import subprocess
 import situation_de_la_meteo
 
 #
-def mise_a_jour_de_l_id_de_la_table_Ville(nombre_de_reset_de_l_id_de_la_table_Ville):
+def mise_a_jour_de_l_id_de_la_table_Ville():
 
 	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
         connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
@@ -36,7 +36,31 @@ def mise_a_jour_de_l_id_de_la_table_Ville(nombre_de_reset_de_l_id_de_la_table_Vi
         curseur = connecteur.cursor()
 
 	#
-	curseur.execute("UPDATE SQLITE_SEQUENCE SET SEQ = ? WHERE NAME = 'Ville'", (nombre_de_reset_de_l_id_de_la_table_Ville,))
+        curseur.execute("SELECT Max(Ville.id) FROM Ville")
+
+        #
+        resultat_de_la_requete_de_la_valeur_maximale_de_l_id_de_la_table_Ville = curseur.fetchone()
+
+	#
+	numero_de_l_id_superieur = resultat_de_la_requete_de_la_valeur_maximale_de_l_id_de_la_table_Ville[0];
+
+	#
+        connecteur.commit()
+
+        #
+        connecteur.close()
+
+	#
+	numero_de_reset_de_l_id_de_la_table_Ville = numero_de_l_id_superieur + 1
+
+	#Connection à la base de données registre_des_timezones_des_villes_et_des_pays
+        connecteur = sqlite3.connect('registre_des_timezones_des_villes_et_des_pays.db')
+
+        #instanciation d'une variable curseur (de type cursor) qui va permettre de parcourir les données de la table
+        curseur = connecteur.cursor()
+
+	#
+	curseur.execute("UPDATE Ville SET id = ? WHERE id = ?", (numero_de_l_id_superieur, numero_de_reset_de_l_id_de_la_table_Ville))
 
 	#
         connecteur.commit()
@@ -66,7 +90,7 @@ def remise_en_etat_de_tous_les_ids_de_la_table_Ville():
 	id_theorique_de_l_enregistrement_courant = 1
 
 	#
-	nombre_de_reset_de_l_id_de_la_table_Ville = len(resultats_de_la_requete_de_selection_de_tous_les_ids_de_la_table_Ville) - 1
+	#nombre_de_reset_de_l_id_de_la_table_Ville = len(resultats_de_la_requete_de_selection_de_tous_les_ids_de_la_table_Ville) - 1
 
 	#
 	for identifiant_de_la_ville_courante in resultats_de_la_requete_de_selection_de_tous_les_ids_de_la_table_Ville:
@@ -94,7 +118,7 @@ def remise_en_etat_de_tous_les_ids_de_la_table_Ville():
 		id_theorique_de_l_enregistrement_courant = id_theorique_de_l_enregistrement_courant + 1
 
 	#
-	mise_a_jour_de_l_id_de_la_table_Ville(nombre_de_reset_de_l_id_de_la_table_Ville)
+	mise_a_jour_de_l_id_de_la_table_Ville()
 
 #
 def renvoie_du_nom_du_single_a_supprimer_apres_traitement_pour_extraction_de_la_combobox(nom_du_single_a_supprimer_avant_traitement_pour_extraction_de_la_combobox):
